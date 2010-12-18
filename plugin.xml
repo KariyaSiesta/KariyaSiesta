@@ -143,6 +143,13 @@
             icon="icons/sample.gif"
             id="checkerplugin.views.XPathViewer"
             name="XPathViewer"/>
+            
+      <view
+            category="CheckerPlugin"
+            class="org.sapid.checker.eclipse.view.JsConsole"
+            icon="icons/sample.gif"
+            id="checkerplugin.views.JsViewer"
+            name="JsConsole"/>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
