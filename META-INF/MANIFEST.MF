@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CheckerPlugin Plug-in
+Bundle-SymbolicName: CheckerPlugin;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.sapid.checker.eclipse.CheckerActivator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.jface.text,
+ org.eclipse.ui.ide,
+ org.junit
+Eclipse-LazyStart: true
+Bundle-ClassPath: .,
+ lib/sapid.jar,
+ lib/dtdparser-1.21.jar
+Main-Class: org.sapid.checker.main.Main
