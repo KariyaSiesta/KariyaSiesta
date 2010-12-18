@@ -6,24 +6,22 @@ package org.sapid.checker.popup.actions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.sapid.checker.cx.command.Makefile;
-import org.sapid.checker.eclipse.progress.CreateSDBProgress;
+import org.sapid.checker.eclipse.progress.CreateSDBJob;
 
 /**
  * 「SDB を作成」のアクションデリゲータ<br>
@@ -63,22 +61,9 @@ public class CreateSDB implements IObjectActionDelegate {
             return;
         }
 
-        ProgressMonitorDialog dialog = new ProgressMonitorDialog(new Shell());
-        try {
-            dialog.run(true, true, new CreateSDBProgress(projectRealPath,
-                    makefile, dialog));
-        } catch (InvocationTargetException e) {
-            // 末尾10行だけを表示
-            List<String> list = Arrays.asList(e.getCause().toString().split(
-                    "\n"));
-            if (list.size() > 10) {
-                list = list.subList(list.size() - 10, list.size());
-            }
-            MessageDialog.openError(null, "Error in Sapid", joinArray(list,
-                    "\n"));
-        } catch (InterruptedException e) {
-            // e.printStackTrace();
-        }
+        Job job = new CreateSDBJob(projectRealPath,makefile);
+        job.setUser(true);
+        job.schedule();
     }
 
     /**
