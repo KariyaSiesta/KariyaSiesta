@@ -9,7 +9,7 @@
             nameFilter="*.c"
             objectClass="org.eclipse.core.resources.IFile">
          <menu
-               label="&amp;Checker"
+               label="&amp;KariyaSiesta"
                path="additions"
                id="CheckerPlugin.CMenu">
             <separator
@@ -35,7 +35,7 @@
             objectClass="org.eclipse.core.resources.IFile">
          <menu
                id="CheckerPlugin.HMenu"
-               label="&amp;Checker"
+               label="&amp;KariyaSiesta"
                path="additions">
             <separator
                   name="group1">
@@ -61,7 +61,7 @@
             objectClass="org.eclipse.core.resources.IFile">
          <menu
                id="CheckerPlugin.MakefileMenu"
-               label="&amp;Checker"
+               label="&amp;KariyaSiesta"
                path="additions">
             <separator
                   name="group1">
@@ -81,7 +81,7 @@
             objectClass="org.eclipse.core.resources.IProject">
          <menu
                id="CheckerPlugin.ProjectMenu"
-               label="&amp;Checker"
+               label="&amp;KariyaSiesta"
                path="additions">
             <separator name="group2"/>
          </menu>
@@ -110,7 +110,7 @@
             objectClass="org.eclipse.core.resources.IFolder">
          <menu
                id="CheckerPlugin.DirectoryMenu"
-               label="&amp;Checker"
+               label="&amp;KariyaSiesta"
                path="additions">
             <separator
                   name="group2">
@@ -168,7 +168,7 @@
       <page
             class="org.sapid.checker.eclipse.properties.CheckerPreferencePage"
             id="org.sapid.checker.eclipse.properties.CheckerGlobalPropertyPage"
-            name="Checker">
+            name="KariyaSiesta">
       </page>
    </extension>
    <extension
