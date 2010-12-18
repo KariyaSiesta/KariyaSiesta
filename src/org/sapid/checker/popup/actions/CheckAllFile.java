@@ -8,6 +8,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -18,6 +19,7 @@ import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.sapid.checker.eclipse.CheckerActivator;
+import org.sapid.checker.eclipse.ProgressJob;
 import org.sapid.checker.eclipse.progress.CheckAllWithProgress;
 import org.sapid.checker.eclipse.properties.PropertyStore;
 
@@ -47,10 +49,6 @@ public class CheckAllFile implements IObjectActionDelegate {
         IResource project = projectRes;
         try {
             targetFiles = listUp(((IContainer) project).members());
-
-            // プログレスバーを使う
-            ProgressMonitorDialog dialog = new ProgressMonitorDialog(
-                    new Shell());
             CheckAllWithProgress searchThread = new CheckAllWithProgress();
             searchThread.setFile(targetFiles);
             searchThread.setProjectName(project.getName());
@@ -65,11 +63,10 @@ public class CheckAllFile implements IObjectActionDelegate {
             IFile ruleXML = PropertyStore.getProjectSettingAsFile(prj);
             searchThread.setRuleXML(ruleXML.getRawLocation().toOSString());
 
-            dialog.run(true, true, searchThread);
-        } catch (InterruptedException e) {
-            MessageDialog.openInformation(new Shell(), "Checker", e
-                    .getMessage());
-        } catch (Exception e) {
+            Job job = new ProgressJob("Check All Files",searchThread);
+            job.setUser(true);
+            job.schedule();
+        }catch (Exception e) {
             CheckerActivator.log(e);
         }
     }
