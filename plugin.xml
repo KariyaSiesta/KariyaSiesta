@@ -136,7 +136,7 @@
          point="org.eclipse.ui.views">
       <category
             id="CheckerPlugin"
-            name="Checker"/>
+            name="KariyaSiesta"/>
       <view
             category="CheckerPlugin"
             class="org.sapid.checker.eclipse.view.XPathViewer"
@@ -160,7 +160,7 @@
             adaptable="true"
             class="org.sapid.checker.eclipse.properties.CheckerPropertyPage"
             id="org.sapid.checker.eclipse.properties.CheckerPropertyPage."
-            name="Checker"
+            name="KariyaSiesta"
             objectClass="org.eclipse.core.resources.IProject"/>
    </extension>
    <extension
