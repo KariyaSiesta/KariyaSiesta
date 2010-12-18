@@ -13,6 +13,11 @@ import org.sapid.checker.eclipse.CheckerActivator;
 import org.sapid.checker.eclipse.Messages;
 import org.eclipse.core.runtime.Status;
 
+/***
+ * SDB生成をバックグラウンドで行なうためのジョブ
+ *
+ * @author mzp
+ */
 public class CreateSDBJob extends Job {
 
 	private String curDir;
