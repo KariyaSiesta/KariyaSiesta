@@ -14,5 +14,6 @@ Require-Bundle: org.eclipse.ui,
 Eclipse-LazyStart: true
 Bundle-ClassPath: .,
  lib/sapid.jar,
- lib/dtdparser-1.21.jar
+ lib/dtdparser-1.21.jar,
+ lib/java-getopt-1.0.9.jar
 Main-Class: org.sapid.checker.main.Main
