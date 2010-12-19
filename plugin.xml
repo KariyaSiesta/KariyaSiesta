@@ -140,14 +140,14 @@
       <view
             category="CheckerPlugin"
             class="org.sapid.checker.eclipse.view.XPathViewer"
-            icon="icons/sample.gif"
+            icon="icons/icon.gif"
             id="checkerplugin.views.XPathViewer"
             name="XPathViewer"/>
             
       <view
             category="CheckerPlugin"
             class="org.sapid.checker.eclipse.view.JsConsole"
-            icon="icons/sample.gif"
+            icon="icons/icon.gif"
             id="checkerplugin.views.JsViewer"
             name="JsConsole"/>
    </extension>
