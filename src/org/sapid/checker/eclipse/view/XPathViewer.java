@@ -22,7 +22,6 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -53,6 +52,7 @@ import org.sapid.parser.common.ParseException;
 
 public class XPathViewer extends ViewPart {
 	private Text xpathEditor = null;
+	private Text xpathDisplay = null;
 	public static final String ASSIST_ACTION_ID = "XPath.Assist";
 	private Button getButton = null;
 	private Button copyButton = null;
@@ -259,8 +259,7 @@ public class XPathViewer extends ViewPart {
 						.create(fileFullPath);
 				String xpath = new NodeOffsetUtil(cfile.getDOM(), start)
 						.getXPath();
-				// new Offset2XPath(cfile.getDOM(), start).getXPathFromOffset();
-				xpathEditor.setText(xpath);
+				xpathDisplay.setText(xpath);
 			} catch (ParseException e) {
 				CheckerActivator.log(e);
 			} catch (IOException e) {
@@ -304,15 +303,12 @@ public class XPathViewer extends ViewPart {
 	}
 
 	public void createPartControl(Composite parent) {
-		Label label2;
 		display = parent.getDisplay();
 		clipboard = new Clipboard(display);
 
-		GridData griddata = new GridData(GridData.FILL_BOTH);
-		GridData data = new GridData(GridData.FILL_HORIZONTAL);
-
-		label2 = new Label(parent, SWT.NONE);
-		label2.setText(Messages.getString("XPathViewer.3"));
+		GridLayout gridLayout = new GridLayout();
+		gridLayout.numColumns = 2;
+		parent.setLayout(gridLayout);
 
 		xpathEditor = new Text(parent, SWT.MULTI | SWT.BORDER | SWT.WRAP);
 		
@@ -325,27 +321,34 @@ public class XPathViewer extends ViewPart {
 			e.printStackTrace();
 		}
 
-		xpathEditor.setLayoutData(griddata);
 		xpathEditor.addKeyListener(xpathCheckListener);
-		
+		GridData griddata = new GridData(GridData.FILL_BOTH);
+		griddata.verticalSpan = 2;
+		xpathEditor.setLayoutData(griddata);
+				
 		clearXPathButton = new Button(parent, SWT.NONE);
 		clearXPathButton.setText(Messages.getString("XPathViewer.CLEAR"));
 		clearXPathButton.addSelectionListener(clearButtonListener);
-
-		getButton = new Button(parent, SWT.NONE);
-		getButton.setText(Messages.getString("XPathViewer.5"));
-		getButton.addSelectionListener(getButtonListener);
-
-		outputLabel = new Label(parent, SWT.NONE);
-		outputLabel.setLayoutData(data);
+		clearXPathButton.setLayoutData(new GridData());
 
 		copyButton = new Button(parent, SWT.NONE);
 		copyButton.setText(Messages.getString("XPathViewer.6"));
 		copyButton.addSelectionListener(copyButtonListener);
-
-		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 3;
-		parent.setLayout(gridLayout);
+		copyButton.setLayoutData(new GridData());
+		
+		outputLabel = new Label(parent, SWT.NONE);
+		griddata = new GridData(GridData.FILL_HORIZONTAL);
+		griddata.horizontalSpan = 2;
+		outputLabel.setLayoutData(griddata);
+		
+		xpathDisplay = new Text(parent, SWT.SINGLE | SWT.BORDER);
+		griddata = new GridData(GridData.FILL_HORIZONTAL);
+		xpathDisplay.setLayoutData(griddata);
+		
+		getButton = new Button(parent, SWT.NONE);
+		getButton.setText(Messages.getString("XPathViewer.5"));
+		getButton.addSelectionListener(getButtonListener);
+		getButton.setLayoutData(new GridData());
 	}
 
 	/**
