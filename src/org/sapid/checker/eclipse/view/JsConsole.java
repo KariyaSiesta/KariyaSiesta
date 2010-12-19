@@ -76,7 +76,7 @@ public class JsConsole extends ViewPart {
 				return "\r>>> " + set.object.toString() + "\r";
 			}
 		} catch (Exception e) {
-			return "Exception:" + e.toString();
+			return "Exception:" + e.toString() + "\r";
 		}
 	}
 
