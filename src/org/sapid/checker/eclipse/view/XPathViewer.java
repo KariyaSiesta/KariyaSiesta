@@ -50,13 +50,11 @@ import org.sapid.checker.rule.XPathRule.Condition;
 import org.sapid.parser.common.ParseException;
 
 public class XPathViewer extends ViewPart {
-	private Text text_pre = null;
 	private Text text_con = null;
 	public static final String ASSIST_ACTION_ID = "XPath.Assist";
 	private Button but_get = null;
 	private Button but_chk = null;
 	private Button but_pst = null;
-	private Button but_clp = null;
 	private Button but_clx = null;
 	private Clipboard clipboard = null;
 	private GetButtonListner gbl = new GetButtonListner();
@@ -99,11 +97,7 @@ public class XPathViewer extends ViewPart {
 		Text xpath = text_con;
 		return xpath;
 	}
-
-	public Text getText_Pre(){
-		Text xpath = text_pre;
-		return xpath;
-	}
+	
 	@Override
 	public void dispose() {
 		// XPathチェック機能でつけたマーカーを除去
@@ -122,19 +116,11 @@ public class XPathViewer extends ViewPart {
 		xpathMarkerSet = new HashSet<IMarker>();
 	}
 
-
-	public static XPathRule getTempRule (String prerequisite, String xpath, boolean isPrerequisite){
+	public static XPathRule getTempRule (String xpath){
 		String message;
 		String id = "1";
 		List<String> prerequisiteList = new ArrayList<String>();
-		if (isPrerequisite) {
-			message = "prerequisite (XPathViewer)";
-		} else {
-			if (!prerequisite.equals("")) {
-				prerequisiteList.add(prerequisite);
-			}
-			message = "xpath  (XPathViewer)";
-		}
+		message = "xpath  (XPathViewer)";
 		return new XPathRule(id, 3, message, prerequisiteList, xpath,
 				Condition.PROHIBIT);
 
@@ -196,21 +182,13 @@ public class XPathViewer extends ViewPart {
 
 			XPathChecker checker = new XPathChecker();
 
-			String prerequisite = text_pre.getText().trim();
 			String xpath = text_con.getText().trim();
 
 
-			if (!prerequisite.equals("")){
-				addMarkers(file, checker.checkOneRule(target, getTempRule(
-						prerequisite, xpath, false)));
-			}
-
 			if (!xpath.equals("")) {
-				addMarkers(file, checker.checkOneRule(target, getTempRule(
-						prerequisite, xpath, false)));
+				addMarkers(file, checker.checkOneRule(target, getTempRule(xpath)));
 			}
-			if (checker.checkOneRule(target, getTempRule(
-					prerequisite, xpath, false)).size() == 0 ){
+			if (checker.checkOneRule(target, getTempRule(xpath)).size() == 0 ){
 				text_con.setBackground(new Color(display,200, 240, 240));
 				label3.setText("検出箇所がありません");
 			}
@@ -238,9 +216,7 @@ public class XPathViewer extends ViewPart {
 		public void widgetSelected(SelectionEvent e) {
 			Button pushedButton = (Button) e.getSource();
 
-			if (pushedButton == but_clp) {
-				text_pre.setText("");
-			} else if (pushedButton == but_clx) {
+			if (pushedButton == but_clx) {
 				text_con.setText("");
 			}
 		}
@@ -263,8 +239,7 @@ public class XPathViewer extends ViewPart {
 					label3.setText("");
 				}
 
-				if (text_con.getText().trim().length() > 0
-						|| text_pre.getText().trim().length() > 0) {
+				if (text_con.getText().trim().length() > 0) {
 					but_chk.setEnabled(true);
 				} else {
 					but_chk.setEnabled(false);
@@ -326,7 +301,7 @@ public class XPathViewer extends ViewPart {
 		}
 
 		public void widgetSelected(SelectionEvent e) {
-			String data = format(text_pre.getText(), text_con.getText());
+			String data = format("", text_con.getText());
 			clipboard.setContents(new Object[] { data },
 					new Transfer[] { TextTransfer.getInstance() });
 		}
@@ -361,24 +336,12 @@ public class XPathViewer extends ViewPart {
 	}
 
 	public void createPartControl(Composite parent) {
-		Label label1, label2;
+		Label label2;
 		display = parent.getDisplay();
 		clipboard = new Clipboard(display);
 
-
-		label1 = new Label(parent, SWT.NONE);
-		label1.setText(Messages.getString("XPathViewer.2"));
-
-		text_pre = new Text(parent, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL
-				| SWT.WRAP);
 		GridData griddata = new GridData(GridData.FILL_BOTH);
 		GridData data = new GridData(GridData.FILL_HORIZONTAL);
-		text_pre.setLayoutData(griddata);
-		text_pre.addTraverseListener(xcl);
-
-		but_clp = new Button(parent, SWT.NONE);
-		but_clp.setText(Messages.getString("XPathViewer.CLEAR"));
-		but_clp.addSelectionListener(clbl);
 
 		label2 = new Label(parent, SWT.NONE);
 		label2.setText(Messages.getString("XPathViewer.3"));
@@ -388,7 +351,7 @@ public class XPathViewer extends ViewPart {
 
 		AssistField af = new AssistField();
 		try {
-			af.createContents(parent, text_con, text_pre);
+			af.createContents(parent, text_con);
 		} catch (org.eclipse.jface.bindings.keys.ParseException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {

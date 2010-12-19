@@ -34,7 +34,7 @@ public class AssistField {
 
 	/**********************************************************************/
 
-	public Control createContents(Composite parent, final Text text_con, final Text text_pre) throws org.eclipse.jface.bindings.keys.ParseException, ParseException {
+	public Control createContents(Composite parent, final Text text_con) throws org.eclipse.jface.bindings.keys.ParseException, ParseException {
 
 		IControlContentAdapter contentAdapter = new TextContentAdapter();
 		IContentProposalProvider provider = new IContentProposalProvider() {
@@ -44,7 +44,6 @@ public class AssistField {
 
 				try {
 					String xpath = text_con.getText().substring(0, position);
-					String prerequisite = text_pre.getText().trim();
 					String nonspacexpath = xpath.replaceAll("\r\n", "");
 
 
@@ -180,7 +179,7 @@ public class AssistField {
 					if(tokenflag == true){
 						XPathChecker checker = new XPathChecker();
 						if(halftokenflag == false){
-							checker.checkOneRule(target, XPathViewer.getTempRule(prerequisite, targetString, false));
+							checker.checkOneRule(target, XPathViewer.getTempRule(targetString));
 							NodeList nlist = checker.getfound();
 							for(int i = tokenlist.size()-1; i+1 > 0; i--){
 								for(int j = 0; j < nlist.getLength(); j++){
@@ -204,7 +203,7 @@ public class AssistField {
 								targetString = "*";
 
 							}
-							checker.checkOneRule(target, XPathViewer.getTempRule(prerequisite, targetString, false));
+							checker.checkOneRule(target, XPathViewer.getTempRule(targetString));
 							NodeList nodelist = checker.getfound();
 							for(int i = nodelist.getLength()-1; i >= 0; i--){
 								if(nodelist.item(i).getNodeName().length() >= partnode.length()){
