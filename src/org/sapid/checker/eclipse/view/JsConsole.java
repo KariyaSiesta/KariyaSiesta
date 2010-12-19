@@ -1,10 +1,12 @@
 package org.sapid.checker.eclipse.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.swt.SWT;
@@ -28,6 +30,7 @@ import org.sapid.parser.common.ParseException;
 
 public class JsConsole extends ViewPart {
 	private JsRule jsRule = new JsRule();
+	private List<IMarker> prevMarkers = new ArrayList<IMarker>();
 
 	private IFile getFile(ITextEditor editor) {
 		return ((IFileEditorInput) editor.getEditorInput()).getFile();
@@ -68,8 +71,8 @@ public class JsConsole extends ViewPart {
 		}
 		try {
 			JsRule.ResultSet set = jsRule.eval(getSapidIFile(), code);
+			this.removePrevMarkers();
 			this.addMarks(set.results);
-
 			if (set.object == null) {
 				return "\r";
 			} else {
@@ -80,14 +83,29 @@ public class JsConsole extends ViewPart {
 		}
 	}
 
+	private void removePrevMarkers() {
+		for (IMarker marker : this.prevMarkers) {
+			try {
+				marker.delete();
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		}
+		this.prevMarkers.clear();
+	}
+
 	private void addMarks(List<Result> results) {
 		for (Result result : results) {
 			Range range = result.getRange();
 			int start = range.getOffset();
 			int end = start + range.getLength();
 			int line = range.getStartLine();
-			CheckWithProgress.createMarker(this.getEclipseIFile(), line, start,
-					end, result.getMessage(), IMarker.SEVERITY_WARNING);
+			IMarker marker = CheckWithProgress.createMarker(
+					this.getEclipseIFile(), line, start, end,
+					result.getMessage(), IMarker.SEVERITY_WARNING);
+			if (marker != null) {
+				this.prevMarkers.add(marker);
+			}
 		}
 	}
 

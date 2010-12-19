@@ -14,5 +14,8 @@ var Marker = {
 	    results.add(r);
 	}else{
 	}
+    },
+    reset : function(){
+	results.clear();
     }
 }
