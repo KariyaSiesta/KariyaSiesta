@@ -17,11 +17,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.events.TraverseEvent;
-import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -51,17 +52,16 @@ import org.sapid.checker.rule.XPathRule.Condition;
 import org.sapid.parser.common.ParseException;
 
 public class XPathViewer extends ViewPart {
-	private Text text_con = null;
+	private Text xpathEditor = null;
 	public static final String ASSIST_ACTION_ID = "XPath.Assist";
 	private Button getButton = null;
-	private Button but_chk = null;
 	private Button copyButton = null;
-	private Button but_clx = null;
+	private Button clearXPathButton = null;
 	private Clipboard clipboard = null;
 	private GetButtonListner getButtonListener = new GetButtonListner();
 	private ClearButtonListner clearButtonListener = new ClearButtonListner();
 	private CopyButtonListner copyButtonListener = new CopyButtonListner();
-	private XPathCheckListener xpathCheckListener = new XPathCheckListener();
+	private KeyListener xpathCheckListener = new XPathCheckListener();
 	private Set<IMarker> xpathMarkerSet = new HashSet<IMarker>();
 	private Display display = null;
 	private Label outputLabel = null;
@@ -90,11 +90,6 @@ public class XPathViewer extends ViewPart {
 
 	public static IFile getFile(ITextEditor editor) {
 		return ((IFileEditorInput) editor.getEditorInput()).getFile();
-	}
-
-	public Text getText_Con() {
-		Text xpath = text_con;
-		return xpath;
 	}
 
 	@Override
@@ -138,45 +133,28 @@ public class XPathViewer extends ViewPart {
 			return;
 		}
 
-		ITextSelection selection = getSelection(activeEditor);
-		if (selection == null) {
-			return;
-		}
-
 		IFile file = getFile(activeEditor);
 		try {
 			file.deleteMarkers(IMarker.PROBLEM, true, IResource.DEPTH_ZERO);
 		} catch (CoreException e) {
-			// TODO Auto-generated catch block
 			CheckerActivator.log(e);
 		}
 	}
 
 	// キー入力時のXPath評価
 	public void Traverseselected() {
-		text_con.setBackground(new Color(display, 255, 255, 255));
-		outputLabel.setText("");
-
 		ITextEditor activeEditor = getActiveEditor();
 		if (activeEditor == null) {
 			return;
 		}
 
-		ITextSelection selection = getSelection(activeEditor);
-		if (selection == null) {
-			return;
-		}
-
 		IFile file = getFile(activeEditor);
-
 		String fullPath = file.getRawLocation().toString();
 
 		try {
 			org.sapid.checker.core.IFile target = IFileFactory.create(fullPath);
-
 			XPathChecker checker = new XPathChecker();
-
-			String xpath = text_con.getText().trim();
+			String xpath = xpathEditor.getText().trim();
 
 			try {
 				List<Result> result = checker.checkOneRule(target,
@@ -184,14 +162,17 @@ public class XPathViewer extends ViewPart {
 				addMarkers(file, result);
 
 				if (result.size() == 0) {
-					text_con.setBackground(new Color(display, 255, 255, 180));
+					xpathEditor
+							.setBackground(new Color(display, 255, 255, 180));
 					outputLabel.setText("検出箇所がありません");
 				} else {
 					outputLabel.setText(Integer.valueOf(result.size())
 							.toString() + "個のノードが検出されました");
+					xpathEditor
+							.setBackground(new Color(display, 255, 255, 255));
 				}
 			} catch (XPathExpressionException e) {
-				text_con.setBackground(new Color(display, 255, 180, 180));
+				xpathEditor.setBackground(new Color(display, 255, 180, 180));
 				outputLabel.setText("構文エラーです");
 			}
 		} catch (ParseException ex) {
@@ -207,40 +188,39 @@ public class XPathViewer extends ViewPart {
 	 * @author r-mizuno
 	 */
 	class ClearButtonListner implements SelectionListener {
-
 		public void widgetDefaultSelected(SelectionEvent e) {
 		}
 
 		public void widgetSelected(SelectionEvent e) {
 			Button pushedButton = (Button) e.getSource();
 
-			if (pushedButton == but_clx) {
-				text_con.setText("");
+			if (pushedButton == clearXPathButton) {
+				xpathEditor.setBackground(new Color(display, 255, 255, 255));
+				xpathEditor.setText("");
 			}
 		}
 	}
 
-	class XPathCheckListener implements TraverseListener {
+	class XPathCheckListener implements KeyListener {
+		public void keyPressed(KeyEvent e) {
+			if (e.character == SWT.TAB || e.character == SWT.CR) {
+				e.doit = false;
+			}
+		}
 
-		public void keyTraversed(TraverseEvent e) {
-			if (e.detail == SWT.TRAVERSE_TAB_NEXT) {
-				if (text_con.getText().trim().length() > 0) {
+		@Override
+		public void keyReleased(KeyEvent e) {
+			if (e.character == SWT.TAB || e.character == SWT.CR) {
+				deleteMarkers();
+
+				if (xpathEditor.getText().trim().length() > 0) {
 					copyButton.setEnabled(true);
-					deleteMarkers();
 					Traverseselected();
-
 				} else {
 					copyButton.setEnabled(false);
-					deleteMarkers();
-					text_con.setBackground(new Color(display, 255, 255, 255));
+					xpathEditor
+							.setBackground(new Color(display, 255, 255, 255));
 					outputLabel.setText("");
-				}
-
-				if (text_con.getText().trim().length() > 0) {
-					but_chk.setEnabled(true);
-				} else {
-					but_chk.setEnabled(false);
-					deleteMarkers();
 				}
 			}
 		}
@@ -252,7 +232,6 @@ public class XPathViewer extends ViewPart {
 	 * @author r-mizuno
 	 */
 	class GetButtonListner implements SelectionListener {
-
 		public void widgetDefaultSelected(SelectionEvent e) {
 		}
 
@@ -281,7 +260,7 @@ public class XPathViewer extends ViewPart {
 				String xpath = new NodeOffsetUtil(cfile.getDOM(), start)
 						.getXPath();
 				// new Offset2XPath(cfile.getDOM(), start).getXPathFromOffset();
-				text_con.setText(xpath);
+				xpathEditor.setText(xpath);
 			} catch (ParseException e) {
 				CheckerActivator.log(e);
 			} catch (IOException e) {
@@ -301,23 +280,15 @@ public class XPathViewer extends ViewPart {
 		}
 
 		public void widgetSelected(SelectionEvent e) {
-			String data = format("", text_con.getText());
+			String data = format("", xpathEditor.getText());
 			clipboard.setContents(new Object[] { data },
 					new Transfer[] { TextTransfer.getInstance() });
 		}
 
 		private String format(String pre, String con) {
 			String res = null;
-			if (pre.length() > 0 && con.length() > 0) {
-				res = "<oneRule>" + NEW_LINE_CODE + "\t<level></level>"
-						+ NEW_LINE_CODE + "\t" + "<content></content>"
-						+ NEW_LINE_CODE + "\t<prerequisite>" + pre
-						+ "</prerequisite>" + NEW_LINE_CODE + "\t<xpath>" + con
-						+ "</xpath>" + NEW_LINE_CODE
-						+ "\t<condition></condition>" + NEW_LINE_CODE
-						+ "</oneRule>" + NEW_LINE_CODE;
 
-			} else if (con.length() > 0) {
+			if (con.length() > 0) {
 				res = "<oneRule>" + NEW_LINE_CODE + "\t<level></level>"
 						+ NEW_LINE_CODE + "\t" + "<content></content>"
 						+ NEW_LINE_CODE + "\t<xpath>" + con + "</xpath>"
@@ -329,9 +300,6 @@ public class XPathViewer extends ViewPart {
 		}
 	}
 
-	/**
-	 * The constructor.
-	 */
 	public XPathViewer() {
 	}
 
@@ -346,24 +314,23 @@ public class XPathViewer extends ViewPart {
 		label2 = new Label(parent, SWT.NONE);
 		label2.setText(Messages.getString("XPathViewer.3"));
 
-		text_con = new Text(parent, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL
-				| SWT.WRAP);
-
+		xpathEditor = new Text(parent, SWT.MULTI | SWT.BORDER | SWT.WRAP);
+		
 		AssistField af = new AssistField();
 		try {
-			af.createContents(parent, text_con);
+			af.createContents(parent, xpathEditor);
 		} catch (org.eclipse.jface.bindings.keys.ParseException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
-		text_con.setLayoutData(griddata);
-		text_con.addTraverseListener(xpathCheckListener);
-
-		but_clx = new Button(parent, SWT.NONE);
-		but_clx.setText(Messages.getString("XPathViewer.CLEAR"));
-		but_clx.addSelectionListener(clearButtonListener);
+		xpathEditor.setLayoutData(griddata);
+		xpathEditor.addKeyListener(xpathCheckListener);
+		
+		clearXPathButton = new Button(parent, SWT.NONE);
+		clearXPathButton.setText(Messages.getString("XPathViewer.CLEAR"));
+		clearXPathButton.addSelectionListener(clearButtonListener);
 
 		getButton = new Button(parent, SWT.NONE);
 		getButton.setText(Messages.getString("XPathViewer.5"));
