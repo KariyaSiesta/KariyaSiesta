@@ -9,7 +9,7 @@
 	<property name="bundleId" value="CheckerPlugin"/>
 	<property name="bundleVersion" value="1.0.0"/>
 	<property name="p2.publishonerror" value="false"/>
-	<property name="eclipse.root" value="/Users/osuka/eclipse"/>
+	<property name="eclipse.root" value="/var/lib/eclipse"/>
 
 	<!-- Compiler settings. -->
 	<property name="javacFailOnError" value="false"/>
@@ -446,7 +446,8 @@
 			<pathelement path="${eclipse.root}/plugins/org.objectweb.asm.source_3.2.0.v200909071300.jar"/>
 			<pathelement path="${eclipse.root}/plugins/org.objectweb.asm_3.2.0.v200909071300.jar"/>
 			<pathelement path="${eclipse.root}/plugins/org.sat4j.core_2.2.0.v20100429.jar"/>
-			<pathelement path="${eclipse.root}/plugins/org.sat4j.pb_2.2.0.v20100429.jar"/>			<pathelement path="lib/sapid.jar"/>
+			<pathelement path="${eclipse.root}/plugins/org.sat4j.pb_2.2.0.v20100429.jar"/>
+			<pathelement path="lib/sapid.jar"/>
 			<pathelement path="lib/dtdparser-1.21.jar"/>
 			<pathelement path="lib/java-getopt-1.0.9.jar"/>
 		</path>
@@ -538,7 +539,9 @@
 			<fileset dir="${basedir}">
 				<include name="plugin.xml"/>
 				<include name="META-INF/"/>
-				<include name="lib"/>
+				<include name="lib/dtdparser-1.21.jar"/>
+				<include name="lib/java-getopt-1.0.9.jar"/>
+				<include name="lib/sapid.jar"/>
 				<include name="plugin.properties"/>
 				<include name="plugin_ja.properties"/>
 				<include name="icons/"/>
