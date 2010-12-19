@@ -27,8 +27,8 @@ public class CXCheckerNamespaceContext implements NamespaceContext {
 		throw new UnsupportedOperationException();
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
-	@SuppressWarnings("unchecked")
 	public Iterator getPrefixes(String arg) {
 		throw new UnsupportedOperationException();
 	}

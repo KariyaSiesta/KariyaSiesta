@@ -1,34 +1,18 @@
 package org.sapid.checker.core;
 
-import org.sapid.checker.core.Result;
-import org.sapid.checker.core.IFile;
-import org.sapid.checker.core.Range;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 
 import org.sapid.checker.cx.command.Command;
 import org.sapid.checker.cx.command.SimpleCommandOutput;
 import org.sapid.checker.cx.wrapper.CFileElement;
-import org.sapid.checker.rule.XPathChecker;
 import org.sapid.checker.rule.NodeOffsetUtil;
-import org.sapid.checker.rule.xpath.CXCheckerNamespaceContext;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import java.io.IOException;
-import java.io.FileWriter;
-import java.io.Writer;
-import java.io.File;
-
-import java.util.UUID;
-
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
 
 /**
  * µ¨ÃÛ∞„»ø§Œ•Ì•Æ•Û•∞§Úπ‘§¶
@@ -83,10 +67,11 @@ public class Logger {
 		public String getLineCount() {
 			return new Integer(myFileElement.getElem().getElementsByTagName("nl").getLength()+1).toString();
 		}
-		
+		/*
 		public String getFileSize() {
 			return new Long(new File(getFileName()).length()).toString();
 		}
+		*/
 		
 		public String getFunctionCount() {
 			return new Integer(myFileElement.getFunctions().length).toString();

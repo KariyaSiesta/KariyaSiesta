@@ -72,7 +72,8 @@ public class CreateSDB implements IObjectActionDelegate {
      * @param sp
      * @return
      */
-    private String joinArray(List<?> list, String sp) {
+        @SuppressWarnings("unused")
+		private String joinArray(List<?> list, String sp) {
         StringBuffer buffer = new StringBuffer();
         for (Iterator<?> itr = list.iterator(); itr.hasNext();) {
             buffer.append(itr.next().toString());
@@ -80,7 +81,7 @@ public class CreateSDB implements IObjectActionDelegate {
         }
         return buffer.toString();
     }
-
+    
     public void selectionChanged(IAction action, ISelection selection) {
         if (selection instanceof StructuredSelection) {
             StructuredSelection ss = (StructuredSelection) selection;

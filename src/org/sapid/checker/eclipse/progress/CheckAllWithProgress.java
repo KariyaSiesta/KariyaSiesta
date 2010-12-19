@@ -15,7 +15,6 @@ import org.sapid.checker.core.CheckerClass;
 import org.sapid.checker.core.IFileFactory;
 import org.sapid.checker.core.Logger;
 import org.sapid.checker.core.Result;
-import org.sapid.checker.core.Logger;
 import org.sapid.checker.eclipse.CheckerActivator;
 import org.sapid.checker.eclipse.Messages;
 import org.sapid.checker.rule.CheckRule;

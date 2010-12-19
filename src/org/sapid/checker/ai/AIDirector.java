@@ -70,10 +70,6 @@ public class AIDirector {
 		List<Node> stmt_nodes = new ArrayList<Node>();
 		getElementsByTagNameByChilds(stmt_nodes, cfuncelem.getElem(), "Stmt");
 
-		if (stmt_nodes == null) {
-			return null;
-		}
-		
 		// body
 		createExprsByStmts(exprs_collection, stmt_nodes.get(0));		
 		NonterminalExpression[] exprs = (NonterminalExpression[])exprs_collection.toArray(new NonterminalExpression[exprs_collection.size()]);

@@ -292,16 +292,6 @@ public class CExpressionElement extends CElement {
     }
 
     /**
-     * Return するかどうか
-     * @return
-     */
-    @Deprecated
-    public boolean isReturn() {
-    	return false;
-        //return getSort().equals(SORT_RETURN);
-    }
-
-    /**
      * 変数参照かどうか
      * @return
      */

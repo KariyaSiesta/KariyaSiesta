@@ -30,8 +30,8 @@ public class GetTypeInfosByTagName implements XPathFunction {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	@Override
-	@SuppressWarnings("unchecked")
 	public NodeList evaluate(List args) throws XPathFunctionException {
 		if (args == null) {
 			throw new XPathFunctionException("Null argument");

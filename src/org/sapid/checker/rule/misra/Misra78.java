@@ -16,7 +16,6 @@ import org.sapid.checker.core.Result;
 import org.sapid.checker.cx.wrapper.CExpressionElement;
 import org.sapid.checker.cx.wrapper.CFileElement;
 import org.sapid.checker.cx.wrapper.CPrototypeElement;
-import org.sapid.checker.cx.wrapper.CStatementElement;
 import org.sapid.checker.cx.wrapper.CVariableReference;
 import org.sapid.checker.rule.CheckRule;
 import org.sapid.checker.rule.NodeOffsetUtil;

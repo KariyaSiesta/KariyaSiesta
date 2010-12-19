@@ -3,8 +3,6 @@ package org.sapid.checker.cx.wrapper.type;
 import java.util.HashMap;
 
 import org.sapid.checker.core.ConfigManager;
-import org.sapid.checker.cx.command.Command;
-import org.sapid.checker.cx.command.SimpleCommandOutput;
 import org.w3c.dom.Element;
 
 /**

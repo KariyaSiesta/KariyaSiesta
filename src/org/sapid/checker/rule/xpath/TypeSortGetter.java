@@ -33,8 +33,8 @@ public class TypeSortGetter implements XPathFunction {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object evaluate(List args) throws XPathFunctionException {
 		Element typeInfoElement = (Element) TypeInfoGetter.getInstance().evaluate(args);
 		

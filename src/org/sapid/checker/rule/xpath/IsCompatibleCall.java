@@ -28,8 +28,8 @@ public class IsCompatibleCall implements XPathFunction {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	@Override
-	@SuppressWarnings("unchecked")
 	public Boolean evaluate(List args) throws XPathFunctionException {
 		if (args == null) {
 			throw new XPathFunctionException("Null argument");

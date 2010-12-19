@@ -9,8 +9,8 @@ import org.w3c.dom.NodeList;
 
 public class MyCounter implements XPathFunction {
 
+	@SuppressWarnings("rawtypes")
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object evaluate(List args) throws XPathFunctionException {
 		if (args == null) {
 			throw new XPathFunctionException("Null argument");

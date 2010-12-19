@@ -1,10 +1,9 @@
 package org.sapid.checker.eclipse.view;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
 
 import javax.xml.xpath.XPathExpressionException;
 
@@ -119,7 +118,6 @@ public class XPathViewer extends ViewPart {
 	public static XPathRule getTempRule(String xpath) {
 		String message = "xpath  (XPathViewer)";
 		String id = "1";
-		List<String> prerequisiteList = new ArrayList<String>();
 		return new XPathRule(id, 3, message, xpath, Condition.PROHIBIT);
 	}
 

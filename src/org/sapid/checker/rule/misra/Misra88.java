@@ -13,7 +13,6 @@ import java.util.Set;
 import org.sapid.checker.core.CheckerClass;
 import org.sapid.checker.core.IFile;
 import org.sapid.checker.core.Result;
-import org.sapid.checker.cx.wrapper.CFileElement;
 import org.sapid.checker.cx.wrapper.CIncludeElement;
 import org.sapid.checker.rule.CheckRule;
 import org.sapid.checker.rule.NodeOffsetUtil;

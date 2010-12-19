@@ -21,7 +21,6 @@ import org.sapid.checker.core.IFile;
 import org.sapid.checker.core.Result;
 import org.sapid.checker.cx.wrapper.CDefineElement;
 import org.sapid.checker.cx.wrapper.CElement;
-import org.sapid.checker.cx.wrapper.CFileElement;
 import org.sapid.checker.rule.CheckRule;
 import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Document;
@@ -53,7 +52,6 @@ public class Misra96 implements CheckerClass {
 	 * @return results
 	 */
 	public List<Result> check(IFile file, CheckRule rule) {
-		CFileElement cfile = new CFileElement(file.getDOM());
 		List<Element> delemList = new ArrayList<Element>();
 		NodeList nodeList = file.getDOM().getElementsByTagName("Define");
 		for (int i = 0; i < nodeList.getLength(); i++) {

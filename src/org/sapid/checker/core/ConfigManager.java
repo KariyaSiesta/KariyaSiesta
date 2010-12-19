@@ -149,6 +149,7 @@ public class ConfigManager {
 	 * 元々入っていたデータは消えないようにしてある。
 	 * @param datas 設定データ用ハッシュ
 	 */
+	@SuppressWarnings("rawtypes")
 	private static void setConfigData(HashMap<String, String> datas) {
 		String Path = getPropertiesFilePath();
 		if (Path != null) {

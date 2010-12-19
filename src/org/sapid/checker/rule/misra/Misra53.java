@@ -46,7 +46,7 @@ public class Misra53 implements CheckerClass {
             Element parent = (Element) stmts[i].getElem().getParentNode();
             if (CControlStatementElement.isControlStatement(parent)) {
                 if (CControlStatementElement.getInstance(parent)
-                        .getConditionStatement().equals(stmts[i])) {
+                		.getConditionExpression().equals(stmts[i])) {
                     continue;
                 }
             }

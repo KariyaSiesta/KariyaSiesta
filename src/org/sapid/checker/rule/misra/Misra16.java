@@ -72,9 +72,6 @@ public class Misra16 implements CheckerClass {
 				while (childExpressionType.getSort() == Type.Sort.TYPEDEF) {
 					childExpressionType = ((TypedefType)childExpressionType).getTrueType();
 				}
-				if (childExpressionType == null) {
-					return null;
-				}
 				
 				if (childExpressionType.getSort() == Type.Sort.STANDARD) {
 					StandardType.Sort sort = ((StandardType) childExpressionType).getType();

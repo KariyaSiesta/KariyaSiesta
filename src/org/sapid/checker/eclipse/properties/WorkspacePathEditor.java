@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.preference.PathEditor;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.events.PaintEvent;
@@ -28,7 +29,6 @@ import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
-import org.eclipse.ui.views.navigator.ResourceSorter;
 import org.sapid.checker.eclipse.CheckerActivator;
 import org.sapid.checker.eclipse.Messages;
 
@@ -265,7 +265,7 @@ public class WorkspacePathEditor extends PathEditor {
     dialog.setMessage(Messages.getString("WorkspacePathEditor.1"));
     dialog.setAllowMultiple(false);
     dialog.setInput(root);
-    dialog.setSorter(new ResourceSorter(ResourceSorter.NAME));
+    dialog.setComparator(new ViewerComparator());
     dialog.addFilter(new ExtensionViewerFilter(extensions, (IFile[]) usedFiles.toArray(new IFile[usedFiles.size()]),
         true));
     dialog.setValidator(new DefaultSelectionValidator());

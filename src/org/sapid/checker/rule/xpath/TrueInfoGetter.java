@@ -30,8 +30,8 @@ public class TrueInfoGetter implements XPathFunction {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	@Override
-	@SuppressWarnings("unchecked")
 	public Element evaluate(List args) throws XPathFunctionException {
 		if (args == null) {
 			throw new XPathFunctionException("Null argument");

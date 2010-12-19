@@ -30,8 +30,8 @@ public class TrueTypeSortGetter implements XPathFunction {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	@Override
-	@SuppressWarnings("unchecked")
 	public String evaluate(List args) throws XPathFunctionException {
 		if (args == null) {
 			throw new XPathFunctionException("Null argument");
