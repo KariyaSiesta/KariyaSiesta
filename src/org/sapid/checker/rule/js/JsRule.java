@@ -1,10 +1,12 @@
 package org.sapid.checker.rule.js;
 
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 import org.sapid.checker.core.CheckerClass;
 import org.sapid.checker.core.IFile;
@@ -28,7 +30,12 @@ public class JsRule implements CheckerClass {
 		ScriptEngineManager manager = new ScriptEngineManager();
 		this.engine = manager.getEngineByName("javascript");
 		this.engine.put("results", new ArrayList<ResultSet>());
-
+		try {
+			this.engine.eval(new InputStreamReader(getClass().getClassLoader()
+					.getResourceAsStream("std.js")));
+		} catch (ScriptException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
