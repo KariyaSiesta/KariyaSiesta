@@ -23,112 +23,90 @@ import org.xml.sax.SAXException;
 
 public class XPathChecker implements CheckerClass {
 
-    private final static String XML_SRC = "src";
-    private NodeList found;
+	private final static String XML_SRC = "src";
+	private NodeList foundNodes;
 
-    public NodeList getfound(){
-        return found;
-    }
+	public NodeList getfound() {
+		return foundNodes;
+	}
 
-    private final static XPathFactory xpathFactory = XPathFactory.newInstance();
-    
-    static {
-    	xpathFactory.setXPathFunctionResolver(new CXCheckerXPathFunctionResolver());
-    }
+	private final static XPathFactory xpathFactory = XPathFactory.newInstance();
 
-    public List<Result> check(IFile file, CheckRule rule) {
+	static {
+		xpathFactory
+				.setXPathFunctionResolver(new CXCheckerXPathFunctionResolver());
+	}
 
-        List<Result> results = new ArrayList<Result>();
-        String filename = rule.getValue(XML_SRC);
+	public List<Result> check(IFile file, CheckRule rule) {
 
-        if (filename == null) {
-            throw new IllegalArgumentException(this.getClass().getName()
-                    + " : ルールXMLの" + XML_SRC + "パラメータが指定されていません。");
-        }
+		List<Result> results = new ArrayList<Result>();
+		String filename = rule.getValue(XML_SRC);
 
-        XPathRule[] rules = null;
-        try {
-            rules = XPathRule.parseRuleXML(filename);
-        } catch (ParserConfigurationException e) {
-            throw new IllegalArgumentException(this.getClass().getName()
-                    + " : ルールXMLの" + filename + "が不正です。");
-        } catch (SAXException e) {
-            throw new IllegalArgumentException(this.getClass().getName()
-                    + " : ルールXMLの" + filename + "が不正です。");
-        } catch (IOException e) {
-            throw new IllegalArgumentException(this.getClass().getName()
-                    + " : " + e.toString());
-        }
+		if (filename == null) {
+			throw new IllegalArgumentException(this.getClass().getName()
+					+ " : ルールXMLの" + XML_SRC + "パラメータが指定されていません。");
+		}
 
-        for (int i = 0; i < rules.length; i++) {
-            results.addAll(checkOneRule(file, rules[i]));
-        }
+		XPathRule[] rules = null;
+		try {
+			rules = XPathRule.parseRuleXML(filename);
+		} catch (ParserConfigurationException e) {
+			throw new IllegalArgumentException(this.getClass().getName()
+					+ " : ルールXMLの" + filename + "が不正です。");
+		} catch (SAXException e) {
+			throw new IllegalArgumentException(this.getClass().getName()
+					+ " : ルールXMLの" + filename + "が不正です。");
+		} catch (IOException e) {
+			throw new IllegalArgumentException(this.getClass().getName()
+					+ " : " + e.toString());
+		}
 
-        return results;
-    }
+		for (int i = 0; i < rules.length; i++) {
+			try {
+				results.addAll(checkOneRule(file, rules[i]));
+			} catch (XPathExpressionException e) {
+				e.printStackTrace();
+			}
+		}
 
-    public List<Result> checkOneRule(IFile file, XPathRule r) {
-    	XPath xpath = XPathChecker.xpathFactory.newXPath();
-    	xpath.setNamespaceContext(new CXCheckerNamespaceContext());
-    	
-        List<Result> results = new ArrayList<Result>();
-        try {
-            ArrayList<Node> preNodes = new ArrayList<Node>();
-            ArrayList<String> preRules = (ArrayList<String>) r
-                    .getPrerequisite();
+		return results;
+	}
 
-            if (preRules.size() == 0) {
-                preNodes.add(file.getDOM());
-            } else {
-                for (String prexpath : preRules) {
-                    XPathExpression preXPathExpression = xpath.compile(prexpath);
-                    NodeList list = (NodeList) preXPathExpression.evaluate(file.getDOM(), XPathConstants.NODESET);
-                    for (int i = 0; i < list.getLength(); i++) {
-                        preNodes.add(list.item(i));
-                    }
-                }
-            }
+	public List<Result> checkOneRule(IFile file, XPathRule rule)
+			throws XPathExpressionException {
+		XPath xpath = XPathChecker.xpathFactory.newXPath();
+		xpath.setNamespaceContext(new CXCheckerNamespaceContext());
 
-            XPathExpression xpathExpression = xpath.compile(r.getXpath());
-            
-            switch (r.getCondition()) {
-            case REQUIRE: {
-                for (Node n : preNodes) {
-                    NodeList nodes = (NodeList) xpathExpression.evaluate(n, XPathConstants.NODESET);
-                    if (nodes.getLength() == 0) {
-                        Range range;
-                        if (preRules.size() == 0) {
-                            range = new Range(0, 0, 0, 0, 0, 0);
-                        } else {
-                            range = new NodeOffsetUtil(file.getDOM(), n)
-                                    .getRange();
-                            // new Node2Range(n).getRangeFromNode();
-                        }
-                        results.add(new Result(r.getId(), range, r.getLevel(),
-                                r.getMessage()));
-                    }
-                }
-            }
-                break;
-            case PROHIBIT: {
-                for (Node n : preNodes) {
-                    found = (NodeList) xpathExpression.evaluate(n, XPathConstants.NODESET);
-                    for (int i = 0; i < found.getLength(); i++) {
-                        results.add(new Result(r.getId(),
-                        // new Node2Range(found.item(i)).getRangeFromNode(),
-                                new NodeOffsetUtil(file.getDOM(), found.item(i)).getRange(),
-                                r.getLevel(), r.getMessage()));
-                    }
-                }
-            }
-                break;
-            default:
-                break;
-            }
-        } catch (XPathExpressionException e) {
-            e.printStackTrace();
-        }
-        return results;
-    }
+		List<Result> results = new ArrayList<Result>();
+		Node root = file.getDOM();
+		XPathExpression xpathExpression = xpath.compile(rule.getXpath());
+
+		switch (rule.getCondition()) {
+		case REQUIRE:
+			NodeList nodes = (NodeList) xpathExpression.evaluate(root,
+					XPathConstants.NODESET);
+			if (nodes.getLength() == 0) {
+				Range range;
+				range = new Range(0, 0, 0, 0, 0, 0);
+				results.add(new Result(rule.getId(), range, rule.getLevel(),
+						rule.getMessage()));
+			}
+
+			break;
+		case PROHIBIT:
+			foundNodes = (NodeList) xpathExpression.evaluate(root,
+					XPathConstants.NODESET);
+			for (int i = 0; i < foundNodes.getLength(); i++) {
+				results.add(new Result(rule.getId(), new NodeOffsetUtil(file
+						.getDOM(), foundNodes.item(i)).getRange(), rule
+						.getLevel(), rule.getMessage()));
+			}
+
+			break;
+		default:
+			break;
+		}
+		return results;
+	}
 
 }

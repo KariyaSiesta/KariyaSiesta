@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.xpath.XPathExpressionException;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.jface.fieldassist.ContentProposalAdapter;
@@ -179,7 +181,11 @@ public class AssistField {
 					if(tokenflag == true){
 						XPathChecker checker = new XPathChecker();
 						if(halftokenflag == false){
-							checker.checkOneRule(target, XPathViewer.getTempRule(targetString));
+							try {
+								checker.checkOneRule(target, XPathViewer.getTempRule(targetString));
+							} catch (XPathExpressionException e) {
+								e.printStackTrace();
+							}
 							NodeList nlist = checker.getfound();
 							for(int i = tokenlist.size()-1; i+1 > 0; i--){
 								for(int j = 0; j < nlist.getLength(); j++){
@@ -203,7 +209,11 @@ public class AssistField {
 								targetString = "*";
 
 							}
-							checker.checkOneRule(target, XPathViewer.getTempRule(targetString));
+							try {
+								checker.checkOneRule(target, XPathViewer.getTempRule(targetString));
+							} catch (XPathExpressionException e) {
+								e.printStackTrace();
+							}
 							NodeList nodelist = checker.getfound();
 							for(int i = nodelist.getLength()-1; i >= 0; i--){
 								if(nodelist.item(i).getNodeName().length() >= partnode.length()){

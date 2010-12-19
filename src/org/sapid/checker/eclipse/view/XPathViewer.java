@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
+import javax.xml.xpath.XPathExpressionException;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -52,28 +54,26 @@ import org.sapid.parser.common.ParseException;
 public class XPathViewer extends ViewPart {
 	private Text text_con = null;
 	public static final String ASSIST_ACTION_ID = "XPath.Assist";
-	private Button but_get = null;
+	private Button getButton = null;
 	private Button but_chk = null;
-	private Button but_pst = null;
+	private Button copyButton = null;
 	private Button but_clx = null;
 	private Clipboard clipboard = null;
-	private GetButtonListner gbl = new GetButtonListner();
-	private ClearButtonListner clbl = new ClearButtonListner();
-	private PstButtonListner pbl = new PstButtonListner();
-	private XPathCheckListener xcl = new XPathCheckListener();
+	private GetButtonListner getButtonListener = new GetButtonListner();
+	private ClearButtonListner clearButtonListener = new ClearButtonListner();
+	private CopyButtonListner copyButtonListener = new CopyButtonListner();
+	private XPathCheckListener xpathCheckListener = new XPathCheckListener();
 	private Set<IMarker> xpathMarkerSet = new HashSet<IMarker>();
 	private Display display = null;
-	private Label label3 = null;
+	private Label outputLabel = null;
 
 	private static final String NEW_LINE_CODE = System
-	.getProperty("line.separator");
-
-
+			.getProperty("line.separator");
 
 	public static ITextEditor getActiveEditor() {
 		IWorkbench workbench = PlatformUI.getWorkbench();
 		IWorkbenchPage page = workbench.getActiveWorkbenchWindow()
-		.getActivePage();
+				.getActivePage();
 		IEditorPart activeEditor = page.getActiveEditor();
 		if (!(activeEditor instanceof ITextEditor))
 			return null;
@@ -93,11 +93,11 @@ public class XPathViewer extends ViewPart {
 		return ((IFileEditorInput) editor.getEditorInput()).getFile();
 	}
 
-	public Text getText_Con(){
+	public Text getText_Con() {
 		Text xpath = text_con;
 		return xpath;
 	}
-	
+
 	@Override
 	public void dispose() {
 		// XPathチェック機能でつけたマーカーを除去
@@ -116,14 +116,11 @@ public class XPathViewer extends ViewPart {
 		xpathMarkerSet = new HashSet<IMarker>();
 	}
 
-	public static XPathRule getTempRule (String xpath){
-		String message;
+	public static XPathRule getTempRule(String xpath) {
+		String message = "xpath  (XPathViewer)";
 		String id = "1";
 		List<String> prerequisiteList = new ArrayList<String>();
-		message = "xpath  (XPathViewer)";
-		return new XPathRule(id, 3, message, prerequisiteList, xpath,
-				Condition.PROHIBIT);
-
+		return new XPathRule(id, 3, message, xpath, Condition.PROHIBIT);
 	}
 
 	private static void addMarkers(IFile file, List<Result> results) {
@@ -132,12 +129,12 @@ public class XPathViewer extends ViewPart {
 			int start = range.getOffset();
 			int end = start + range.getLength();
 			int line = range.getStartLine();
-			CheckWithProgress.createMarker(file, line, start, end, result
-					.getMessage(), IMarker.SEVERITY_WARNING);
+			CheckWithProgress.createMarker(file, line, start, end,
+					result.getMessage(), IMarker.SEVERITY_WARNING);
 		}
 	}
 
-	public void deleteMarkers(){
+	public void deleteMarkers() {
 		ITextEditor activeEditor = getActiveEditor();
 		if (activeEditor == null) {
 			return;
@@ -157,10 +154,10 @@ public class XPathViewer extends ViewPart {
 		}
 	}
 
-	//キー入力時のXPath評価
-	public void Traverseselected(){
-		text_con.setBackground(new Color(display,255,255,255));
-		label3.setText("");
+	// キー入力時のXPath評価
+	public void Traverseselected() {
+		text_con.setBackground(new Color(display, 255, 255, 255));
+		outputLabel.setText("");
 
 		ITextEditor activeEditor = getActiveEditor();
 		if (activeEditor == null) {
@@ -177,35 +174,38 @@ public class XPathViewer extends ViewPart {
 		String fullPath = file.getRawLocation().toString();
 
 		try {
-			org.sapid.checker.core.IFile target = IFileFactory
-			.create(fullPath);
+			org.sapid.checker.core.IFile target = IFileFactory.create(fullPath);
 
 			XPathChecker checker = new XPathChecker();
 
 			String xpath = text_con.getText().trim();
 
+			try {
+				List<Result> result = checker.checkOneRule(target,
+						getTempRule(xpath));
+				addMarkers(file, result);
 
-			if (!xpath.equals("")) {
-				addMarkers(file, checker.checkOneRule(target, getTempRule(xpath)));
-			}
-			if (checker.checkOneRule(target, getTempRule(xpath)).size() == 0 ){
-				text_con.setBackground(new Color(display,200, 240, 240));
-				label3.setText("検出箇所がありません");
+				if (result.size() == 0) {
+					text_con.setBackground(new Color(display, 255, 255, 180));
+					outputLabel.setText("検出箇所がありません");
+				} else {
+					outputLabel.setText(Integer.valueOf(result.size())
+							.toString() + "個のノードが検出されました");
+				}
+			} catch (XPathExpressionException e) {
+				text_con.setBackground(new Color(display, 255, 180, 180));
+				outputLabel.setText("構文エラーです");
 			}
 		} catch (ParseException ex) {
 			CheckerActivator.log(ex);
 		} catch (IOException ex) {
 			ex.printStackTrace();
-		} catch (IllegalArgumentException ex) {
-			text_con.setBackground(new Color(display,246, 172, 172));
-			label3.setText("構文エラーです");
-
 		}
 	}
 
-
 	/**
 	 * クリアボタン
+	 * 
 	 * @author r-mizuno
 	 */
 	class ClearButtonListner implements SelectionListener {
@@ -222,21 +222,20 @@ public class XPathViewer extends ViewPart {
 		}
 	}
 
-	class XPathCheckListener implements TraverseListener{
+	class XPathCheckListener implements TraverseListener {
 
 		public void keyTraversed(TraverseEvent e) {
 			if (e.detail == SWT.TRAVERSE_TAB_NEXT) {
 				if (text_con.getText().trim().length() > 0) {
-					but_pst.setEnabled(true);
+					copyButton.setEnabled(true);
 					deleteMarkers();
 					Traverseselected();
 
-
 				} else {
-					but_pst.setEnabled(false);
+					copyButton.setEnabled(false);
 					deleteMarkers();
-					text_con.setBackground(new Color(display,255,255,255));
-					label3.setText("");
+					text_con.setBackground(new Color(display, 255, 255, 255));
+					outputLabel.setText("");
 				}
 
 				if (text_con.getText().trim().length() > 0) {
@@ -251,6 +250,7 @@ public class XPathViewer extends ViewPart {
 
 	/**
 	 * 取得ボタン
+	 * 
 	 * @author r-mizuno
 	 */
 	class GetButtonListner implements SelectionListener {
@@ -279,9 +279,10 @@ public class XPathViewer extends ViewPart {
 
 			try {
 				org.sapid.checker.core.IFile cfile = IFileFactory
-				.create(fileFullPath);
-				String xpath = new NodeOffsetUtil(cfile.getDOM(), start).getXPath();
-				//new Offset2XPath(cfile.getDOM(), start).getXPathFromOffset();
+						.create(fileFullPath);
+				String xpath = new NodeOffsetUtil(cfile.getDOM(), start)
+						.getXPath();
+				// new Offset2XPath(cfile.getDOM(), start).getXPathFromOffset();
 				text_con.setText(xpath);
 			} catch (ParseException e) {
 				CheckerActivator.log(e);
@@ -293,9 +294,10 @@ public class XPathViewer extends ViewPart {
 
 	/**
 	 * コピーボタン
+	 * 
 	 * @author r-mizuno
 	 */
-	class PstButtonListner implements SelectionListener {
+	class CopyButtonListner implements SelectionListener {
 
 		public void widgetDefaultSelected(SelectionEvent e) {
 		}
@@ -310,19 +312,19 @@ public class XPathViewer extends ViewPart {
 			String res = null;
 			if (pre.length() > 0 && con.length() > 0) {
 				res = "<oneRule>" + NEW_LINE_CODE + "\t<level></level>"
-				+ NEW_LINE_CODE + "\t" + "<content></content>"
-				+ NEW_LINE_CODE + "\t<prerequisite>" + pre
-				+ "</prerequisite>" + NEW_LINE_CODE + "\t<xpath>" + con
-				+ "</xpath>" + NEW_LINE_CODE
-				+ "\t<condition></condition>" + NEW_LINE_CODE
-				+ "</oneRule>" + NEW_LINE_CODE;
+						+ NEW_LINE_CODE + "\t" + "<content></content>"
+						+ NEW_LINE_CODE + "\t<prerequisite>" + pre
+						+ "</prerequisite>" + NEW_LINE_CODE + "\t<xpath>" + con
+						+ "</xpath>" + NEW_LINE_CODE
+						+ "\t<condition></condition>" + NEW_LINE_CODE
+						+ "</oneRule>" + NEW_LINE_CODE;
 
 			} else if (con.length() > 0) {
 				res = "<oneRule>" + NEW_LINE_CODE + "\t<level></level>"
-				+ NEW_LINE_CODE + "\t" + "<content></content>"
-				+ NEW_LINE_CODE + "\t<xpath>" + con + "</xpath>"
-				+ NEW_LINE_CODE + "\t<condition></condition>"
-				+ NEW_LINE_CODE + "</oneRule>" + NEW_LINE_CODE;
+						+ NEW_LINE_CODE + "\t" + "<content></content>"
+						+ NEW_LINE_CODE + "\t<xpath>" + con + "</xpath>"
+						+ NEW_LINE_CODE + "\t<condition></condition>"
+						+ NEW_LINE_CODE + "</oneRule>" + NEW_LINE_CODE;
 			}
 
 			return res;
@@ -359,24 +361,22 @@ public class XPathViewer extends ViewPart {
 		}
 
 		text_con.setLayoutData(griddata);
-		text_con.addTraverseListener(xcl);
+		text_con.addTraverseListener(xpathCheckListener);
 
 		but_clx = new Button(parent, SWT.NONE);
 		but_clx.setText(Messages.getString("XPathViewer.CLEAR"));
-		but_clx.addSelectionListener(clbl);
+		but_clx.addSelectionListener(clearButtonListener);
 
-		but_get = new Button(parent, SWT.NONE);
-		but_get.setText(Messages.getString("XPathViewer.5"));
-		but_get.addSelectionListener(gbl);
+		getButton = new Button(parent, SWT.NONE);
+		getButton.setText(Messages.getString("XPathViewer.5"));
+		getButton.addSelectionListener(getButtonListener);
 
+		outputLabel = new Label(parent, SWT.NONE);
+		outputLabel.setLayoutData(data);
 
-		label3 = new Label(parent, SWT.NONE);
-		label3.setLayoutData(data);
-
-		but_pst = new Button(parent, SWT.NONE);
-		but_pst.setText(Messages.getString("XPathViewer.6"));
-		but_pst.addSelectionListener(pbl);
-
+		copyButton = new Button(parent, SWT.NONE);
+		copyButton.setText(Messages.getString("XPathViewer.6"));
+		copyButton.addSelectionListener(copyButtonListener);
 
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 3;
