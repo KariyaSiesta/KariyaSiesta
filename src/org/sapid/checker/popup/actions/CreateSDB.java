@@ -26,72 +26,73 @@ import org.sapid.checker.eclipse.progress.CreateSDBJob;
 /**
  * 「SDB を作成」のアクションデリゲータ<br>
  * Makefile の右クリックメニューと紐付けされる
+ * 
  * @author Toshinori OUSKA
  */
 public class CreateSDB implements IObjectActionDelegate {
-    private IResource selectedItem = null;
+	private IResource selectedItem = null;
 
-    public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-    }
+	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+	}
 
-    public void run(IAction action) {
-        String projectRealPath = "";
-        String makefile = "Makefile";
-        if (selectedItem instanceof IFile) {
-            projectRealPath = selectedItem.getProject().getLocation().toFile()
-                    .getAbsolutePath();
-            makefile = selectedItem.getName().toString();
-        } else if (selectedItem instanceof IProject) {
-            projectRealPath = selectedItem.getLocation().toFile()
-                    .getAbsolutePath();
-        }
+	public void run(IAction action) {
+		String projectRealPath = "";
+		String makefile = "Makefile";
+		if (selectedItem instanceof IFile) {
+			projectRealPath = selectedItem.getProject().getLocation().toFile()
+					.getAbsolutePath();
+			makefile = selectedItem.getName().toString();
+		} else if (selectedItem instanceof IProject) {
+			projectRealPath = selectedItem.getLocation().toFile()
+					.getAbsolutePath();
+		}
 
-        try {
-            if (!new Makefile(projectRealPath + File.separator + makefile)
-                    .isContainedCCMacro()) {
-                MessageDialog.openError(new Shell(), "Error in Sapid",
-                        "Makefile にマクロ CC が定義されていません。\n\n" + projectRealPath
-                                + File.separator + makefile);
-                return;
-            }
-        } catch (FileNotFoundException e1) {
-            MessageDialog.openError(new Shell(), "Error in Sapid",
-                    "Makefile が見つかりません。\n\n" + projectRealPath + File.separator
-                            + makefile);
-            return;
-        }
+		try {
+			if (!new Makefile(projectRealPath + File.separator + makefile)
+					.isContainedCCMacro()) {
+				MessageDialog.openError(new Shell(), "Error in Sapid",
+						"Makefile にマクロ CC が定義されていません。\n\n" + projectRealPath
+								+ File.separator + makefile);
+				return;
+			}
+		} catch (FileNotFoundException e1) {
+			MessageDialog.openError(new Shell(), "Error in Sapid",
+					"Makefile が見つかりません。\n\n" + projectRealPath + File.separator
+							+ makefile);
+			return;
+		}
 
-        Job job = new CreateSDBJob(projectRealPath,makefile);
-        job.setUser(true);
-        job.schedule();
-    }
+		Job job = new CreateSDBJob(projectRealPath, makefile);
+		job.schedule();
+	}
 
-    /**
-     * ruby の Array#join 風
-     * @param list
-     * @param sp
-     * @return
-     */
-        @SuppressWarnings("unused")
-		private String joinArray(List<?> list, String sp) {
-        StringBuffer buffer = new StringBuffer();
-        for (Iterator<?> itr = list.iterator(); itr.hasNext();) {
-            buffer.append(itr.next().toString());
-            buffer.append(sp);
-        }
-        return buffer.toString();
-    }
-    
-    public void selectionChanged(IAction action, ISelection selection) {
-        if (selection instanceof StructuredSelection) {
-            StructuredSelection ss = (StructuredSelection) selection;
-            Object obj = ss.getFirstElement();
-            if (obj instanceof IFile) {
-                selectedItem = (IFile) obj;
-            } else if (obj instanceof IProject) {
-                selectedItem = (IProject) obj;
-            }
-        }
-    }
+	/**
+	 * ruby の Array#join 風
+	 * 
+	 * @param list
+	 * @param sp
+	 * @return
+	 */
+	@SuppressWarnings("unused")
+	private String joinArray(List<?> list, String sp) {
+		StringBuffer buffer = new StringBuffer();
+		for (Iterator<?> itr = list.iterator(); itr.hasNext();) {
+			buffer.append(itr.next().toString());
+			buffer.append(sp);
+		}
+		return buffer.toString();
+	}
+
+	public void selectionChanged(IAction action, ISelection selection) {
+		if (selection instanceof StructuredSelection) {
+			StructuredSelection ss = (StructuredSelection) selection;
+			Object obj = ss.getFirstElement();
+			if (obj instanceof IFile) {
+				selectedItem = (IFile) obj;
+			} else if (obj instanceof IProject) {
+				selectedItem = (IProject) obj;
+			}
+		}
+	}
 
 }
