@@ -8,11 +8,13 @@ import org.sapid.checker.eclipse.codeassist.xml.DataSet;
 import com.wutka.dtd.DTD;
 import com.wutka.dtd.DTDChoice;
 import com.wutka.dtd.DTDElement;
+import com.wutka.dtd.DTDItem;
 import com.wutka.dtd.DTDName;
+import com.wutka.dtd.DTDSequence;
 
 public class DTDControl {
-	DTDInfo dtdinfo = new DTDInfo("test");
-//	DTDInfo dtdinfo = new DTDInfo();
+//	DTDInfo dtdinfo = new DTDInfo("test");
+	DTDInfo dtdinfo = new DTDInfo();
 
 	ArrayList<Token> decendantnodes = new ArrayList<Token>();
 
@@ -38,6 +40,11 @@ public class DTDControl {
 						for(int j = 0; j < dtdchoice.getItemsVec().size(); j++){
 							String childnode = ((DTDName)dtdchoice.getItemsVec().get(j)).value;
 							childnodes.add(new Token(childnode, "node", "DTD", 0));
+						}
+					} else if (obj.getContent() instanceof DTDSequence) {
+						DTDSequence dtdseq = ((DTDSequence)obj.getContent());
+						for (DTDItem item : dtdseq.getItems()){
+							childnodes.add(new Token(((DTDName)item).value, "node", "DTD", 0));
 						}
 					}
 				}
