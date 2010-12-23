@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="CheckerPlugin" default="javadoc" basedir=".">
+<project name="CheckerPlugin" default="javancss" basedir=".">
 	<property name="javancss.path" value="/var/lib/javancss/lib/javancss.jar" />
 	<property name="javancss.outputdir" value="javancss" />
 
@@ -7,7 +7,7 @@
 			classname="javancss.JavancssAntTask"
 			classpath="${javancss.path}" />
 
-	<target name="javadoc" description="Javadoc">
+	<target name="javancss" description="javancss">
 		<delete dir="${javancss.outputdir}" />
 		<mkdir dir="${javancss.outputdir}" />
 		<javancss srcdir="${build.src}"
