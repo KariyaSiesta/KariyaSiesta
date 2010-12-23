@@ -2,5 +2,7 @@
 *.swp
 *~
 *.class
-bin/**/*.properties
+bin
+doc
+
 
