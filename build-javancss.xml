@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="CheckerPlugin" default="javadoc" basedir=".">
+	<property name="javancss.path" value="/var/lib/javancss/lib/javancss.jar" />
+	<property name="javancss.outputdir" value="javancss" />
+
+	<taskdef name="javancss"
+			classname="javancss.JavancssAntTask"
+			classpath="${javancss.path}" />
+
+	<target name="javadoc" description="Javadoc">
+		<delete dir="${javancss.outputdir}" />
+		<mkdir dir="${javancss.outputdir}" />
+		<javancss srcdir="${build.src}"
+			generateReport="true"
+			outputfile="${javancss.outputdir}/javancss_metrics.xml"
+			include="src/**/*.java"
+			format="xml" />
+	</target>
+</project>
