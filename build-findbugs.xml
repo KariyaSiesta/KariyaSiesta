@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="CheckerPlugin" default="findbugs" basedir=".">
+	<property name="findbugs.home" value="/var/lib/findbugs" />
+	<property name="findbugs.outputdir" value="findbugs" />
+	<property name="findbugs.srcdir" value="src" />
+	<property name="findbugs.classdir" value="@dot" />
+	<property name="findbugs.libdir" value="lib" />
+
+	<taskdef name="findBugs"
+             classname="edu.umd.cs.findbugs.anttask.FindBugsTask" />
+
+	<target name="findbugs" description="findbugs">
+		<delete dir="${findbugs.outputdir}" />
+		<mkdir dir="${findbugs.outputdir}" />
+		<findBugs home="${findbugs.home}" output="xml"
+			outputFile="${findbugs.outputdir}/findbugs.xml"
+			jvmargs="-Xmx1024m">
+			<class location="${findbugs.classdir}" />
+			<sourcePath path="${findbugs.srcdir}" />
+			<auxClasspath path="${findbugs.libdir}" />
+		</findBugs>
+	</target>
+</project>
