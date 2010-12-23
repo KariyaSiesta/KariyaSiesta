@@ -25,24 +25,24 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * MISRA-C �롼�� 78 �ؿ��˰����Ϥ��������ο��ϴؿ��ץ��ȥ����פȰ��פ��Ƥ��ʤ���Фʤ�ʤ�
+ * MISRA-C ルール 78 関数に引き渡される引数の数は関数プロトタイプと一致していなければならない
  * @author Eiji Hirumuta
  */
 public class Misra78 implements CheckerClass {
-	/** �롼��Υ�٥� */
+	/** ルールのレベル */
 	private final static int LEVEL = 1;
 
-	/** �롼��Υ�å����� */
+	/** ルールのメッセージ */
 	private final static String MESSAGE = "MISRA-C Rule 78";
 
-	/** ������� */
+	/** 検査結果 */
 	List<Result> results = new ArrayList<Result>();
 
-	/** ��ȿ�Ȥ��Ƹ��Ф���Ρ��ɤν��� */
+	/** 違反として検出するノードの集合 */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * �ե�����Υ롼������å����˸ƤФ��
+	 * ファイルのルールチェック時に呼ばれる
 	 * 
 	 * @return results
 	 */

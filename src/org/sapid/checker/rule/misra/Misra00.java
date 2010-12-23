@@ -21,24 +21,24 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * MISRA-C ¥ë¡¼¥ë ¥Æ¥ó¥×¥ì¡¼¥È
+ * MISRA-C ãƒ«ãƒ¼ãƒ« ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
  * @author Eiji Hirumuta
  */
 public class Misra00 implements CheckerClass {
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 00";
 
-    /** ¸¡ºº·ë²Ì */
+    /** æ¤œæŸ»çµæœ */
     List<Result> results = new ArrayList<Result>();
 
-    /** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+    /** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
     Set<Element> problemNodes = new HashSet<Element>();
 
     /*
-     * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+     * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
      * @return results
      */
     public List<Result> check(IFile file, CheckRule rule) {
@@ -51,7 +51,7 @@ public class Misra00 implements CheckerClass {
         for (int i = 0; i < functions.length; i++) {
             System.out.println("******");
         	System.out.println(functions[i].getElem().getTextContent());
-        	// ¥Ñ¥¹²òÀÏ¤ò¹Ô¤¦¤È¤­¤ËÉ¬Í×
+        	// ãƒ‘ã‚¹è§£æã‚’è¡Œã†ã¨ãã«å¿…è¦
             PathGraph graph = new PathGraph(functions[i]);
             
             //List<List<GraphNode<Element>>> paths = graph.toPathList();
@@ -61,11 +61,11 @@ public class Misra00 implements CheckerClass {
                 checkPath(path);
             }*/
             graph.print();
-            // ½ÅÊ£¤¹¤ë¥¨¥ì¥á¥ó¥È¤Ï problemNodes ¤ËÄÉ²Ã
+            // é‡è¤‡ã™ã‚‹ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã¯ problemNodes ã«è¿½åŠ 
             //System.out.println(expressions[i].getElem().getTextContent());
     		problemNodes.add(functions[i].getElem());
         }
-        /* ¸¡½Ğ·ë²Ì¤òÊÖ¤êÃÍ¤ËÄÉ²Ã */
+        /* æ¤œå‡ºçµæœã‚’è¿”ã‚Šå€¤ã«è¿½åŠ  */
         for (Iterator<Element> itr = problemNodes.iterator(); itr.hasNext();) {
             results.add(new Result(null, new NodeOffsetUtil(itr.next())
                     .getRange(), LEVEL, MESSAGE));
@@ -77,7 +77,7 @@ public class Misra00 implements CheckerClass {
     
 
     /*
-     * ¥Ñ¥¹¥Á¥§¥Ã¥¯
+     * ãƒ‘ã‚¹ãƒã‚§ãƒƒã‚¯
      * @param path
      
     private void checkPath(List<GraphNode<Element>> path) {

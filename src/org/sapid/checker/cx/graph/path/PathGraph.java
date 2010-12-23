@@ -26,17 +26,17 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * ¥Ñ¥¹¤òÉ½¸½¤¹¤ë¥°¥é¥Õ<br>
- * GOTO ¤Ë¤ÏÌ¤ÂĞ±ş / loop ¤Ï 0²ó¤Ş¤ï¤ë¤«1²ó¤Ş¤ï¤ë¤Î¤ß<br>
- * default ¥é¥Ù¥ë¤Ï¹ÍÎ¸¤·¤Ê¤¤<br>
- * ¤É¤¦¹Í¤¨¤Æ¤â¥á¥½¥Ã¥É exit ¤Î¥Î¡¼¥É¤¬Íß¤·¤¤<br>
- * TODO ¥³¡¼¥É¤¬±ø¤¹¤®¤ë¤Î¤Ç¼«³²¤¹¤ë
+ * ãƒ‘ã‚¹ã‚’è¡¨ç¾ã™ã‚‹ã‚°ãƒ©ãƒ•<br>
+ * GOTO ã«ã¯æœªå¯¾å¿œ / loop ã¯ 0å›ã¾ã‚ã‚‹ã‹1å›ã¾ã‚ã‚‹ã®ã¿<br>
+ * default ãƒ©ãƒ™ãƒ«ã¯è€ƒæ…®ã—ãªã„<br>
+ * ã©ã†è€ƒãˆã¦ã‚‚ãƒ¡ã‚½ãƒƒãƒ‰ exit ã®ãƒãƒ¼ãƒ‰ãŒæ¬²ã—ã„<br>
+ * TODO ã‚³ãƒ¼ãƒ‰ãŒæ±šã™ãã‚‹ã®ã§è‡ªå®³ã™ã‚‹
  * @author Toshinori OSUKA
  */
 public class PathGraph extends Graph<Element> {
 
     /**
-     * ¥Ñ¥¹¥°¥é¥Õ¤ò¥Ó¥ë¥É¤¹¤ë
+     * ãƒ‘ã‚¹ã‚°ãƒ©ãƒ•ã‚’ãƒ“ãƒ«ãƒ‰ã™ã‚‹
      * @param function
      * @return
      */
@@ -73,14 +73,14 @@ public class PathGraph extends Graph<Element> {
         } else if (CDoStatementElement.isDoStatement(stmt.getContent())) {
             visitDoStatement(stmt, next);
         } else if (cstmt.isBreakStatement() || cstmt.isContinueStatement()) {
-        	makeEdge(stmt, exit); // Loop ¤«¤éÈ´¤±¤ë
+        	makeEdge(stmt, exit); // Loop ã‹ã‚‰æŠœã‘ã‚‹
         } else if (! cstmt.isReturnStatement()) {
         	makeEdge(stmt, next);
         }
     }
 
     /**
-     * If Ê¸
+     * If æ–‡
      * @param ifStatementNode
      * @param next
      * @param graph
@@ -89,14 +89,14 @@ public class PathGraph extends Graph<Element> {
             GraphNode<Element> next, GraphNode<Element> exit) {
         CIfStatementElement ifStatement = new CIfStatementElement(ifStatementNode.getContent());
 
-        // ¾ò·ï¼°
+        // æ¡ä»¶å¼
         CExpressionElement conditionExpression = ifStatement.getConditionExpression();
         GraphNode<Element> conditionExpressionNode;
         if (conditionExpression == null) {
-            // TODO ¾ò·ïÉô¤¬¥ê¥Æ¥é¥ë
+            // TODO æ¡ä»¶éƒ¨ãŒãƒªãƒ†ãƒ©ãƒ«
             conditionExpressionNode = ifStatementNode;
         } else {
-            // If Ê¸¼«ÂÎ¤«¤é¾ò·ïÊ¸¤Ø
+            // If æ–‡è‡ªä½“ã‹ã‚‰æ¡ä»¶æ–‡ã¸
             conditionExpressionNode = new GraphNode<Element>(conditionExpression.getElem());
             makeEdge(ifStatementNode, conditionExpressionNode);
         }
@@ -129,7 +129,7 @@ public class PathGraph extends Graph<Element> {
     }
 
     /**
-     * TODO default ¤Î°ÕÌ£¤ò²ò¼á¤¹¤ë
+     * TODO default ã®æ„å‘³ã‚’è§£é‡ˆã™ã‚‹
      * @param switchStatementNode
      * @param next
      */
@@ -138,7 +138,7 @@ public class PathGraph extends Graph<Element> {
         CSwitchStatementElement switchStatement =
         		new CSwitchStatementElement(switchStatementNode.getContent());
 
-        // Switch Ê¸ËÜÂÎ¤«¤é¾ò·ï¼°¤Ø
+        // Switch æ–‡æœ¬ä½“ã‹ã‚‰æ¡ä»¶å¼ã¸
         CExpressionElement conditionExpression = switchStatement.getConditionExpression();
         GraphNode<Element> last;
         if (conditionExpression == null) {
@@ -148,10 +148,10 @@ public class PathGraph extends Graph<Element> {
             makeEdge(switchStatementNode, last);
         }
 
-        // ¥é¥Ù¥ë¤Î¥ê¥¹¥È
+        // ãƒ©ãƒ™ãƒ«ã®ãƒªã‚¹ãƒˆ
         CLabelElement[] labels = switchStatement.getCaseOrDefaultLabels();
         if (labels.length == 0) {
-            // ¥é¥Ù¥ë¤¬¤Ê¤¤¾ì¹ç
+            // ãƒ©ãƒ™ãƒ«ãŒãªã„å ´åˆ
             makeEdge(last, next);
             return;
         }
@@ -163,7 +163,7 @@ public class PathGraph extends Graph<Element> {
         } else {
         	block = contentBlockStatement.getChildStatementsAndLocals();
         }
-        // ºÇ½é¤Î¥é¥Ù¥ë¤Ş¤Ç¤Ï¤Ä¤Ê¤¬¤Ê¤¤
+        // æœ€åˆã®ãƒ©ãƒ™ãƒ«ã¾ã§ã¯ã¤ãªãŒãªã„
         List<Element> tmp = new ArrayList<Element>();
         for (int i = 0; i < block.length; i++) {
             if (labels[0].getElem().compareDocumentPosition(block[i]) == Node.DOCUMENT_POSITION_FOLLOWING) {
@@ -172,7 +172,7 @@ public class PathGraph extends Graph<Element> {
         }
         block = (Element[]) tmp.toArray(new Element[tmp.size()]);
         
-        // ¤È¤ê¤¢¤¨¤ºÉáÄÌ¤Ë¤Ä¤Ê¤°
+        // ã¨ã‚Šã‚ãˆãšæ™®é€šã«ã¤ãªã
         visitBlock(block, last, next, next);
 
         // Label Jump
@@ -190,10 +190,10 @@ public class PathGraph extends Graph<Element> {
 
         GraphNode<Element> condNode;
         if (conditionExpression == null) {
-            // TODO ¾ò·ïÉô¤¬¥ê¥Æ¥é¥ë
+            // TODO æ¡ä»¶éƒ¨ãŒãƒªãƒ†ãƒ©ãƒ«
             condNode = whileStatementNode;
         } else {
-            // while Ê¸¼«ÂÎ¤«¤é¾ò·ïÊ¸¤Ø
+            // while æ–‡è‡ªä½“ã‹ã‚‰æ¡ä»¶æ–‡ã¸
             condNode = new GraphNode<Element>(conditionExpression.getElem());
             makeEdge(whileStatementNode, condNode);
             makeEdge(condNode, next);
@@ -216,7 +216,7 @@ public class PathGraph extends Graph<Element> {
         Element[] block = doStatement.getTrueBlock();
         visitBlock(block, doStatementNode, condNode, next);
 
-        // Cond ¤«¤é¼¡¤Ø
+        // Cond ã‹ã‚‰æ¬¡ã¸
         makeEdge(condNode, next);
 
     }
@@ -264,7 +264,7 @@ public class PathGraph extends Graph<Element> {
             if (CStatementElement.isStatement(list.get(j).getContent())) {
                 visitStatement(list.get(j), list.get(j + 1), next);
             } else {
-                // Local ¤Ê¤é¼¡¤È¤¯¤Ã¤Ä¤±¤ë
+                // Local ãªã‚‰æ¬¡ã¨ãã£ã¤ã‘ã‚‹
                 makeEdge(list.get(j), list.get(j + 1));
             }
         }
@@ -287,14 +287,14 @@ public class PathGraph extends Graph<Element> {
                 .toArray(new Element[instructions.size()]));
 
         if (list.size() > 0) {
-            // ¾ò·ïÊ¸¤«¤éºÇ½é¤Î Stmt ¤Ø
+            // æ¡ä»¶æ–‡ã‹ã‚‰æœ€åˆã® Stmt ã¸
             makeEdge(from, list.get(0));
-            // »Ò¶¡Ã£¤Î²òÀÏ
+            // å­ä¾›é”ã®è§£æ
             visitChildren(next, exit, list);
-            // for Ê¸¤ÎºÇ¸å¤Î Stmt ¤«¤é ¼¡¤ÎÊ¸¤Ø
+            // for æ–‡ã®æœ€å¾Œã® Stmt ã‹ã‚‰ æ¬¡ã®æ–‡ã¸
             makeEdge(list.get(list.size() - 1), next);
         } else {
-            // Block ¤ËÌ¿Îá¤¬¤Ê¤¤¤È¤­¤Ï¾ò·ïÊ¸¤«¤éÄ¾ÀÜ¼¡¤Ø
+            // Block ã«å‘½ä»¤ãŒãªã„ã¨ãã¯æ¡ä»¶æ–‡ã‹ã‚‰ç›´æ¥æ¬¡ã¸
             makeEdge(from, next);
         }
     }

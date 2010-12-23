@@ -5,14 +5,14 @@ import javax.xml.xpath.XPathFunction;
 import javax.xml.xpath.XPathFunctionResolver;
 
 /**
- * CX-CheckerÍÑ¤Î{@link XPathFunctionResolver}
+ * CX-Checkerç”¨ã®{@link XPathFunctionResolver}
  */
 public class CXCheckerXPathFunctionResolver implements XPathFunctionResolver {
 	
 	private static final String NAME_SPACE_URI = "http://www.sapid.org/cx";
 
-	// TODO ³ÆXPath´Ø¿ô¥¯¥é¥¹¤Î¥¯¥é¥¹Ì¾¤ËÅı°ì´¶¤¬Ìµ¤¤
-	// TODO ¥¯¥é¥¹¼«ÂÎ¤â¤Ã¤È¤Ş¤È¤á¤¿Êı¤¬¤¤¤¤¡©
+	// TODO å„XPathé–¢æ•°ã‚¯ãƒ©ã‚¹ã®ã‚¯ãƒ©ã‚¹åã«çµ±ä¸€æ„ŸãŒç„¡ã„
+	// TODO ã‚¯ãƒ©ã‚¹è‡ªä½“ã‚‚ã£ã¨ã¾ã¨ã‚ãŸæ–¹ãŒã„ã„ï¼Ÿ
 	
 	private static final QName matchesName = new QName(NAME_SPACE_URI, "matches");
 	
@@ -56,7 +56,7 @@ public class CXCheckerXPathFunctionResolver implements XPathFunctionResolver {
 			throw new NullPointerException();
 		}
 		
-		// TODO ¥Ï¥Ã¥·¥å¥Ş¥Ã¥×²½¤·¤¿Êı¤¬¤¤¤¤¡©
+		// TODO ãƒãƒƒã‚·ãƒ¥ãƒãƒƒãƒ—åŒ–ã—ãŸæ–¹ãŒã„ã„ï¼Ÿ
 		if (functionName.equals(matchesName) && arity == 2) {
 			return Matches.getInstance();
 		} else if (functionName.equals(typeInfoGetterName) && arity == 1) {

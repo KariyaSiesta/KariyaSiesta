@@ -7,7 +7,7 @@ package org.sapid.checker.cx.wrapper;
 import org.w3c.dom.Element;
 
 /**
- * Include Õ◊¡«
+ * Include Ë¶ÅÁ¥†
  * @author Toshinori OSUKA
  */
 public class CIncludeElement extends CElement {

@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * ÂåÆş¤òÉ½¤¹ Expr Í×ÁÇ
+ * ä»£å…¥ã‚’è¡¨ã™ Expr è¦ç´ 
  * @author Owner
  */
 public class CAssignExpressionElement extends CExpressionElement {
@@ -22,7 +22,7 @@ public class CAssignExpressionElement extends CExpressionElement {
     }
 
     /**
-     * º¸ÊÕ¤ÎÍ×ÁÇ¤òÊÖ¤¹<br>
+     * å·¦è¾ºã®è¦ç´ ã‚’è¿”ã™<br>
      * @return
      */
     public Element[] getLeftHandElements() {
@@ -37,7 +37,7 @@ public class CAssignExpressionElement extends CExpressionElement {
     }
 
     /**
-     * ±¦ÊÕ¤ÎÍ×ÁÇ¤òÊÖ¤¹<br>
+     * å³è¾ºã®è¦ç´ ã‚’è¿”ã™<br>
      * @return
      */
     public Element[] getRightHandElements() {
@@ -51,8 +51,8 @@ public class CAssignExpressionElement extends CExpressionElement {
     }
 
     /**
-     * º¸ÊÕ¤Î Expr ¤òÊÖ¤¹<br>
-     * ¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¡Ê¥ê¥Æ¥é¥ë¤È¤«)¤Ïnull
+     * å·¦è¾ºã® Expr ã‚’è¿”ã™<br>
+     * è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆï¼ˆãƒªãƒ†ãƒ©ãƒ«ã¨ã‹)ã¯null
      * @return
      */
     public CExpressionElement getLeftHandExpression() {
@@ -66,8 +66,8 @@ public class CAssignExpressionElement extends CExpressionElement {
     }
 
     /**
-     * º¸ÊÕ¤Î Expr ¤òÊÖ¤¹<br>
-     * ¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¡Ê¥ê¥Æ¥é¥ë¤È¤«)¤Ïnull
+     * å·¦è¾ºã® Expr ã‚’è¿”ã™<br>
+     * è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆï¼ˆãƒªãƒ†ãƒ©ãƒ«ã¨ã‹)ã¯null
      * @return
      */
     public CExpressionElement getRightHandExpression() {

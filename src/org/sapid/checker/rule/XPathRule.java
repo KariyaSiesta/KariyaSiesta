@@ -118,7 +118,7 @@ public class XPathRule {
 	}
 
 	/**
-	 * XPath ¤Î¥ë¡¼¥ë XML ¤ò¥Ñ¡¼¥¹¤¹¤ë¥á¥½¥Ã¥É
+	 * XPath ã®ãƒ«ãƒ¼ãƒ« XML ã‚’ãƒ‘ãƒ¼ã‚¹ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
 	 * 
 	 * @param filename
 	 * @return

@@ -9,7 +9,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 
 /***
- * IRunnableWithProgress¤òJob¤ËÊÑ´¹¤¹¤ë¥¯¥é¥¹
+ * IRunnableWithProgressã‚’Jobã«å¤‰æ›ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * 
  * @author mzp
  */

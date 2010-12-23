@@ -46,8 +46,8 @@ public class Main {
     private static String inputXML = DEFAULT_INPUTXML;
 
     /**
-     * ¥ë¡¼¥ëXML args[1]¤òÍÑ¤¤¤Æ¥Õ¥¡¥¤¥ë args[0] ¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£
-     * args[0]¤Ë"--tsv"¤ò»ØÄê¤¹¤ë¤È½ĞÎÏ¤¬¥¿¥Ö¶èÀÚ¤ê¤Ë¤Ê¤ê¡¢¥ë¡¼¥ëXML args[2]¤òÍÑ¤¤¤Æ¥Õ¥¡¥¤¥ëargs[1]¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡£
+     * ãƒ«ãƒ¼ãƒ«XML args[1]ã‚’ç”¨ã„ã¦ãƒ•ã‚¡ã‚¤ãƒ« args[0] ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
+     * args[0]ã«"--tsv"ã‚’æŒ‡å®šã™ã‚‹ã¨å‡ºåŠ›ãŒã‚¿ãƒ–åŒºåˆ‡ã‚Šã«ãªã‚Šã€ãƒ«ãƒ¼ãƒ«XML args[2]ã‚’ç”¨ã„ã¦ãƒ•ã‚¡ã‚¤ãƒ«args[1]ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
      * @param args[0] Tab Separated Values Mode
      * @param args[1] target File
      * @param args[2] Rule XML for Checker
@@ -99,7 +99,7 @@ public class Main {
     }
     
     /**
-     * °ú¿ô¤Î¥Ñ¡¼¥¹¤ò¹Ô¤¦
+     * å¼•æ•°ã®ãƒ‘ãƒ¼ã‚¹ã‚’è¡Œã†
      * @param args
      */
     private static void parseParam(String[] args) {
@@ -134,7 +134,7 @@ public class Main {
     }
 
     /**
-     * checkerClassName¤Ç»ØÄê¤µ¤ì¤¿CheckerClass¥ª¥Ö¥¸¥§¥¯¥È¤ò³ÍÆÀ¤·¡¢ÊÖ¤¹¡£
+     * checkerClassNameã§æŒ‡å®šã•ã‚ŒãŸCheckerClassã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç²å¾—ã—ã€è¿”ã™ã€‚
      * @param checkerClassName
      * @return
      */
@@ -151,7 +151,7 @@ public class Main {
     }
 
     /**
-     * ¥Á¥§¥Ã¥¯·ë²Ì¤¬³ÊÇ¼¤µ¤ì¤¿ results ¤ò°ìÍ÷É½¼¨¤¹¤ë
+     * ãƒã‚§ãƒƒã‚¯çµæœãŒæ ¼ç´ã•ã‚ŒãŸ results ã‚’ä¸€è¦§è¡¨ç¤ºã™ã‚‹
      * @param results
      */
     public static void output(ArrayList<Result> results) {

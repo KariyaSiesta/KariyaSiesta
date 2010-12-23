@@ -136,7 +136,7 @@ public class TagType extends Type {
 			return false;
 		}
 		
-		// TODO ╔А╔С╔пл╬╓ч╓г╧мн╦╓╧╓ы╓╜║╘
+		// TODO Ц┐║Ц┐ЁЦ┐░Е░█Ц│╬Ц│╖Х─┐Ф┘╝Ц│≥Ц│╧Ц│█О╪÷
 		for (int i = 0; i < thisMemberTypes.length; i++) {
 			if (! thisMemberTypes[i].isCompatibleWith(anotherMemberTypes[i])) {
 				return false;

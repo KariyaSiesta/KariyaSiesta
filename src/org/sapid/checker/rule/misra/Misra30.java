@@ -28,20 +28,20 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 30
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 30
  * @author Toshinori OSUKA
  */
 public class Misra30 implements CheckerClass {
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 30";
 
-    /** ¸¡ºº·ë²Ì */
+    /** æ¤œæŸ»çµæœ */
     List<Result> results = new ArrayList<Result>();
 
-    /** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+    /** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
     Set<Element> problemNodes = new HashSet<Element>();
 
     public List<Result> check(IFile file, CheckRule rule) {
@@ -64,11 +64,11 @@ public class Misra30 implements CheckerClass {
     }
 
     /**
-     * ¥Ñ¥¹¤ò¥Á¥§¥Ã¥¯¤·¤Æ°ãÈ¿¤ò¸¡½Ğ¤¹¤ë
+     * ãƒ‘ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦é•åã‚’æ¤œå‡ºã™ã‚‹
      * @param path
      */
     private void traversePath(List<GraphNode<Element>> path) {
-        // Àë¸À¤µ¤ì¤¿¤±¤ÉÂåÆş¤·¤Æ¤Ê¤¤ÊÑ¿ô¤Î ID ¤Î¥ê¥¹¥È
+        // å®£è¨€ã•ã‚ŒãŸã‘ã©ä»£å…¥ã—ã¦ãªã„å¤‰æ•°ã® ID ã®ãƒªã‚¹ãƒˆ
         List<String> unassigned = new ArrayList<String>();
         for (Iterator<GraphNode<Element>> itr = path.iterator(); itr.hasNext();) {
             GraphNode<Element> node = itr.next();
@@ -95,7 +95,7 @@ public class Misra30 implements CheckerClass {
     }
 
     /**
-     * Expr ¤ò²òÀÏ¤¹¤ë
+     * Expr ã‚’è§£æã™ã‚‹
      * @param expr
      * @param unassigned
      */
@@ -104,34 +104,34 @@ public class Misra30 implements CheckerClass {
         if (expr == null) {
         } else if (expr.isAssign()
                 && "=".equals(expr.getFirstChildNode("op").getTextContent())) {
-            // ÂåÆşÊ¸¤Î¤È¤­
+            // ä»£å…¥æ–‡ã®ã¨ã
             CAssignExpressionElement assign = new CAssignExpressionElement(expr
                     .getElem());
-            // ±¦ÊÕ¤ò²òÀÏ
+            // å³è¾ºã‚’è§£æ
             CExpressionElement right = assign.getRightHandExpression();
             parseExpression(right, unassigned);
-            // º¸ÊÕ
+            // å·¦è¾º
             CExpressionElement left = assign.getLeftHandExpression();
             if (left != null && left.isVarRef()) {
                 CVariableReference leftvar = new CVariableReference(left
                         .getElem());
                 if (!leftvar.isFunction()) {
-                    // ÂåÆş¤·¤¿¤Î¤Ç¥ê¥¹¥È¤«¤éºï½ü
+                    // ä»£å…¥ã—ãŸã®ã§ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
                     unassigned.remove(leftvar.getDefinitionId());
                 }
             }
             assign.getLeftHandExpression();
         } else if (expr.isVarRef()) {
-            // »²¾È
+            // å‚ç…§
             CVariableReference varref = new CVariableReference(expr.getElem());
             if (!varref.isFunction()) {
-                // ÂåÆş¤µ¤ì¤Æ¤¤¤Ê¤¤¾õÂÖ¤Ç»ÈÍÑ¤·¤¿¤Î¤Ç¸¡½Ğ
+                // ä»£å…¥ã•ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã§ä½¿ç”¨ã—ãŸã®ã§æ¤œå‡º
                 if (unassigned.contains(varref.getDefinitionId())) {
                     problemNodes.add(varref.getElem());
                 }
             }
         } else {
-            // »Ò¶¡¤âÃµ¤·¤Ë¹Ô¤¯
+            // å­ä¾›ã‚‚æ¢ã—ã«è¡Œã
             CExpressionElement[] exprs = expr.getExpressions();
             for (int i = 0; i < exprs.length; i++) {
                 parseExpression(exprs[i], unassigned);

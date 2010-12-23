@@ -22,7 +22,7 @@ public class Lexer {
 			matchflag = false;
 
 /*
- * ¼¡¤ÎÊ¸»ú¼èÆÀ
+ * æ¬¡ã®æ–‡å­—å–å¾—
  * 			String nexttoken = "";
 			if(xpath.length() > (i+1)){
 				nexttoken = xpath.substring(i+1, i+2);

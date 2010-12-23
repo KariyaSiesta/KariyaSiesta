@@ -12,7 +12,7 @@ import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 
 /**
- * ¶¯°ú¤ËFieldEditorPreferencePage¤òPropertyPage¤È¤·¤Æ»È¤¦¤¿¤á¤Î¥¯¥é¥¹
+ * å¼·å¼•ã«FieldEditorPreferencePageã‚’PropertyPageã¨ã—ã¦ä½¿ã†ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  * 
  * @author keigoi
  * 
@@ -71,7 +71,7 @@ public class CheckerPropertyPage extends FieldEditorPreferencePage implements IW
 
   @Override
   public boolean performOk() {
-    // ¥Ğ¥Ã¥¯¥¢¥Ã¥×
+    // ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
     PropertyStore backup = new PropertyStore();
     backup.setProject(getProject());
     initializePropertyStore(backup);

@@ -8,12 +8,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Stmt Í×ÁÇ
+ * Stmt è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CStatementElement extends CElement {
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CStatementElement(Element elem) {
@@ -22,8 +22,8 @@ public class CStatementElement extends CElement {
     }
 
     /**
-     * ÉûºîÍÑ¤ò»ı¤Ä¤«<br>
-     * ¼°¤Î¤Ò¤È¤Ä¤Ç¤âÉûºîÍÑ¤ò¤â»ı¤Æ¤Ğ OK
+     * å‰¯ä½œç”¨ã‚’æŒã¤ã‹<br>
+     * å¼ã®ã²ã¨ã¤ã§ã‚‚å‰¯ä½œç”¨ã‚’ã‚‚æŒã¦ã° OK
      * @return
      */
     public boolean hasSideEffect() {
@@ -43,7 +43,7 @@ public class CStatementElement extends CElement {
     }
 
     /**
-     * return Ê¸¤«¤É¤¦¤«
+     * return æ–‡ã‹ã©ã†ã‹
      * @return
      */
     public boolean isReturnStatement() {
@@ -51,7 +51,7 @@ public class CStatementElement extends CElement {
     }
     
     /**
-     * break Ê¸¤«¤É¤¦¤«
+     * break æ–‡ã‹ã©ã†ã‹
      * @return
      */
     public boolean isBreakStatement() {
@@ -59,7 +59,7 @@ public class CStatementElement extends CElement {
     }
     
     /**
-     * continue Ê¸¤«¤É¤¦¤«
+     * continue æ–‡ã‹ã©ã†ã‹
      * @return
      */
     public boolean isContinueStatement() {
@@ -67,7 +67,7 @@ public class CStatementElement extends CElement {
     }
     
     /**
-     * goto Ê¸¤«¤É¤¦¤«
+     * goto æ–‡ã‹ã©ã†ã‹
      * @return
      */
     public boolean isGotoStatement() {
@@ -75,7 +75,7 @@ public class CStatementElement extends CElement {
     }
     
     /**
-     * ¥Ö¥í¥Ã¥¯Ê¸¤«¤É¤¦¤«
+     * ãƒ–ãƒ­ãƒƒã‚¯æ–‡ã‹ã©ã†ã‹
      * @return
      */
     public boolean isBlockStatement() {

@@ -134,14 +134,14 @@ public class PropertyStore extends PreferenceStore {
     String[] absoluteXMLs = PropertyParser.parsePath(this.getString(ATTR_ABSOLUTE_XMLS));
     String[] moduleStrs = PropertyParser.parseModules(this.getString(ATTR_OTHER_MODULES));
 
-    // DOM¤Ë¤¹¤ë
+    // DOMã«ã™ã‚‹
     Document doc;
     try {
       doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
     } catch (ParserConfigurationException e) {
       throw new IOException("ParserConfigurationException : " + e.getMessage());
     }
-    // ¥ë¡¼¥È¥Î¡¼¥É¤ÎÀßÄê
+    // ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã®è¨­å®š
     doc.appendChild(doc.createElement("checker"));
     for (String xml : workspaceXMLs) {
       IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -158,12 +158,12 @@ public class PropertyStore extends PreferenceStore {
       appendXPathModule(doc, xml, null);
     }
     for (String moduleStr : moduleStrs) {
-      ArrayList<String> dummy_errors = new ArrayList<String>(); // ¥¨¥é¡¼¤¬½Ğ¤Æ¤â¤È¤ê¤¢¤¨¤ºÊİÂ¸
+      ArrayList<String> dummy_errors = new ArrayList<String>(); // ã‚¨ãƒ©ãƒ¼ãŒå‡ºã¦ã‚‚ã¨ã‚Šã‚ãˆãšä¿å­˜
       ModuleData m = PropertyParser.parseOneModule(moduleStr, dummy_errors);
       appendOtherModule(doc, m);
     }
 
-    // ¥Õ¥¡¥¤¥ëÊİÂ¸
+    // ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜
     Transformer transformer;
     try {
       transformer = TransformerFactory.newInstance().newTransformer();

@@ -3,7 +3,7 @@ package org.sapid.checker.cx.command;
 public class SimpleCommandOutput implements CommandOutput {
 
     /**
-     * ���ޥ�ɤμ¹Է��
+     * コマンドの実行結果
      */
     private StringBuilder output = new StringBuilder();
     

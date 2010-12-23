@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * ¼°¡ÊExprÍ×ÁÇ¡Ë¤¬ÂåÆş¼°¡Ê+= ¤Ê¤É¤â¡Ë¤«¤É¤¦¤«¤òÄ´¤Ù¤ëXPath´Ø¿ô
+ * å¼ï¼ˆExprè¦ç´ ï¼‰ãŒä»£å…¥å¼ï¼ˆ+= ãªã©ã‚‚ï¼‰ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹XPathé–¢æ•°
  * @author uehara
  */
 public class IsAssign implements XPathFunction {

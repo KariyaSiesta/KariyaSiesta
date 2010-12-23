@@ -89,10 +89,10 @@ public class CheckAllWithProgress implements IRunnableWithProgress {
     }
 
     /**
-     * ¥Õ¥¡¥¤¥ë¤È¥ë¡¼¥ë¤òÍ¿¤¨¤Æ¥Á¥§¥Ã¥¯¤ò¼Â¹Ô¤¹¤ë
+     * ãƒ•ã‚¡ã‚¤ãƒ«ã¨ãƒ«ãƒ¼ãƒ«ã‚’ä¸ãˆã¦ãƒã‚§ãƒƒã‚¯ã‚’å®Ÿè¡Œã™ã‚‹
      * @param file
      * @param rules
-     * @return À®¸ù¤·¤¿¤é 0 ¼ºÇÔ¤·¤¿¤é 1 ¤òÊÖ¤¹
+     * @return æˆåŠŸã—ãŸã‚‰ 0 å¤±æ•—ã—ãŸã‚‰ 1 ã‚’è¿”ã™
      * @throws InterruptedException
      */
     private int checkFile(IFile file, List<CheckRule> rules)

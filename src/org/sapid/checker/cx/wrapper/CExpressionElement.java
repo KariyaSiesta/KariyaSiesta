@@ -17,7 +17,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Expr Í×ÁÇ
+ * Expr è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CExpressionElement extends CElement {
@@ -54,10 +54,10 @@ public class CExpressionElement extends CElement {
     }
 
     /**
-     * Expression ¤Î¼ïÎà¤ò¼èÆÀ¤¹¤ë TODO ÃæÅÓÈ¾Ã¼¤Ê¤Î¤Ç JX-model ¤ò»²¹Í¤Ë½ñ¤­Ä¾¤¹
+     * Expression ã®ç¨®é¡ã‚’å–å¾—ã™ã‚‹ TODO ä¸­é€”åŠç«¯ãªã®ã§ JX-model ã‚’å‚è€ƒã«æ›¸ãç›´ã™
      * @return
      * 
-     * @deprecated {@link #getSortEnum()}¤Î»ÈÍÑ¤ò¿ä¾©
+     * @deprecated {@link #getSortEnum()}ã®ä½¿ç”¨ã‚’æ¨å¥¨
      */
     @Deprecated
     public String getSort() {
@@ -143,8 +143,8 @@ public class CExpressionElement extends CElement {
     }
     
     /**
-     * ¼°¤Î¼ïÎà¤òÊÖ¤¹
-     * @return ¼°¤Î¼ïÎà
+     * å¼ã®ç¨®é¡ã‚’è¿”ã™
+     * @return å¼ã®ç¨®é¡
      */
     public Sort getSortEnum() {
     	if (this.sortCache == null) {
@@ -249,7 +249,7 @@ public class CExpressionElement extends CElement {
     }
 
    /**
-     * »»½Ñ±é»»¡Ê¤Î¤ß¡Ë¤«¤É¤¦¤«
+     * ç®—è¡“æ¼”ç®—ï¼ˆã®ã¿ï¼‰ã‹ã©ã†ã‹
      * @return
      */
     public boolean isArith() {
@@ -258,7 +258,7 @@ public class CExpressionElement extends CElement {
     }
 
     /**
-     * ³ç¸Ì±é»»¤«¤É¤¦¤«
+     * æ‹¬å¼§æ¼”ç®—ã‹ã©ã†ã‹
      * @return
      */
     public boolean isParen() {
@@ -266,7 +266,7 @@ public class CExpressionElement extends CElement {
     }
 
     /**
-     * ÂåÆş¡Ê¤òÈ¼¤¦¡Ë±é»»¤«¤É¤¦¤«
+     * ä»£å…¥ï¼ˆã‚’ä¼´ã†ï¼‰æ¼”ç®—ã‹ã©ã†ã‹
      * @return
      */
     public boolean isAssign() {
@@ -276,7 +276,7 @@ public class CExpressionElement extends CElement {
     }
 
     /**
-     * ¥¤¥ó¥¯¥ê¥á¥ó¥È±é»»¤«¤É¤¦¤«
+     * ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆæ¼”ç®—ã‹ã©ã†ã‹
      * @return
      */
     public boolean isIncrement() {
@@ -284,7 +284,7 @@ public class CExpressionElement extends CElement {
     }
 
     /**
-     * ¥Ç¥¯¥ê¥á¥ó¥È±é»»¤«¤É¤¦¤«
+     * ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆæ¼”ç®—ã‹ã©ã†ã‹
      * @return
      */
     public boolean isDecrement() {
@@ -292,7 +292,7 @@ public class CExpressionElement extends CElement {
     }
 
     /**
-     * ÊÑ¿ô»²¾È¤«¤É¤¦¤«
+     * å¤‰æ•°å‚ç…§ã‹ã©ã†ã‹
      * @return
      */
     public boolean isVarRef() {
@@ -300,8 +300,8 @@ public class CExpressionElement extends CElement {
     }
     
     /**
-     * ÉûºîÍÑ¤ò»ı¤Ä¤«<br>
-     * return ¤Ê¤É¤âÀ©¸æ¥Õ¥í¡¼¤òÊÑ¹¹¤¹¤ë¤È¤¤¤¦°ÕÌ£¤ÎÉûºîÍÑ¤ò»ı¤Ä
+     * å‰¯ä½œç”¨ã‚’æŒã¤ã‹<br>
+     * return ãªã©ã‚‚åˆ¶å¾¡ãƒ•ãƒ­ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹ã¨ã„ã†æ„å‘³ã®å‰¯ä½œç”¨ã‚’æŒã¤
      * @return
      */
      public boolean hasSideEffect() {
@@ -309,7 +309,7 @@ public class CExpressionElement extends CElement {
     }
 
     /**
-     * Í¿¤¨¤é¤ì¤¿¥Î¡¼¥É¤¬ Expr Í×ÁÇ¤«¤É¤¦¤«
+     * ä¸ãˆã‚‰ã‚ŒãŸãƒãƒ¼ãƒ‰ãŒ Expr è¦ç´ ã‹ã©ã†ã‹
      * @param node
      * @return
      */
@@ -318,8 +318,8 @@ public class CExpressionElement extends CElement {
     }
     
     /**
-     * ¼°¤Î·¿¤òÊÖ¤¹ È½ÊÌ¤Ç¤­¤Ê¤«¤Ã¤¿¾ì¹ç¤Ïnull
-     * TODO Â¿ÂÖ²½
+     * å¼ã®å‹ã‚’è¿”ã™ åˆ¤åˆ¥ã§ããªã‹ã£ãŸå ´åˆã¯null
+     * TODO å¤šæ…‹åŒ–
      * @return
      */
     public Type getTypeInfo() {
@@ -353,13 +353,13 @@ public class CExpressionElement extends CElement {
     		if (literalContent.startsWith("\'")) {
     			type = new StandardType(StandardType.Sort.CHAR, StandardType.Sign.UNSPECIFIED, StandardType.Size.NORMAL, false, false);
     		} else if (literalContent.startsWith("L\'") || literalContent.startsWith("l\'")) {
-    			// ËÜÅö¤Ï wchar_t
+    			// æœ¬å½“ã¯ wchar_t
     			type = new StandardType(StandardType.Sort.CHAR, StandardType.Sign.UNSPECIFIED, StandardType.Size.NORMAL, false, false);
     		} else if (literalContent.startsWith("\"")) {
     			Type pointeeType = new StandardType(StandardType.Sort.CHAR, StandardType.Sign.UNSPECIFIED, StandardType.Size.NORMAL, true, false);
     			type = new ArrayType(pointeeType, 0);
     		} else if (literalContent.startsWith("L\"") || literalContent.startsWith("l\"")) {
-    			// ËÜÅö¤Ï wchar_t[]
+    			// æœ¬å½“ã¯ wchar_t[]
     			Type pointeeType = new StandardType(StandardType.Sort.CHAR, StandardType.Sign.UNSPECIFIED, StandardType.Size.NORMAL, true, false);
     			type = new ArrayType(pointeeType, 0);
     		} else {
@@ -386,7 +386,7 @@ public class CExpressionElement extends CElement {
     			} else if (oneType.getSort() == Type.Sort.POINTER && anotherType.getSort() != Type.Sort.POINTER) {
     				type = oneType;
     			} else if (oneType.getSort() == Type.Sort.POINTER && anotherType.getSort() == Type.Sort.POINTER) {
-        			// ËÜÅö¤Ï ptrdiff_t
+        			// æœ¬å½“ã¯ ptrdiff_t
         			type = new StandardType(StandardType.Sort.INT, StandardType.Sign.UNSPECIFIED, StandardType.Size.NORMAL, false, false);
     			} else {
     				type = null;
@@ -509,7 +509,7 @@ public class CExpressionElement extends CElement {
     		}
     		break;
     	case SIZEOF:
-    		// ËÜÅö¤Ïsize_t
+    		// æœ¬å½“ã¯size_t
     		type = new StandardType(StandardType.Sort.INT, StandardType.Sign.UNSPECIFIED, StandardType.Size.NORMAL, false, false);
     		break;
     	case LISTED:
@@ -526,7 +526,7 @@ public class CExpressionElement extends CElement {
     
     
     /**
-     * ¼°¤Î¼ïÎà¤òÉ½¤¹ÎóµóÂÎ
+     * å¼ã®ç¨®é¡ã‚’è¡¨ã™åˆ—æŒ™ä½“
      */
     public static enum Sort {
     	EMPTY,

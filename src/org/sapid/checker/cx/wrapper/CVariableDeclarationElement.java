@@ -8,7 +8,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Local or Global Í×ÁÇ
+ * Local or Global è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CVariableDeclarationElement extends CDeclarationElement {
@@ -20,8 +20,8 @@ public class CVariableDeclarationElement extends CDeclarationElement {
     }
 
     /**
-     * int i,j; ¤Î¤È¤­¤Ë²¾ÁÛÅª¤Ê j ¤Î¤¿¤á¤Î²¾ÁÛÅª¤Ê Local Í×ÁÇ¤òºî¤Ã¤ÆÊÖ¤¹<br>
-     * ¼¡¤¬Ìµ¤¤¤È¤­¤Ë¤Ï null ¤òÊÖ¤¹
+     * int i,j; ã®ã¨ãã«ä»®æƒ³çš„ãª j ã®ãŸã‚ã®ä»®æƒ³çš„ãª Local è¦ç´ ã‚’ä½œã£ã¦è¿”ã™<br>
+     * æ¬¡ãŒç„¡ã„ã¨ãã«ã¯ null ã‚’è¿”ã™
      * @return
      */
     public CVariableDeclarationElement getNext() {
@@ -46,10 +46,10 @@ public class CVariableDeclarationElement extends CDeclarationElement {
     }
 
     /**
-     * ½é´ü²½¼° or ½é´ü²½¥ê¥Æ¥é¥ë¤òÊÖ¤¹<br>
-     * Àµ³Î¤Ë¤Ï = ¤Î¸å¤í¤Î¥¹¥Ú¡¼¥¹¤Ç¤Ê¤¤Í×ÁÇ<br>
-     * Ìµ¤¤¾ì¹ç¤Ë¤Ï null ¤òÊÖ¤¹<br>
-     * TODO ¥½¡¼¥¹¤¬±ø¤¹¤®¤ë¤Î¤ÇÄ¾¤¹
+     * åˆæœŸåŒ–å¼ or åˆæœŸåŒ–ãƒªãƒ†ãƒ©ãƒ«ã‚’è¿”ã™<br>
+     * æ­£ç¢ºã«ã¯ = ã®å¾Œã‚ã®ã‚¹ãƒšãƒ¼ã‚¹ã§ãªã„è¦ç´ <br>
+     * ç„¡ã„å ´åˆã«ã¯ null ã‚’è¿”ã™<br>
+     * TODO ã‚½ãƒ¼ã‚¹ãŒæ±šã™ãã‚‹ã®ã§ç›´ã™
      * @return
      */
     public Element getInitializeElement() {
@@ -85,7 +85,7 @@ public class CVariableDeclarationElement extends CDeclarationElement {
     }
 
     /**
-     * ÂĞ¾İ¤È¤¹¤ë ident ¤ò¥»¥Ã¥È¤¹¤ë
+     * å¯¾è±¡ã¨ã™ã‚‹ ident ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
      * @param ident
      */
     protected void setIdent(Element ident) {

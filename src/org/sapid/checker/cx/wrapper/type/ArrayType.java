@@ -27,7 +27,7 @@ public class ArrayType extends Type {
 	}
 	
 	/**
-	 * ID¤ÎÌµ¤¤ÇÛÎó·¿¤òÀ¸À®¤¹¤ë¡£
+	 * IDã®ç„¡ã„é…åˆ—å‹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 	 * @param pointeeType
 	 * @param arraySize
 	 */
@@ -95,7 +95,7 @@ public class ArrayType extends Type {
 		}
 		ArrayType t = (ArrayType) anotherType;
 		
-		// TODO ¥µ¥¤¥º¤â¹ÍÎ¸¤¹¤Ù¤­¤«¡©
+		// TODO ã‚µã‚¤ã‚ºã‚‚è€ƒæ…®ã™ã¹ãã‹ï¼Ÿ
 		return this.getPointeeType().isCompatibleWith(t.getPointeeType());
 	}
 	

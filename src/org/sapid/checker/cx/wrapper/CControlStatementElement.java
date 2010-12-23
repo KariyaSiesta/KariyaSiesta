@@ -11,8 +11,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * À©¸æ¹½Â¤¤ò»ı¤Ä Stmt Í×ÁÇ<br>
- * If / for / while /switch / do ¤Ï¤³¤Î¥¯¥é¥¹¤ò·Ñ¾µ¤¹¤ë
+ * åˆ¶å¾¡æ§‹é€ ã‚’æŒã¤ Stmt è¦ç´ <br>
+ * If / for / while /switch / do ã¯ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ç¶™æ‰¿ã™ã‚‹
  * @author Toshinori OSUKA
  */
 public abstract class CControlStatementElement extends CStatementElement {
@@ -23,8 +23,8 @@ public abstract class CControlStatementElement extends CStatementElement {
     }
 
     /**
-     * sort ¤Ë±ş¤¸¤Æ ¥¤¥ó¥¹¥¿¥ó¥¹¤òÀ¸À®¤¹¤ë<br>
-     * node ¤¬À©¸æÊ¸¤Ç¤Ê¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹
+     * sort ã«å¿œã˜ã¦ ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã™ã‚‹<br>
+     * node ãŒåˆ¶å¾¡æ–‡ã§ãªã„å ´åˆã¯ null ã‚’è¿”ã™
      * @param node
      * @return
      */
@@ -45,30 +45,30 @@ public abstract class CControlStatementElement extends CStatementElement {
     }
 
     /**
-     * ¾ò·ïÊ¸¤ò¼èÆÀ¤¹¤ë<br>
+     * æ¡ä»¶æ–‡ã‚’å–å¾—ã™ã‚‹<br>
      * @return
-     * @deprecated {@link #getConditionExpression()}¤ËÃÖ¤­´¹¤¨
+     * @deprecated {@link #getConditionExpression()}ã«ç½®ãæ›ãˆ
      */
     @Deprecated
     public CStatementElement getConditionStatement() {
-        // ºÇ½é¤Î "(" ¤È ")" ¤Î´Ö
+        // æœ€åˆã® "(" ã¨ ")" ã®é–“
         Element lparen = getChildNodesByNodeNameAndText("op", "(")[0];
         Element rparen = getChildNodesByNodeNameAndText("op", ")")[0];
         return getInnerStatement(lparen, rparen);
     }
     
     /**
-     * ¾ò·ï¼°¤ò¼èÆÀ¤¹¤ë
-     * @return ¾ò·ï¼° ¤¿¤À¤·¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¤Ïnull
+     * æ¡ä»¶å¼ã‚’å–å¾—ã™ã‚‹
+     * @return æ¡ä»¶å¼ ãŸã ã—è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯null
      */
     abstract public CExpressionElement getConditionExpression();
 
     /**
-     * Ê¬´ô¤¬ true ¤À¤Ã¤¿¤È¤­¤Ë¼Â¹Ô¤µ¤ì¤ëÌ¿Îá¤Î¥ê¥¹¥È¤ò¼èÆÀ¤¹¤ë
+     * åˆ†å²ãŒ true ã ã£ãŸã¨ãã«å®Ÿè¡Œã•ã‚Œã‚‹å‘½ä»¤ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹
      * @return
      */
     public Element[] getTrueBlock() {
-        // ) °Ê¹ß¤Î Ì¿ÎáÁ´Éô
+        // ) ä»¥é™ã® å‘½ä»¤å…¨éƒ¨
         Element paren = getChildNodesByNodeNameAndText("op", ")")[0];
         List<Element> list = new ArrayList<Element>();
         Node tmp = paren.getNextSibling();
@@ -80,7 +80,7 @@ public abstract class CControlStatementElement extends CStatementElement {
     }
 
     /**
-     * »ØÄê¤µ¤ì¤¿ Element ¤Î´Ö¤Ë¤¢¤ë Stmt ¤ò¼èÆÀ¤¹¤ë
+     * æŒ‡å®šã•ã‚ŒãŸ Element ã®é–“ã«ã‚ã‚‹ Stmt ã‚’å–å¾—ã™ã‚‹
      * @param from
      * @param to
      * @return
@@ -97,7 +97,7 @@ public abstract class CControlStatementElement extends CStatementElement {
     }
 
     /**
-     * À©¸æÊ¸¤«¤É¤¦¤«
+     * åˆ¶å¾¡æ–‡ã‹ã©ã†ã‹
      * @param node
      * @return
      */

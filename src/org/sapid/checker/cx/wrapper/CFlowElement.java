@@ -8,12 +8,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * flow Í×ÁÇ
+ * flow è¦ç´ 
  * @author Eiji Hirumuta
  */
 public class CFlowElement extends CElement {
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CFlowElement(Element elem) {
@@ -46,7 +46,7 @@ public class CFlowElement extends CElement {
     }
     
     /*
-     * next Â°À­¤Î id ¤ò»ı¤Ä CStatementElement ¤ò¼èÆÀ¤¹¤ë¡¥¸«¤Ä¤«¤é¤Ê¤±¤ì¤Ğ null ¤òÊÖ¤¹
+     * next å±æ€§ã® id ã‚’æŒã¤ CStatementElement ã‚’å–å¾—ã™ã‚‹ï¼è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° null ã‚’è¿”ã™
      * @return
      */
     public CStatementElement getCStatementElementByNext(CFileElement cfile) {
@@ -56,7 +56,7 @@ public class CFlowElement extends CElement {
     }
 
     /*
-     * expr_id Â°À­¤Î id ¤ò»ı¤Ä CExpressionElement ¤ò¼èÆÀ¤¹¤ë¡¥¸«¤Ä¤«¤é¤Ê¤±¤ì¤Ğ null ¤òÊÖ¤¹
+     * expr_id å±æ€§ã® id ã‚’æŒã¤ CExpressionElement ã‚’å–å¾—ã™ã‚‹ï¼è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° null ã‚’è¿”ã™
      * @return
      */
     public CExpressionElement getCExpressionElementByExprId(CFileElement cfile) {
@@ -69,7 +69,7 @@ public class CFlowElement extends CElement {
     }
     
     /*
-     * dep_id Â°À­¤Î id ¤ò»ı¤Ä Element ¤ò¼èÆÀ¤¹¤ë¡¥(CIdent Í×ÁÇ¤¬¤Ê¤¤¤¿¤á) ¸«¤Ä¤«¤é¤Ê¤±¤ì¤Ğ null ¤òÊÖ¤¹
+     * dep_id å±æ€§ã® id ã‚’æŒã¤ Element ã‚’å–å¾—ã™ã‚‹ï¼(CIdent è¦ç´ ãŒãªã„ãŸã‚) è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° null ã‚’è¿”ã™
      * @return
      */
     public Element getElementByDepId(CFileElement cfile) {

@@ -20,15 +20,15 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 16
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 16
  * @author Nobuyuki UEHARA
  */
 public class Misra16 implements CheckerClass {
 	
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 16";
 
     

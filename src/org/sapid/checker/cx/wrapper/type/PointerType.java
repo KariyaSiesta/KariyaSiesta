@@ -20,7 +20,7 @@ public class PointerType extends Type {
 	}
 	
 	/**
-	 * ID¤ò»ı¤¿¤Ê¤¤¥İ¥¤¥ó¥¿·¿¤òÀ¸À®¤¹¤ë¡£ &hoge ¤Î¤è¤¦¤Ê¼°¤Î·¿¤òÉ½¤¹»ş¤Ë»È¤¦¡£
+	 * IDã‚’æŒãŸãªã„ãƒã‚¤ãƒ³ã‚¿å‹ã‚’ç”Ÿæˆã™ã‚‹ã€‚ &hoge ã®ã‚ˆã†ãªå¼ã®å‹ã‚’è¡¨ã™æ™‚ã«ä½¿ã†ã€‚
 	 */
 	public PointerType(Element typeInfosElement, String pointeeTypeID) {
 		super(false, false);
@@ -42,8 +42,8 @@ public class PointerType extends Type {
 	}
 
 	/**
-	 * ¥İ¥¤¥ó¥È¤¹¤ë·¿¤ò¼èÆÀ¤¹¤ë¡¥
-	 * @return ¥İ¥¤¥ó¥È¤¹¤ë·¿¡¥¤½¤Î·¿¤¬CX-modelÊ¸½ñ¤ËÌµ¤¯null¤òÊÖ¤¹¤³¤È¤¬¤¢¤ë¡¥
+	 * ãƒã‚¤ãƒ³ãƒˆã™ã‚‹å‹ã‚’å–å¾—ã™ã‚‹ï¼
+	 * @return ãƒã‚¤ãƒ³ãƒˆã™ã‚‹å‹ï¼ãã®å‹ãŒCX-modelæ–‡æ›¸ã«ç„¡ãnullã‚’è¿”ã™ã“ã¨ãŒã‚ã‚‹ï¼
 	 */
 	public Type getPointeeType() {
 		if (this.pointeeTypeCache == null) {

@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * ¼°¡ÊExprÍ×ÁÇ¡Ë¤¬¥Ó¥Ã¥È±é»»¼°¡Ê&= ¤Ê¤É¤â¡Ë¤«¤É¤¦¤«¤òÄ´¤Ù¤ëXPath´Ø¿ô
+ * å¼ï¼ˆExprè¦ç´ ï¼‰ãŒãƒ“ãƒƒãƒˆæ¼”ç®—å¼ï¼ˆ&= ãªã©ã‚‚ï¼‰ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹XPathé–¢æ•°
  * @author uehara
  */
 public class IsBit implements XPathFunction {

@@ -7,12 +7,12 @@ package org.sapid.checker.cx.wrapper;
 import org.w3c.dom.Element;
 
 /**
- * Typedecl Õ◊¡«
+ * Typedecl Ë¶ÅÁ¥†
  * @author Toshinori OSUKA
  */
 public class CTypedeclElement extends CDeclarationElement {
     /**
-     * •≥•Û•π•»•È•Ø•ø
+     * „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
      * @param elem
      */
     public CTypedeclElement(Element elem) {

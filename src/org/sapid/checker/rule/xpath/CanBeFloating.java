@@ -82,7 +82,7 @@ public class CanBeFloating implements XPathFunction {
 				return false;
 			}
 			
-			// TODO ¥í¥¸¥Ã¥¯¤Ë¼«¿®Ìµ¤·
+			// TODO ãƒ­ã‚¸ãƒƒã‚¯ã«è‡ªä¿¡ç„¡ã—
 			if (this.evaluate(firstChildExpressionElement)) {
 				return true;
 			}

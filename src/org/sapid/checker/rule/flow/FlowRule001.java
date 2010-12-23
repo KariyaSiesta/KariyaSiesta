@@ -34,26 +34,26 @@ import org.w3c.dom.NodeList;
 
 
 /**
- * // TODO - Á´ÂÎÅª¤Ë½¤Àµ¤¹¤ëÉ¬Í×¤¢¤ê¡¥Àµ¤·¤¯¸¡½Ğ¤Ç¤­¤Ê¤¤²ÄÇ½À­¤¬¹â¤¤¡¥
- * Flow Rule 001: 0³ä¥Á¥§¥Ã¥¯ ¿ô¼°¤ÎºÆµ¢Åª¤Ê½ü»»¤È¡¤if Ê¸¤Ë¤è¤ëÊ¬´ô¤Ş¤Ç²òÀÏ
+ * // TODO - å…¨ä½“çš„ã«ä¿®æ­£ã™ã‚‹å¿…è¦ã‚ã‚Šï¼æ­£ã—ãæ¤œå‡ºã§ããªã„å¯èƒ½æ€§ãŒé«˜ã„ï¼
+ * Flow Rule 001: 0å‰²ãƒã‚§ãƒƒã‚¯ æ•°å¼ã®å†å¸°çš„ãªé™¤ç®—ã¨ï¼Œif æ–‡ã«ã‚ˆã‚‹åˆ†å²ã¾ã§è§£æ
  * 
  * @author Eiji Hirumuta
  */
 public class FlowRule001 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "Flow Rule 001";
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
 	 * 
 	 * @return results
 	 */
@@ -95,7 +95,7 @@ public class FlowRule001 implements CheckerClass {
 
 		// System.out.println("EOP");
 
-		/* ¸¡½Ğ·ë²Ì¤òÊÖ¤êÃÍ¤ËÄÉ²Ã */
+		/* æ¤œå‡ºçµæœã‚’è¿”ã‚Šå€¤ã«è¿½åŠ  */
 		for (Iterator<Element> itr = problemNodes.iterator(); itr.hasNext();) {
 			results.add(new Result(null, new NodeOffsetUtil(itr.next())
 					.getRange(), LEVEL, MESSAGE));
@@ -104,7 +104,7 @@ public class FlowRule001 implements CheckerClass {
 	}
 
 	/**
-	 * Ê¬Êì¼°¤¬´Ş¤Ş¤ì¤ë¥Ñ¥¹¤òÃê½Ğ¤·¡¤(//TODOÊ¬Êì¼°°Ê¸å¤Î¥¹¥Æ¡¼¥È¥á¥ó¥È¤ò½üµî¤·¤¿¥Ñ¥¹¤òÊÖ¤¹)¡¥ ½ÅÊ£¤·¤Æ¤¤¤ë¾ì¹ç¤Ï¥æ¥Ë¡¼¥¯¤Ë¤¹¤ë
+	 * åˆ†æ¯å¼ãŒå«ã¾ã‚Œã‚‹ãƒ‘ã‚¹ã‚’æŠ½å‡ºã—ï¼Œ(//TODOåˆ†æ¯å¼ä»¥å¾Œã®ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’é™¤å»ã—ãŸãƒ‘ã‚¹ã‚’è¿”ã™)ï¼ é‡è¤‡ã—ã¦ã„ã‚‹å ´åˆã¯ãƒ¦ãƒ‹ãƒ¼ã‚¯ã«ã™ã‚‹
 	 * 
 	 * @param paths
 	 * @return
@@ -130,7 +130,7 @@ public class FlowRule001 implements CheckerClass {
 	}
 
 	/**
-	 * ±é»»Ê¸»úÎó (Îã¡§1+2) ¤ò¼õ¼è¤ê¡¤¤½¤ì¤Î·ë²Ì¤òÊÖ¤¹¡¥
+	 * æ¼”ç®—æ–‡å­—åˆ— (ä¾‹ï¼š1+2) ã‚’å—å–ã‚Šï¼Œãã‚Œã®çµæœã‚’è¿”ã™ï¼
 	 * 
 	 * @param cal
 	 */
@@ -152,14 +152,14 @@ public class FlowRule001 implements CheckerClass {
 		    
 		    throw new IllegalArgumentException();
         } catch (ScriptException e) {
-            // TODO ¼«Æ°À¸À®¤µ¤ì¤¿ catch ¥Ö¥í¥Ã¥¯
+            // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸ catch ãƒ–ãƒ­ãƒƒã‚¯
             e.printStackTrace();
         }
 		return null;
 	}
 
 	/**
-	 * ÊÑ¿ô¤Î def ¤ò¼èÆÀ¡¦·×»»¤·¡¤¤½¤ÎÊÑ¿ô¤Î value ¤Ë¥»¥Ã¥È¤¹¤ë
+	 * å¤‰æ•°ã® def ã‚’å–å¾—ãƒ»è¨ˆç®—ã—ï¼Œãã®å¤‰æ•°ã® value ã«ã‚»ãƒƒãƒˆã™ã‚‹
 	 * 
 	 * @param doc
 	 * @param var
@@ -174,17 +174,17 @@ public class FlowRule001 implements CheckerClass {
 		for (int i = 0; i < defs.length; i++) {
 			CExpressionElement def_right = getRightHandExpression(defs[i]);
 
-			// ±¦ÊÕ¤«¤éÊÑ¿ô¤Ë¥»¥Ã¥È¤¹¤ë
+			// å³è¾ºã‹ã‚‰å¤‰æ•°ã«ã‚»ãƒƒãƒˆã™ã‚‹
 			NodeList def_right_childs = (def_right.getElem()).getChildNodes();
 			if (def_right_childs.getLength() == 1) {
 				String name = def_right_childs.item(0).getNodeName();
 
 				if (name.equals("literal")) {
-					/* Ê¬Êì¤¬°ì¤Ä¤Î¥ê¥Æ¥é¥ë¤«¤é¤Ê¤ë¤È¤­ */
+					/* åˆ†æ¯ãŒä¸€ã¤ã®ãƒªãƒ†ãƒ©ãƒ«ã‹ã‚‰ãªã‚‹ã¨ã */
 					var.setValue(Double.valueOf(def_right_childs.item(0)
 							.getTextContent()));
 				} else if (name.equals("ident")) {
-					/* Ê¬Êì¤¬°ì¤Ä¤ÎÊÑ¿ô¤«¤é¤Ê¤ë¤È¤­ */
+					/* åˆ†æ¯ãŒä¸€ã¤ã®å¤‰æ•°ã‹ã‚‰ãªã‚‹ã¨ã */
 					FlowVariableConcrete new_var = new FlowVariableConcrete();
 					new_var.setByIdentNodeExceptValue(def_right_childs.item(0));
 					setVariables(doc, new_var, path);
@@ -192,7 +192,7 @@ public class FlowRule001 implements CheckerClass {
 				}
 
 			} else {
-				/* Ê¬Êì¤ÎÃæ¤Î¼°¤¬°ì¤Ä¤Ç¤Ï¤Ê¤¤¤È¤­ */
+				/* åˆ†æ¯ã®ä¸­ã®å¼ãŒä¸€ã¤ã§ã¯ãªã„ã¨ã */
 				List<FlowVariableConcrete> new_vars = new ArrayList<FlowVariableConcrete>();
 				extractVariables(new_vars, def_right);
 				for (FlowVariableConcrete new_var : new_vars) {
@@ -205,7 +205,7 @@ public class FlowRule001 implements CheckerClass {
 	}
 
 	/**
-	 * ÊÑ¿ô¤Î value ¤ò¿·¤·¤¤ÊÑ¿ô¤Î value ¤ËÃÖ¤­´¹¤¨¤ë¡¥
+	 * å¤‰æ•°ã® value ã‚’æ–°ã—ã„å¤‰æ•°ã® value ã«ç½®ãæ›ãˆã‚‹ï¼
 	 * 
 	 * @param var
 	 * @param new_var
@@ -224,7 +224,7 @@ public class FlowRule001 implements CheckerClass {
 	}
 
 	/**
-	 * Ê¬Êì¤Î¼°¤ò¼õ¤±¼è¤ê¡¤0³ä¤ò¥Á¥§¥Ã¥¯¤¹¤ë¡¥infinity, nan¤Ç³ä¤í¤¦¤È¤·¤¿ºİ¤Ë¤â¥¨¥é¡¼¤È¤¹¤ë¡¥
+	 * åˆ†æ¯ã®å¼ã‚’å—ã‘å–ã‚Šï¼Œ0å‰²ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼infinity, nanã§å‰²ã‚ã†ã¨ã—ãŸéš›ã«ã‚‚ã‚¨ãƒ©ãƒ¼ã¨ã™ã‚‹ï¼
 	 * 
 	 * @param doc
 	 * @param denos
@@ -252,9 +252,9 @@ public class FlowRule001 implements CheckerClass {
 	}
 
 	/**
-	 * ·×»»¼°¤ÎÊÑ¿ô¤ò¡¤ÊÑ¿ô¥ê¥¹¥È¤Î³Æ value ¤ËÃÖ´¹¤·¡¤¤½¤ÎÊ¸»úÎó¤òÊÖ¤¹¡¥
+	 * è¨ˆç®—å¼ã®å¤‰æ•°ã‚’ï¼Œå¤‰æ•°ãƒªã‚¹ãƒˆã®å„ value ã«ç½®æ›ã—ï¼Œãã®æ–‡å­—åˆ—ã‚’è¿”ã™ï¼
 	 * 
-	 * ÊÑ¿ô¤Î¤¦¤Á°ì¤Ä¤Ç¤â value ¤ò»ı¤Ã¤Æ¤Ê¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹¡¥
+	 * å¤‰æ•°ã®ã†ã¡ä¸€ã¤ã§ã‚‚ value ã‚’æŒã£ã¦ãªã„å ´åˆã¯ null ã‚’è¿”ã™ï¼
 	 * 
 	 * @param deno
 	 * @param vars
@@ -283,7 +283,7 @@ public class FlowRule001 implements CheckerClass {
 	}
 
 	/**
-	 * ±é»»¼°¤ò¼õ¤±¼è¤ê¡¤ÊÑ¿ô¤ò¥ê¥¹¥È¤ËÄÉ²Ã¤¹¤ë
+	 * æ¼”ç®—å¼ã‚’å—ã‘å–ã‚Šï¼Œå¤‰æ•°ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 	 * 
 	 * @param vars
 	 * @param denominator
@@ -320,7 +320,7 @@ public class FlowRule001 implements CheckerClass {
 	*/
 
 	/**
-	 * ÊÑ¿ô¤¬¥ê¥¹¥È¤ÎÃæ¤Ë¤¢¤ë¤«¤É¤¦¤«Ä´¤Ù¡¤Â¸ºß¤·¤Ê¤¤¾ì¹ç¤Ë¤ÏÊÑ¿ô¤ò¥ê¥¹¥È¤ËÄÉ²Ã¤¹¤ë
+	 * å¤‰æ•°ãŒãƒªã‚¹ãƒˆã®ä¸­ã«ã‚ã‚‹ã‹ã©ã†ã‹èª¿ã¹ï¼Œå­˜åœ¨ã—ãªã„å ´åˆã«ã¯å¤‰æ•°ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 	 * 
 	 * @param vars
 	 * @param new_var
@@ -336,7 +336,7 @@ public class FlowRule001 implements CheckerClass {
 	}
 
 	/**
-	 * ÄêµÁ¼°¤ò¼õ¤±¼è¤ê¡¤¤½¤Î±¦ÊÕ¼°¤òÊÖ¤¹´Ø¿ô
+	 * å®šç¾©å¼ã‚’å—ã‘å–ã‚Šï¼Œãã®å³è¾ºå¼ã‚’è¿”ã™é–¢æ•°
 	 * 
 	 */
 	private CExpressionElement getRightHandExpression(
@@ -349,10 +349,10 @@ public class FlowRule001 implements CheckerClass {
 	}
 
 	/**
-	 * °ú¿ô¤Ç¤¢¤ëÊÑ¿ô»²¾È¼°¤Î def ¤ò¡¤¥Ñ¥¹¤Î¥¹¥Æ¡¼¥È¥á¥ó¥È¤ÎÃæ¤«¤éÃµ¤·¡¤ CExpressionElement (def ¤Î¼°¤½¤Î¤â¤Î) ¤ò¼èÆÀ¤¹¤ë
+	 * å¼•æ•°ã§ã‚ã‚‹å¤‰æ•°å‚ç…§å¼ã® def ã‚’ï¼Œãƒ‘ã‚¹ã®ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã®ä¸­ã‹ã‚‰æ¢ã—ï¼Œ CExpressionElement (def ã®å¼ãã®ã‚‚ã®) ã‚’å–å¾—ã™ã‚‹
 	 * 
 	 * @param doc
-	 * @param »²¾È¤µ¤ì¤ëÊÑ¿ô¤Î¼°
+	 * @param å‚ç…§ã•ã‚Œã‚‹å¤‰æ•°ã®å¼
 	 * @return
 	 */
 	private CExpressionElement[] getDefineExpressionsInPath(Document doc,
@@ -362,7 +362,7 @@ public class FlowRule001 implements CheckerClass {
 			for (int i = 0; i < path.size(); i++) {
 				CFlowElement[] flows = path.get(i).getFlows();
 				for (int j = 0; j < flows.length; j++) {
-					// TODO ¼«Ê¬¤Î²Õ½ê¤ÇÀÚ¤ë¤è¤¦¤Ë²şÎÉ
+					// TODO è‡ªåˆ†ã®ç®‡æ‰€ã§åˆ‡ã‚‹ã‚ˆã†ã«æ”¹è‰¯
 					if (flows[j].getFlowIdExpr().equals(e.getId())) {
 						list.add(new CExpressionElement(flows[j]
 								.getFlowCStatementElement().getChildrenNode(
@@ -377,10 +377,10 @@ public class FlowRule001 implements CheckerClass {
 	}
 
 	/**
-	 * °ú¿ô¤Ç¤¢¤ëÊÑ¿ô»²¾È¼°¤Î def ¤Î CExpressionElement (def ¤Î¼°¤½¤Î¤â¤Î) ¤ò¼èÆÀ¤¹¤ë
+	 * å¼•æ•°ã§ã‚ã‚‹å¤‰æ•°å‚ç…§å¼ã® def ã® CExpressionElement (def ã®å¼ãã®ã‚‚ã®) ã‚’å–å¾—ã™ã‚‹
 	 * 
 	 * @param doc
-	 * @param »²¾È¤µ¤ì¤ëÊÑ¿ô¤Î¼°
+	 * @param å‚ç…§ã•ã‚Œã‚‹å¤‰æ•°ã®å¼
 	 * @return private CExpressionElement[] getDefineExpressions(Document doc,
 	 *         CExpressionElement e) { List<CExpressionElement> list = new
 	 *         ArrayList<CExpressionElement>(); NodeList flows =
@@ -397,7 +397,7 @@ public class FlowRule001 implements CheckerClass {
 	 */
 
 	/**
-	 * ½ü»»¤Î³ä¤ëÊı(Ê¬Êì)¤Î¼°¤Î¥ê¥¹¥È¤òÊÖ¤¹¡¥¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹
+	 * é™¤ç®—ã®å‰²ã‚‹æ–¹(åˆ†æ¯)ã®å¼ã®ãƒªã‚¹ãƒˆã‚’è¿”ã™ï¼è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯ null ã‚’è¿”ã™
 	 * 
 	 * @param file
 	 */

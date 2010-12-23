@@ -12,17 +12,17 @@ import org.sapid.checker.eclipse.CheckerActivator;
 import org.sapid.checker.eclipse.Messages;
 
 /**
- * ¿ﬂƒÍ•⁄°º•∏
+ * Ë®≠ÂÆö„Éö„Éº„Ç∏
  * @author Toshinori OSKA
  */
 public class CheckerPreferencePage extends FieldEditorPreferencePage implements
         IWorkbenchPreferencePage {
 
-    /** PreferenceStore §Œ•≠°º */
+    /** PreferenceStore „ÅÆ„Ç≠„Éº */
     private static final String SAPID_DEST = "SAPID_DEST";
 
     /**
-     * •≥•Û•π•»•È•Ø•ø
+     * „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
      */
     public CheckerPreferencePage() {
         super(GRID);

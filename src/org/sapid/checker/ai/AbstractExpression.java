@@ -5,7 +5,7 @@
 package org.sapid.checker.ai;
 
 /**
- * Interpreter ¥Ñ¥¿¡¼¥ó¤Î¶¦ÄÌ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹
+ * Interpreter ãƒ‘ã‚¿ãƒ¼ãƒ³ã®å…±é€šã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  * 
  * @author hirumuta
  * 

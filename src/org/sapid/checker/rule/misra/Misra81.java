@@ -21,25 +21,25 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 81 ¤½¤Î°ú¿ô¤¬·è¤·¤Æ°ú¿ô¤ò½ñ¤­´¹¤¨¤Ê¤¤¤³¤È¤ò°Õ¿Ş¤¹¤ë¾ì¹ç¤Ï¡¤»²¾ÈÅÏ¤·¤Î´Ø¿ô¤Î°ú¿ô¤Ë const ½¤¾ş»Ò¤ò»ÈÍÑ¤¹¤ë¤Ù¤­¤Ç¤¢¤ë
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 81 ãã®å¼•æ•°ãŒæ±ºã—ã¦å¼•æ•°ã‚’æ›¸ãæ›ãˆãªã„ã“ã¨ã‚’æ„å›³ã™ã‚‹å ´åˆã¯ï¼Œå‚ç…§æ¸¡ã—ã®é–¢æ•°ã®å¼•æ•°ã« const ä¿®é£¾å­ã‚’ä½¿ç”¨ã™ã‚‹ã¹ãã§ã‚ã‚‹
  * 
  * @author Eiji Hirumuta
  */
 public class Misra81 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "MISRA-C Rule 81";
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
 	 * 
 	 * @return results
 	 */
@@ -49,9 +49,9 @@ public class Misra81 implements CheckerClass {
 		for (int i = 0; i < functions.length; i++) {
 			CParameterElement[] params = functions[i].getParams();
 			for (int j = 0; j < params.length; j++) {
-				// ¥İ¥¤¥ó¥¿¤«¤É¤¦¤«¥Á¥§¥Ã¥¯¤¹¤ë
+				// ãƒã‚¤ãƒ³ã‚¿ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 				if (params[j].getIdent().getPreviousSibling().getTextContent().equals("*")) {
-					// const ½¤¾ş»Ò¤¬»ÈÍÑ¤µ¤ì¤Æ¤¤¤Ê¤¤¤«¥Á¥§¥Ã¥¯¤¹¤ë
+					// const ä¿®é£¾å­ãŒä½¿ç”¨ã•ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 					Element[] consts = params[j].getChildNodesByNodeNameAndText("kw", "const");
 					if (consts.length == 0) {
 						problemNodes.add(params[j].getElem());
@@ -60,7 +60,7 @@ public class Misra81 implements CheckerClass {
 			}
 		}
 		
-		/* ¸¡½Ğ·ë²Ì¤òÊÖ¤êÃÍ¤ËÄÉ²Ã */
+		/* æ¤œå‡ºçµæœã‚’è¿”ã‚Šå€¤ã«è¿½åŠ  */
 		for (Iterator<Element> itr = problemNodes.iterator(); itr.hasNext();) {
 			results.add(new Result(null, new NodeOffsetUtil(itr.next())
 					.getRange(), LEVEL, MESSAGE));

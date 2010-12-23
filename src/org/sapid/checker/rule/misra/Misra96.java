@@ -29,25 +29,25 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 96 ´Ø¿ô·¿¥Ş¥¯¥í¤ÎÄêµÁ¤Ë¤½¤¤¤ÆÄêµÁÁ´ÂÎ¤È¥Ñ¥é¥á¡¼¥¿¤Î¤½¤ì¤¾¤ì¤Î¥¤¥ó¥¹¥¿¥ó¥¹¤Ë¤Ï³ç¸Ì¤ò¤Ä¤±¤Ê¤±¤ì¤Ğ¤Ê¤é¤Ê¤¤
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 96 é–¢æ•°å‹ãƒã‚¯ãƒ­ã®å®šç¾©ã«ãã„ã¦å®šç¾©å…¨ä½“ã¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãã‚Œãã‚Œã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ã¯æ‹¬å¼§ã‚’ã¤ã‘ãªã‘ã‚Œã°ãªã‚‰ãªã„
  * 
  * @author Eiji Hirumuta
  */
 public class Misra96 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "MISRA-C Rule 96";
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
 	 * 
 	 * @return results
 	 */
@@ -61,7 +61,7 @@ public class Misra96 implements CheckerClass {
 		// Get DefineElements
 		for (Element element : delemList) {
 			CDefineElement d = new CDefineElement(element);
-			// ¥Ş¥¯¥í¤Î¥Ñ¥¿¡¼¥ó¤È¥Ü¥Ç¥£¤ò XML ¤ËÊÑ´¹¤¹¤ë
+			// ãƒã‚¯ãƒ­ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ã¨ãƒœãƒ‡ã‚£ã‚’ XML ã«å¤‰æ›ã™ã‚‹
 			Element pattern = null;
 			Element body = null;
 			try {
@@ -70,18 +70,18 @@ public class Misra96 implements CheckerClass {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// ¥Ş¥¯¥í¥Ñ¥¿¡¼¥ó¤«¤é°ú¿ô¤Î¥ê¥¹¥È¤òºîÀ®¤¹¤ë
+			// ãƒã‚¯ãƒ­ãƒ‘ã‚¿ãƒ¼ãƒ³ã‹ã‚‰å¼•æ•°ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆã™ã‚‹
 			List<String> args = new ArrayList<String>();
 			args = createArgumentList(pattern);
-			// °ú¿ô¤ò»ı¤¿¤Ê¤¤¤È¤­
+			// å¼•æ•°ã‚’æŒãŸãªã„ã¨ã
 			if (args.size() == 0) {
 				break;
 			}
-			// (1) MacroBody ¤ËÂ¸ºß¤¹¤ë°ú¿ô¤¬³ç¸Ì¤Ç¤¯¤¯¤é¤ì¤Æ¤¤¤ë¤«¥Á¥§¥Ã¥¯
+			// (1) MacroBody ã«å­˜åœ¨ã™ã‚‹å¼•æ•°ãŒæ‹¬å¼§ã§ããã‚‰ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if (!(checkParenParams(body, args))) {
 				problemNodes.add(d.getElem());
 			}
-			// (2) MacroBody Á´ÂÎ¤¬³ç¸Ì¤Ç¤¯¤¯¤é¤ì¤Æ¤¤¤ë¤«¥Á¥§¥Ã¥¯
+			// (2) MacroBody å…¨ä½“ãŒæ‹¬å¼§ã§ããã‚‰ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if (!(checkParenEntire(body, args))) {
 				problemNodes.add(d.getElem());
 			}
@@ -96,7 +96,7 @@ public class Misra96 implements CheckerClass {
 	}
 
 	/*
-	 * °ú¿ô¤Î¥ê¥¹¥È¤òÊÖ¤¹
+	 * å¼•æ•°ã®ãƒªã‚¹ãƒˆã‚’è¿”ã™
 	 * 
 	 * @return
 	 */
@@ -113,15 +113,15 @@ public class Misra96 implements CheckerClass {
 	}
 
 	/*
-	 * ¥Ş¥¯¥íÄêµÁ¤ÎÃæ¤ËÂ¸ºß¤¹¤ë°ú¿ô¤ò³ç¸Ì¤¬¤¯¤¯¤Ã¤Æ¤¤¤ë¤«¥Á¥§¥Ã¥¯
+	 * ãƒã‚¯ãƒ­å®šç¾©ã®ä¸­ã«å­˜åœ¨ã™ã‚‹å¼•æ•°ã‚’æ‹¬å¼§ãŒããã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	 * 
 	 * @return
 	 */
 	private boolean checkParenParams(Element root, List<String> args) {
-		// ³ÆÊÑ¿ô¤ÎÁ°¸å¤Î³ç¸Ì¤ò³ÎÇ§
+		// å„å¤‰æ•°ã®å‰å¾Œã®æ‹¬å¼§ã‚’ç¢ºèª
 		NodeList words = root.getElementsByTagName("word");
 		for (int i = 0; i < words.getLength(); i++) {
-			// °ú¿ô¤«¤É¤¦¤«¥Á¥§¥Ã¥¯¤¹¤ë
+			// å¼•æ•°ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 			if (args.contains(words.item(i).getTextContent())) {
 				if (words.item(i).getPreviousSibling().getTextContent().equals(
 						"(")
@@ -136,22 +136,22 @@ public class Misra96 implements CheckerClass {
 	}
 
 	/*
-	 * ¥Ş¥¯¥íÄêµÁÁ´ÂÎ¤ò³ç¸Ì¤¬¤¯¤¯¤Ã¤Æ¤¤¤ë¤«¥Á¥§¥Ã¥¯
+	 * ãƒã‚¯ãƒ­å®šç¾©å…¨ä½“ã‚’æ‹¬å¼§ãŒããã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	 * 
 	 * @return
 	 */
 	private boolean checkParenEntire(Element root, List<String> args) {
 		NodeList childs = root.getChildNodes();
 		if (childs.getLength() <= 3) {
-			// 3¸Ä°Ê²¼¤Î»ş¤Ï¡¤ºÇ½é¤ÈºÇ¸å¤ò³ÎÇ§¤¹¤ë
+			// 3å€‹ä»¥ä¸‹ã®æ™‚ã¯ï¼Œæœ€åˆã¨æœ€å¾Œã‚’ç¢ºèªã™ã‚‹
 			if (root.getFirstChild().getTextContent().equals("(")
 					&& root.getLastChild().getTextContent().equals(")")) {
 				return true;
 			}
 		} else {
-			// 3¸Ä¤è¤êÂ¿¤¤»ş¡¤¤³¤Î¥ë¡¼¥ë¤òËş¤¿¤¹¤Ë¤Ï¡¤°Ê²¼¤Î2¤Ä¤òÉ¬¤ºËş¤¿¤¹
-			// 1.»Ï¤á¤Î ( ¤Î¼¡¤Ë¤ÏÉ¬¤º °ú¿ô¤Ç¤Ï¤Ê¤¤¤â¤Î ¤¬Íè¤ë
-			// 2.½ª¤ï¤ê¤Î ) ¤ÎÁ°¤Ë¤ÏÉ¬¤º °ú¿ô¤Ç¤Ï¤Ê¤¤¤â¤Î ¤¬Íè¤ë
+			// 3å€‹ã‚ˆã‚Šå¤šã„æ™‚ï¼Œã“ã®ãƒ«ãƒ¼ãƒ«ã‚’æº€ãŸã™ã«ã¯ï¼Œä»¥ä¸‹ã®2ã¤ã‚’å¿…ãšæº€ãŸã™
+			// 1.å§‹ã‚ã® ( ã®æ¬¡ã«ã¯å¿…ãš å¼•æ•°ã§ã¯ãªã„ã‚‚ã® ãŒæ¥ã‚‹
+			// 2.çµ‚ã‚ã‚Šã® ) ã®å‰ã«ã¯å¿…ãš å¼•æ•°ã§ã¯ãªã„ã‚‚ã® ãŒæ¥ã‚‹
 			if (root.getFirstChild().getTextContent().equals("(")
 					&& root.getLastChild().getTextContent().equals(")")) {
 				if (root.getFirstChild().getNextSibling().getNodeName().equals(
@@ -174,7 +174,7 @@ public class Misra96 implements CheckerClass {
 	}
 
 	/*
-	 * Ê¸»úÎó¤ò²òÀÏ¤·¤Æ¡¤XML¤òÊÖ¤¹
+	 * æ–‡å­—åˆ—ã‚’è§£æã—ã¦ï¼ŒXMLã‚’è¿”ã™
 	 * 
 	 * @return
 	 */
@@ -235,7 +235,7 @@ public class Misra96 implements CheckerClass {
 
 		Element root = null;
 		try {
-			// DOM ¤ËÊÑ´¹
+			// DOM ã«å¤‰æ›
 			DocumentBuilderFactory dbfactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder builder = dbfactory.newDocumentBuilder();

@@ -7,14 +7,14 @@ package org.sapid.checker.cx.wrapper;
 import org.w3c.dom.Element;
 
 /**
- * �͡��ॹ�ڡ�����ɽ�����륯�饹<br>
- * �͡��ॹ�ڡ����Ȥ�Ʊ���������פ�Ʊ�����̻Ҥ�ȤäƤ���̤������֤Ǥ���<br>
- * C ����Υ͡��ॹ�ڡ����� 4�Ĥμ��ब����<br>
+ * ネームスペースを表現するクラス<br>
+ * ネームスペースとは同じスコープで同じ識別子を使っても区別される空間である<br>
+ * C 言語のネームスペースは 4つの種類がある<br>
  * <ul>
- * <li>̾��̾ (Label)</li>
- * <li>��¤�Ρ������εڤ�����ΤΥ���</li>
- * <li>��¤�����϶����ΤΥ��С���¤�����ϥ��Ф��Ф����̸ĤΥ͡��ॹ�ڡ��������</li>
- * <li>����¾���٤Ƥμ��̻�</li>
+ * <li>名札名 (Label)</li>
+ * <li>構造体，共用体及び列挙体のタグ</li>
+ * <li>構造体又は共用体のメンバ．構造体等はメンバに対する別個のネームスペースを持つ</li>
+ * <li>その他すべての識別子</li>
  * </ul>
  * @author Toshinori OSUKA
  */
@@ -24,18 +24,18 @@ public class CNamespace {
     public final int NAMESPACE_MEMBER = 2;
     public final int NAMESPACE_REGULAR = 3;
 
-    /** ident ���Ǥؤλ��� */
+    /** ident 要素への参照 */
     Element ident;
-    /** �������פλ��� */
+    /** スコープの参照 */
     private CElement scope;
-    /** �͡��ॹ�ڡ����μ��� */
+    /** ネームスペースの種類 */
     private int sort;
 
     /**
-     * ���󥹥ȥ饯��<br>
-     * �������Τϥ�٥롤�����ڤӡ�����פ� ident �Τ�<br>
-     * �ֻ��ȡפ������ä��Ȥ���ư����ݾ㤷�ʤ�
-     * @param ident ����
+     * コンストラクタ<br>
+     * 受け取るのはラベル，タグ及び「宣言」の ident のみ<br>
+     * 「参照」を受け取ったときの動作は保障しない
+     * @param ident 要素
      */
     public CNamespace(Element ident) {
         super();
@@ -55,7 +55,7 @@ public class CNamespace {
             sort = NAMESPACE_REGULAR;
             scope = new CDeclarationElement(parent).getScope();
         }
-        // TODO ���Ȥ������ä��Ȥ�������ޤǼ��˹Ԥ�
+        // TODO 参照を受け取ったときに宣言まで取りに行く
     }
 
     @Override
@@ -69,8 +69,8 @@ public class CNamespace {
     }
 
     /**
-     * �͡��ॹ�ڡ����μ�����������<br>
-     * NAMESPACE_LABEL �ʤ�
+     * ネームスペースの種類を取得する<br>
+     * NAMESPACE_LABEL など
      * @return
      */
     public int getSort() {
@@ -78,7 +78,7 @@ public class CNamespace {
     }
 
     /**
-     * �͡��ॹ�ڡ����δ��Ȥʤ륹�����פ��������
+     * ネームスペースの基準となるスコープを取得する
      * @return
      */
     public CElement getScope() {

@@ -7,7 +7,7 @@ package org.sapid.checker.cx.wrapper;
 import org.w3c.dom.Element;
 
 /**
- * Param Í×ÁÇ
+ * Param è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CParameterElement extends CDeclarationElement {
@@ -18,7 +18,7 @@ public class CParameterElement extends CDeclarationElement {
     }
 
     /**
-     * Àë¸À¤Î·¿¤òÊÖ¤¹
+     * å®£è¨€ã®å‹ã‚’è¿”ã™
      * @return
      */
     public String getType() {

@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * ¼°¡ÊExprÍ×ÁÇ¡Ë¤¬´Ø¿ô¸Æ¤Ó½Ğ¤·¼°¤«¤É¤¦¤«¤òÄ´¤Ù¤ëXPath´Ø¿ô
+ * å¼ï¼ˆExprè¦ç´ ï¼‰ãŒé–¢æ•°å‘¼ã³å‡ºã—å¼ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹XPathé–¢æ•°
  * @author uehara
  */
 public class IsCall implements XPathFunction {

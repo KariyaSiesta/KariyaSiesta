@@ -276,7 +276,7 @@ public class WorkspacePathEditor extends PathEditor {
 
     Object[] elements = dialog.getResult();
     if(elements.length>0) {
-        // TODO: Ê£¿ôÂÐ±þÉôÊ¬
+        // TODO: è¤‡æ•°å¯¾å¿œéƒ¨åˆ†
 	    IFile res = (IFile) elements[0];
 	    return res.getFullPath().toString();
     } else {

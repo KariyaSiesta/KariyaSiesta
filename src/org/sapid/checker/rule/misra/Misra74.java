@@ -24,25 +24,25 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- * MISRA-C �롼�� 74 �����ΰ����Ǥ⼱�̻Ҥ�Ϳ����줿��硢���������ǻ��Ѥ��줿���̻Ҥ��������ʤ���Фʤ�ʤ�
+ * MISRA-C ルール 74 引数の一部でも識別子が与えられた場合、宣言や定義で使用された識別子は等しくなければならない
  * 
  * @author Eiji Hirumuta
  */
 public class Misra74 implements CheckerClass {
-	/** �롼��Υ�٥� */
+	/** ルールのレベル */
 	private final static int LEVEL = 1;
 
-	/** �롼��Υ�å����� */
+	/** ルールのメッセージ */
 	private final static String MESSAGE = "MISRA-C Rule 74";
 
-	/** ������� */
+	/** 検査結果 */
 	List<Result> results = new ArrayList<Result>();
 
-	/** ��ȿ�Ȥ��Ƹ��Ф���Ρ��ɤν��� */
+	/** 違反として検出するノードの集合 */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * �ե�����Υ롼������å����˸ƤФ��
+	 * ファイルのルールチェック時に呼ばれる
 	 * 
 	 * @return results
 	 */
@@ -74,7 +74,7 @@ public class Misra74 implements CheckerClass {
 	}
 
 	/*
-	 * �ؿ�̾�Ȱ����Υꥹ�Ȥ������ꡤ���줬�ץ��ȥ���������ΰ���������������ǧ����
+	 * 関数名と引数のリストを受け取り，それがプロトタイプ宣言の引数と等しいか確認する
 	 * 
 	 * @return boolean
 	 */

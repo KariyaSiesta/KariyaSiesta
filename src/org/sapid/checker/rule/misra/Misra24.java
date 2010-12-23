@@ -21,25 +21,25 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 24 ¼±ÊÌ»Ò¤ÏÆ±°ìËİÌõÃ±°Ì¤Ë¤ª¤¤¤ÆÆâÉôµÚ¤Ó³°Éô·ë¹ç¤òÆ±»ş¤Ë»ı¤Ã¤Æ¤Ï¤Ê¤é¤Ê¤¤
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 24 è­˜åˆ¥å­ã¯åŒä¸€ç¿»è¨³å˜ä½ã«ãŠã„ã¦å†…éƒ¨åŠã³å¤–éƒ¨çµåˆã‚’åŒæ™‚ã«æŒã£ã¦ã¯ãªã‚‰ãªã„
  * 
  * @author Eiji Hirumuta
  */
 public class Misra24 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "MISRA-C Rule 24";
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
 	 * 
 	 * @return results
 	 */
@@ -52,7 +52,7 @@ public class Misra24 implements CheckerClass {
 
 			String name = decs[i].getName();
 
-			// ½¤¾ş»Ò¤ÈÌ¾Á°¤«¤éÂ¾¤Î·ë¹ç¤ÈÈæ³Ó¤·¤Æ¤¤¤¯
+			// ä¿®é£¾å­ã¨åå‰ã‹ã‚‰ä»–ã®çµåˆã¨æ¯”è¼ƒã—ã¦ã„ã
 			Set<Element> candidateNodes = new HashSet<Element>();
 			candidateNodes.add(decs[i].getElem());
 			boolean conflict = false;
@@ -61,7 +61,7 @@ public class Misra24 implements CheckerClass {
 			CDeclarationElement[] otherDecs = scope.getVarialbeDeclarations();
 			for (int j = 0; j < otherDecs.length; j++) {
 				if (name.equals(otherDecs[j].getName())) {
-					// Æ±¤¸Ì¾Á°¤Î¤â¤Î¤Ï¤¹¤Ù¤Æ·Ù¹ğ¸õÊä
+					// åŒã˜åå‰ã®ã‚‚ã®ã¯ã™ã¹ã¦è­¦å‘Šå€™è£œ
 					if ("extern".equals(otherDecs[j].getStorage())) {
 						candidateNodes.add(otherDecs[j].getElem());
 						conflict = true;
@@ -69,11 +69,11 @@ public class Misra24 implements CheckerClass {
 				}
 			}
 
-			// ¥À¥Ö¤Ã¤¿¾ì¹ç¤Î¤ß·Ù¹ğ
+			// ãƒ€ãƒ–ã£ãŸå ´åˆã®ã¿è­¦å‘Š
 			if (conflict) problemNodes.addAll(candidateNodes);
 		}
 
-		/* ¸¡½Ğ·ë²Ì¤òÊÖ¤êÃÍ¤ËÄÉ²Ã */
+		/* æ¤œå‡ºçµæœã‚’è¿”ã‚Šå€¤ã«è¿½åŠ  */
 		for (Iterator<Element> itr = problemNodes.iterator(); itr.hasNext();) {
 			results.add(new Result(null, new NodeOffsetUtil(itr.next())
 					.getRange(), LEVEL, MESSAGE));

@@ -9,7 +9,7 @@ import org.sapid.checker.ai.AIEnvironment;
 import org.sapid.checker.ai.Value;
 
 /**
- * ¶ñÂÎÃÍ¤Ë¤è¤ë³ä»»¤òÉ½¸½¤¹¤ë¥¯¥é¥¹
+ * å…·ä½“å€¤ã«ã‚ˆã‚‹å‰²ç®—ã‚’è¡¨ç¾ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author hirumuta
  *
  */

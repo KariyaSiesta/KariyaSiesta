@@ -10,13 +10,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- * Expr sort="VarRef" Í×ÁÇ<br>
- * ÊÑ¿ôµÚ¤Ó<b>´Ø¿ô</b>¤Î»²¾È¤òÉ½¤¹
+ * Expr sort="VarRef" è¦ç´ <br>
+ * å¤‰æ•°åŠã³<b>é–¢æ•°</b>ã®å‚ç…§ã‚’è¡¨ã™
  * @author Toshinori OSUKA
  */
 public class CVariableReference extends CExpressionElement {
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CVariableReference(Element elem) {
@@ -25,7 +25,7 @@ public class CVariableReference extends CExpressionElement {
     }
 
     /**
-     * ´Ø¿ô¤Ø¤Î»²¾È¤Î¾ì¹ç¤Ï true
+     * é–¢æ•°ã¸ã®å‚ç…§ã®å ´åˆã¯ true
      * @return
      */
     public boolean isFunction() {
@@ -40,8 +40,8 @@ public class CVariableReference extends CExpressionElement {
     }
 
     /**
-     * Àë¸ÀÉôÊ¬¤ò¼èÆÀ¤¹¤ë<br>
-     * ¥Õ¥¡¥¤¥ë³°¤ËÀë¸À¤¢¤ë¾ì¹ç¤Ê¤É¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¤Ë¤Ï null ¤òÊÖ¤¹
+     * å®£è¨€éƒ¨åˆ†ã‚’å–å¾—ã™ã‚‹<br>
+     * ãƒ•ã‚¡ã‚¤ãƒ«å¤–ã«å®£è¨€ã‚ã‚‹å ´åˆãªã©è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã«ã¯ null ã‚’è¿”ã™
      * @return
      */
     public CDeclarationElement getDeclaration() {
@@ -49,14 +49,14 @@ public class CVariableReference extends CExpressionElement {
         CFileElement cfile = new CFileElement(elem.getOwnerDocument());
         Element decl = cfile.getElementById(defid);
         if (decl == null) {
-            // TODO int a,b,c ¤Î¤È¤­¤âÃµ¤¹
+            // TODO int a,b,c ã®ã¨ãã‚‚æ¢ã™
             return null;
         }
         return new CDeclarationElement(decl);
     }
 
     /**
-     * defid ¤òÊÖ¤¹ ¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¤Ï¶õÊ¸»ú¤òÊÖ¤¹
+     * defid ã‚’è¿”ã™ è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯ç©ºæ–‡å­—ã‚’è¿”ã™
      * @return
      */
     public String getDefinitionId() {
@@ -70,7 +70,7 @@ public class CVariableReference extends CExpressionElement {
     }
     
     /**
-     * ·¿¤òÊÖ¤¹ ¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¤Ïnull¤òÊÖ¤¹
+     * å‹ã‚’è¿”ã™ è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯nullã‚’è¿”ã™
      * @return
      */
     public Type getTypeInfo() {

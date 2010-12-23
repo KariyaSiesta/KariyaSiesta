@@ -23,25 +23,25 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * MISRA-C ¥ë¡¼¥ë ¥Æ¥ó¥×¥ì¡¼¥È
+ * MISRA-C ãƒ«ãƒ¼ãƒ« ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
  * 
  * @author Eiji Hirumuta
  */
 public class Misra66 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "MISRA-C Rule 66";
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
 	 * 
 	 * @return results
 	 */
@@ -49,14 +49,14 @@ public class Misra66 implements CheckerClass {
 		CFileElement cfile = new CFileElement(file.getDOM());
 		CStatementElement[] statements = cfile.getStatments();
 
-		// forÊ¸¤Î¥¹¥Æ¡¼¥È¥á¥ó¥È¤òÃµ¤¹
+		// foræ–‡ã®ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’æ¢ã™
 		for (int i = 0; i < statements.length; i++) {
 			if (statements[i].getSort().equals("For")) {
 				CForStatementElement forstatement = new CForStatementElement(
 						statements[i].getElem());
 				List<String> defidList = new ArrayList<String>();
 
-				// ¥ë¡¼¥×¤Î¾ò·ïÊ¸¤«¤éÊÑ¿ô¤ò¼èÆÀ
+				// ãƒ«ãƒ¼ãƒ—ã®æ¡ä»¶æ–‡ã‹ã‚‰å¤‰æ•°ã‚’å–å¾—
 				CExpressionElement conditionexps = forstatement.getConditionExpression();
 				if (conditionexps.isVarRef()) {
 				    CVariableReference cvarRef = new CVariableReference(conditionexps.getElem());
@@ -71,7 +71,7 @@ public class Misra66 implements CheckerClass {
 	                }
                 }
 
-				// ¥ë¡¼¥×¤ÎÁı²Ã¼°¤Ç¸¡º÷
+				// ãƒ«ãƒ¼ãƒ—ã®å¢—åŠ å¼ã§æ¤œç´¢
 				CExpressionElement incrementalexps = forstatement.getIncrementalExpression();
 				if (incrementalexps.isVarRef()) {
 				    CVariableReference cvarRef = new CVariableReference(incrementalexps.getElem());
@@ -88,7 +88,7 @@ public class Misra66 implements CheckerClass {
 	                }
                 }
 				
-				// ¥ë¡¼¥×¤Î½é´ü²½¤Ç¸¡º÷
+				// ãƒ«ãƒ¼ãƒ—ã®åˆæœŸåŒ–ã§æ¤œç´¢
 				CExpressionElement initialexps = forstatement.getInitialExpression();
 				if (initialexps.isVarRef()) {
 						CVariableReference cvarRef = new CVariableReference(initialexps.getElem());

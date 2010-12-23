@@ -44,7 +44,7 @@ public class XPathChecker implements CheckerClass {
 
 		if (filename == null) {
 			throw new IllegalArgumentException(this.getClass().getName()
-					+ " : ¥ë¡¼¥ëXML¤Î" + XML_SRC + "¥Ñ¥é¥á¡¼¥¿¤¬»ØÄê¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£");
+					+ " : ãƒ«ãƒ¼ãƒ«XMLã®" + XML_SRC + "ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
 		}
 
 		XPathRule[] rules = null;
@@ -52,10 +52,10 @@ public class XPathChecker implements CheckerClass {
 			rules = XPathRule.parseRuleXML(filename);
 		} catch (ParserConfigurationException e) {
 			throw new IllegalArgumentException(this.getClass().getName()
-					+ " : ¥ë¡¼¥ëXML¤Î" + filename + "¤¬ÉÔÀµ¤Ç¤¹¡£");
+					+ " : ãƒ«ãƒ¼ãƒ«XMLã®" + filename + "ãŒä¸æ­£ã§ã™ã€‚");
 		} catch (SAXException e) {
 			throw new IllegalArgumentException(this.getClass().getName()
-					+ " : ¥ë¡¼¥ëXML¤Î" + filename + "¤¬ÉÔÀµ¤Ç¤¹¡£");
+					+ " : ãƒ«ãƒ¼ãƒ«XMLã®" + filename + "ãŒä¸æ­£ã§ã™ã€‚");
 		} catch (IOException e) {
 			throw new IllegalArgumentException(this.getClass().getName()
 					+ " : " + e.toString());

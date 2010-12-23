@@ -32,7 +32,7 @@ public class OptionalParameterType extends Type {
 	
 	@Override
 	public boolean isCompatibleWith(Type anotherType) {
-		// TODO ¾ï¤Ëtrue¤òÊÖ¤¹¤Ù¤­¤«¡©
+		// TODO å¸¸ã«trueã‚’è¿”ã™ã¹ãã‹ï¼Ÿ
 		return this.equals(anotherType);
 	}
 

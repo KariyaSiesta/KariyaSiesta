@@ -13,7 +13,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 /**
- * JSPFile¤Î¾ğÊó¤òÊİ»ı¤¹¤ë¥¯¥é¥¹
+ * JSPFileã®æƒ…å ±ã‚’ä¿æŒã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author tani
  */
 public class JSPFile implements IFile {
@@ -22,8 +22,8 @@ public class JSPFile implements IFile {
     private String filename = null;
 
     /**
-     * JSP¥Õ¥¡¥¤¥ë¤ò¥»¥Ã¥È¤¹¤ë
-     * @param filepath ÂĞ¾İ¤ÎJSP¥Õ¥¡¥¤¥ëÌ¾(String)
+     * JSPãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+     * @param filepath å¯¾è±¡ã®JSPãƒ•ã‚¡ã‚¤ãƒ«å(String)
      * @throws ParseException
      */
     public void setFileName(String filename) {
@@ -60,7 +60,7 @@ public class JSPFile implements IFile {
     }
 
     /**
-     * ¥Õ¥¡¥¤¥ëÌ¾¤òÊÖ¤¹
+     * ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¿”ã™
      * @return
      */
     public String getFileName() {

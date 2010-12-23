@@ -4,7 +4,7 @@ package org.sapid.checker.eclipse.codeassist.parsing;
 public class ReduceTransition extends Transition{
 	State current;
 	State next;
-	State reduceState;		// reduceÀè¤ò°ì°Õ¤Ë·è¤á¤ë¤¿¤á
+	State reduceState;		// reduceå…ˆã‚’ä¸€æ„ã«æ±ºã‚ã‚‹ãŸã‚
 
 
 	public ReduceTransition() {

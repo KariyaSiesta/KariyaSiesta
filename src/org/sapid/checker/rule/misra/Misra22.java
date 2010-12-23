@@ -20,17 +20,17 @@ import org.sapid.checker.rule.CheckRule;
 import org.sapid.checker.rule.NodeOffsetUtil;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 22
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 22
  * @author Toshinori OSUKA
  */
 public class Misra22 implements CheckerClass {
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 22";
 
-    /** ¸¡ºº·ë²Ì */
+    /** æ¤œæŸ»çµæœ */
     List<Result> results = new ArrayList<Result>();
 
     public List<Result> check(IFile file, CheckRule rule) {
@@ -47,7 +47,7 @@ public class Misra22 implements CheckerClass {
                     CElement scope = references[j].getScope();
                     scopes.add(scope);
                 }
-                // 1¤Ä¤Î´Ø¿ô¤Î¤ß¤Ç»²¾È¤µ¤ì¤Æ¤¤¤ë¾ì¹ç¤Ï NG
+                // 1ã¤ã®é–¢æ•°ã®ã¿ã§å‚ç…§ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ NG
                 if (scopes.size() == 1) {
                     results.add(new Result(null, new NodeOffsetUtil(globals[i]
                             .getElem()).getRange(), LEVEL, MESSAGE));

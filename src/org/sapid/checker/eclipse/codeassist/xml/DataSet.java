@@ -148,7 +148,7 @@ public	class DataSet {
 		return realloclist;
 	}
 
-	/* ½ÅÊ£¤¹¤ëÍ×ÁÇ¤ò¸õÊä¤«¤é½ü³° */
+	/* é‡è¤‡ã™ã‚‹è¦ç´ ã‚’å€™è£œã‹ã‚‰é™¤å¤– */
 	private ArrayList<String> Reallocate(List<String> beforelist) {
 		ArrayList<String> afterlist = new ArrayList<String>();
 		for (int i = 0; i < beforelist.size(); i++) {

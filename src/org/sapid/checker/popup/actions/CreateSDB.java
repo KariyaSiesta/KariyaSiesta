@@ -24,8 +24,8 @@ import org.sapid.checker.cx.command.Makefile;
 import org.sapid.checker.eclipse.progress.CreateSDBJob;
 
 /**
- * ¡ÖSDB ¤òºîÀ®¡×¤Î¥¢¥¯¥·¥ç¥ó¥Ç¥ê¥²¡¼¥¿<br>
- * Makefile ¤Î±¦¥¯¥ê¥Ã¥¯¥á¥Ë¥å¡¼¤ÈÉ³ÉÕ¤±¤µ¤ì¤ë
+ * ã€ŒSDB ã‚’ä½œæˆã€ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒªã‚²ãƒ¼ã‚¿<br>
+ * Makefile ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨ç´ä»˜ã‘ã•ã‚Œã‚‹
  * 
  * @author Toshinori OUSKA
  */
@@ -51,13 +51,13 @@ public class CreateSDB implements IObjectActionDelegate {
 			if (!new Makefile(projectRealPath + File.separator + makefile)
 					.isContainedCCMacro()) {
 				MessageDialog.openError(new Shell(), "Error in Sapid",
-						"Makefile ¤Ë¥Ş¥¯¥í CC ¤¬ÄêµÁ¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£\n\n" + projectRealPath
+						"Makefile ã«ãƒã‚¯ãƒ­ CC ãŒå®šç¾©ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚\n\n" + projectRealPath
 								+ File.separator + makefile);
 				return;
 			}
 		} catch (FileNotFoundException e1) {
 			MessageDialog.openError(new Shell(), "Error in Sapid",
-					"Makefile ¤¬¸«¤Ä¤«¤ê¤Ş¤»¤ó¡£\n\n" + projectRealPath + File.separator
+					"Makefile ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚\n\n" + projectRealPath + File.separator
 							+ makefile);
 			return;
 		}
@@ -67,7 +67,7 @@ public class CreateSDB implements IObjectActionDelegate {
 	}
 
 	/**
-	 * ruby ¤Î Array#join É÷
+	 * ruby ã® Array#join é¢¨
 	 * 
 	 * @param list
 	 * @param sp

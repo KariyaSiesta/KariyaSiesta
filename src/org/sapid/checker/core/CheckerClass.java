@@ -5,7 +5,7 @@ import java.util.List;
 import org.sapid.checker.rule.CheckRule;
 
 /**
- * JSPChecker¤Î¥Á¥§¥Ã¥¯¤ËÍÑ¤¤¤ëCheckerClass¥¤¥ó¥¿¥Õ¥§¡¼¥¹
+ * JSPCheckerã®ãƒã‚§ãƒƒã‚¯ã«ç”¨ã„ã‚‹CheckerClassã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹
  * 
  * @author tani
  * 

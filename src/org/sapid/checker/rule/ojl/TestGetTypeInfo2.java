@@ -19,15 +19,15 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Document;
 
 /**
- * {@link org.sapid.checker.cx.wrapper.CExpressionElement}¤ò¥Æ¥¹¥È¤¹¤ë¤¿¤á¤Î¥ë¡¼¥ë¡£
+ * {@link org.sapid.checker.cx.wrapper.CExpressionElement}ã‚’ãƒ†ã‚¹ãƒˆã™ã‚‹ãŸã‚ã®ãƒ«ãƒ¼ãƒ«ã€‚
  * @author Nobuyuki UEHARA
  */
 public class TestGetTypeInfo2 implements CheckerClass {
 
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "TestGetTypeInfo2";
     
     

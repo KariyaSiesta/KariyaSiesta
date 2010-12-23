@@ -26,25 +26,25 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * 0³ä¥Á¥§¥Ã¥¯¤ò¹Ô¤¦
+ * 0å‰²ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
  * 
  * @author Eiji Hirumuta
  */
 public class AIRule001 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "AI Rule 001";
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
 	 * 
 	 * @return results
 	 */
@@ -52,7 +52,7 @@ public class AIRule001 implements CheckerClass {
 		CFileElement cfile = new CFileElement(file.getDOM());
 		CFunctionElement[] cfuncs = cfile.getFunctions();
 		
-		/* Ãê¾İ²ò¼á¥Õ¥ì¡¼¥à¥ï¡¼¥¯¤ËÉ¬Í×¤Ê¼êÂ³¤­ */
+		/* æŠ½è±¡è§£é‡ˆãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã«å¿…è¦ãªæ‰‹ç¶šã */
 		//AIBuilder builder = new ConcreteBuilder();
 		AIBuilder builder = new Check0ConcreteBuilder();
 		AIDirector director = new AIDirector(builder);
@@ -73,14 +73,14 @@ public class AIRule001 implements CheckerClass {
 			func_map.put(aifunc.getFuncid(), aifunc);
 		}
 
-		// ´Ø¿ô¥Æ¡¼¥Ö¥ë¤ò´Ä¶­¤ËÅĞÏ¿
+		// é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç’°å¢ƒã«ç™»éŒ²
 		env.funcs = func_map;
 		// System.out.println("Interpret-----");
 		
-		// ²ò¼á¤ò¼Â¹Ô
+		// è§£é‡ˆã‚’å®Ÿè¡Œ
 		aifunc.interpret(env);
 		
-		// É¸½à½ĞÎÏ
+		// æ¨™æº–å‡ºåŠ›
 		// env.printVars();
 		
         Iterator<Element> it = env.result_set.iterator();
@@ -90,10 +90,10 @@ public class AIRule001 implements CheckerClass {
 		
 		// System.out.println("END");
 		
-		// ½ÅÊ£¤¹¤ë¥¨¥ì¥á¥ó¥È¤Ï problemNodes ¤ËÄÉ²Ã
+		// é‡è¤‡ã™ã‚‹ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã¯ problemNodes ã«è¿½åŠ 
 		// problemNodes.add(res.getElem());
 
-		/* ¸¡½Ğ·ë²Ì¤òÊÖ¤êÃÍ¤ËÄÉ²Ã */
+		/* æ¤œå‡ºçµæœã‚’è¿”ã‚Šå€¤ã«è¿½åŠ  */
 		for (Iterator<Element> itr = problemNodes.iterator(); itr.hasNext();) {
 			results.add(new Result(null, new NodeOffsetUtil(itr.next())
 					.getRange(), LEVEL, MESSAGE));

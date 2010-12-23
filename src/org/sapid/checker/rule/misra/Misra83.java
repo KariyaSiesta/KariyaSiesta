@@ -21,17 +21,17 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 83 Ìá¤êÃÍ¤Î·¿¤Î¥Á¥§¥Ã¥¯¤Ï¤·¤Ê¤¤
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 83 æˆ»ã‚Šå€¤ã®å‹ã®ãƒã‚§ãƒƒã‚¯ã¯ã—ãªã„
  * @author Toshinori OSUKA
  */
 public class Misra83 implements CheckerClass {
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 83";
 
-    /** ¸¡ºº·ë²Ì */
+    /** æ¤œæŸ»çµæœ */
     private List<Result> results = new ArrayList<Result>();
 
 
@@ -58,17 +58,17 @@ public class Misra83 implements CheckerClass {
             Element last = path.get(path.size() - 1).getContent();
 
             if (!CStatementElement.isStatement(last)) {
-                // ¤½¤â¤½¤âºÇ¸å¤¬¥¹¥Æ¡¼¥È¥á¥ó¥È¤¸¤ã¤Ê¤¤
+                // ãã‚‚ãã‚‚æœ€å¾ŒãŒã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã˜ã‚ƒãªã„
                 pushResult(function);
                 break;
             }
             CStatementElement lastStatement = new CStatementElement(last);
             if (! lastStatement.isReturnStatement()) {
-                // return ¤¬¤Ê¤¤
+                // return ãŒãªã„
                 pushResult(function);
                 break;
             } else if (lastStatement.getFirstChildNode("Expr") == null) {
-            	// ¼°¤Î¤Ê¤¤ return
+            	// å¼ã®ãªã„ return
             	pushResult(function);
             	break;
             }
@@ -76,7 +76,7 @@ public class Misra83 implements CheckerClass {
     }
 
     /**
-     * ·ë²Ì¤òÄÉ²Ã
+     * çµæœã‚’è¿½åŠ 
      * @param function
      */
     private void pushResult(CFunctionElement function) {

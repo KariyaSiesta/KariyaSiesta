@@ -6,7 +6,7 @@ import org.sapid.checker.core.ConfigManager;
 import org.w3c.dom.Element;
 
 /**
- * ´ğËÜ·¿¤òÉ½¤¹¥¯¥é¥¹¡£
+ * åŸºæœ¬å‹ã‚’è¡¨ã™ã‚¯ãƒ©ã‚¹ã€‚
  * @author uehara
  */
 public class StandardType extends Type {
@@ -66,16 +66,16 @@ public class StandardType extends Type {
     }
 
 	static {
-		// ³Æ·¿¤Î¥Ó¥Ã¥È¥µ¥¤¥º¤òÀßÄê¤¹¤ë¡¥
-		// ´Ä¶­ÊÑ¿ôSAPID_DEST¤¬Àµ¤·¤¯ÀßÄê¤µ¤ì¤Æ¤¤¤Ê¤¤¾ì¹ç¡¤¤Ş¤¿¤Ï¡¤ÀßÄê¥Õ¥¡¥¤¥ë(CXC.conf)¤¬»ØÄê¤Î¾ì½ê¤ËÂ¸ºß¤·¤Ê¤¤¾ì¹ç¤Ï¡¤¥Ç¥Õ¥©¥ë¥ÈÃÍ(¥Õ¥£¡¼¥ë¥É¤Î½é´üÃÍ)¤¬»ÈÍÑ¤µ¤ì¤ë¡¥
+		// å„å‹ã®ãƒ“ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹ï¼
+		// ç’°å¢ƒå¤‰æ•°SAPID_DESTãŒæ­£ã—ãè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆï¼Œã¾ãŸã¯ï¼Œè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«(CXC.conf)ãŒæŒ‡å®šã®å ´æ‰€ã«å­˜åœ¨ã—ãªã„å ´åˆã¯ï¼Œãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®åˆæœŸå€¤)ãŒä½¿ç”¨ã•ã‚Œã‚‹ï¼
 		if (ConfigManager.isEnableConfig()) {
 			setSizeOfTypes();
 		}
 	}
 	
 	/**
-	 * ¥×¥í¥Ñ¥Æ¥£¥Õ¥¡¥¤¥ë¤«¤é³Æ·¿¤Î¥µ¥¤¥º¤òÆÉ¤ß¼è¤ê¡¤¤½¤ÎÃÍ¤ò¥Õ¥£¡¼¥ë¥É¤ËÂåÆş¤¹¤ë¡¥
-	 * @param propertiesFilePath ¥×¥í¥Ñ¥Æ¥£¥Õ¥¡¥¤¥ë¤Ø¤ÎÀäÂĞ¥Ñ¥¹
+	 * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å„å‹ã®ã‚µã‚¤ã‚ºã‚’èª­ã¿å–ã‚Šï¼Œãã®å€¤ã‚’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«ä»£å…¥ã™ã‚‹ï¼
+	 * @param propertiesFilePath ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®çµ¶å¯¾ãƒ‘ã‚¹
 	 */
 	private static void setSizeOfTypes() {
 		HashMap<String, String> values = new HashMap<String, String>();
@@ -122,7 +122,7 @@ public class StandardType extends Type {
 	}
 	
 	/**
-	 * ID¤ÎÌµ¤¤´ğËÜ·¿¤òÀ¸À®¤¹¤ë¡£
+	 * IDã®ç„¡ã„åŸºæœ¬å‹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
 	 * @param sort
 	 * @param sign
 	 * @param size
@@ -162,7 +162,7 @@ public class StandardType extends Type {
 	}
 	
 	/**
-	 * ÄÌ¾ï¤Î»»½ÑÊÑ´¹ (Usual Arithmetic Conversions)
+	 * é€šå¸¸ã®ç®—è¡“å¤‰æ› (Usual Arithmetic Conversions)
 	 * @param anotherType
 	 * @return
 	 */
@@ -214,7 +214,7 @@ public class StandardType extends Type {
 	}
 
 	/**
-	 * À°¿ô¤Ø¤Î³Ê¾å¤² (Integral/Integer Promotion)
+	 * æ•´æ•°ã¸ã®æ ¼ä¸Šã’ (Integral/Integer Promotion)
 	 * @return
 	 */
 	private StandardType integralPromotion() {
@@ -248,8 +248,8 @@ public class StandardType extends Type {
 	}
 	
 	/**
-	 * À°¿ôÊÖ´Ô¤Î½ç°Ì (Integer Conversion Rank)
-	 * ¸½ºßint¤Ë¤·¤«ÂĞ±ş¤·¤Æ¤¤¤Ê¤¤
+	 * æ•´æ•°è¿”é‚„ã®é †ä½ (Integer Conversion Rank)
+	 * ç¾åœ¨intã«ã—ã‹å¯¾å¿œã—ã¦ã„ãªã„
 	 * @param t
 	 * @return
 	 */
@@ -298,7 +298,7 @@ public class StandardType extends Type {
 		}
 		StandardType t = (StandardType) anotherType;
 		
-		// TODO ¸½ºß¤Î¤È¤³¤í¤Ï Éä¹æÍ­Ìµ»ØÄêÌµ¤·¡áÉä¹æ¤¢¤ê ¤È²¾Äê¤·¤Æ¤¤¤ë
+		// TODO ç¾åœ¨ã®ã¨ã“ã‚ã¯ ç¬¦å·æœ‰ç„¡æŒ‡å®šç„¡ã—ï¼ç¬¦å·ã‚ã‚Š ã¨ä»®å®šã—ã¦ã„ã‚‹
 		boolean typeCompatible = this.getType() == t.getType()
 				|| this.getType() == Sort.INT && t.getType() == Sort.UNSPECIFIED
 				|| this.getType() == Sort.UNSPECIFIED && t.getType() == Sort.INT;
@@ -312,12 +312,12 @@ public class StandardType extends Type {
 	}
 	
 	/**
-	 * this ¤ò another ¤ËÊÑ´¹¤¹¤ë¤È¤­¾ğÊó¤ÎÂ»¼º¤¬µ¯¤³¤ë¤«Èİ¤«¤òÄ´¤Ù¤ë
+	 * this ã‚’ another ã«å¤‰æ›ã™ã‚‹ã¨ãæƒ…å ±ã®æå¤±ãŒèµ·ã“ã‚‹ã‹å¦ã‹ã‚’èª¿ã¹ã‚‹
 	 * @param another
-	 * @return this ¤ò another ¤ËÊÑ´¹¤¹¤ë¤È¤­¾ğÊó¤ÎÂ»¼º¤¬µ¯¤³¤ë¤«Èİ¤«
+	 * @return this ã‚’ another ã«å¤‰æ›ã™ã‚‹ã¨ãæƒ…å ±ã®æå¤±ãŒèµ·ã“ã‚‹ã‹å¦ã‹
 	 */
 	public boolean isLossy(StandardType another) {
-		// TODO ¤³¤ì¤ÇÀµ¤·¤¤¤Î¤«¼«¿®Ìµ¤·
+		// TODO ã“ã‚Œã§æ­£ã—ã„ã®ã‹è‡ªä¿¡ç„¡ã—
 		Sign thisSign = this.getSign();
 		Sign anotherSign = another.getSign();
 		int thisLength = this.getLength();
@@ -347,8 +347,8 @@ public class StandardType extends Type {
 	}
 	
 	/**
-	 * ¤³¤Î·¿¤Î¥Ó¥Ã¥È¿ô¤òÊÖ¤¹¡£void¤Î¾ì¹ç¤Ï0¤òÊÖ¤¹¡£
-	 * @return ¥Ó¥Ã¥È¿ô
+	 * ã“ã®å‹ã®ãƒ“ãƒƒãƒˆæ•°ã‚’è¿”ã™ã€‚voidã®å ´åˆã¯0ã‚’è¿”ã™ã€‚
+	 * @return ãƒ“ãƒƒãƒˆæ•°
 	 */
 	public int getLength() {
 		Sort sort = this.getType();

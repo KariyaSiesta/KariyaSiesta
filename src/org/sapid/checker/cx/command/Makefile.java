@@ -11,17 +11,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Makefile ¤Ë CC ¥Ş¥¯¥í¤¬ÄêµÁ¤µ¤ì¤Æ¤¤¤ë¤«¥Á¥§¥Ã¥¯¤¹¤ë¥¯¥é¥¹
+ * Makefile ã« CC ãƒã‚¯ãƒ­ãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author Toshinori OSUKA
  */
 public class Makefile {
-    /** Makefile ¤Î¥Ñ¥¹ */
+    /** Makefile ã®ãƒ‘ã‚¹ */
     private String filepath;
-    /** CC = gcc ¤Ë¥Ş¥Ã¥Á¤¹¤ëÀµµ¬É½¸½ */
+    /** CC = gcc ã«ãƒãƒƒãƒã™ã‚‹æ­£è¦è¡¨ç¾ */
     private final static String CC_MACRO_DEF_REGEX = "\\s*CC\\s*=\\s*\\S+\\s*";
 
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param filepath
      */
     public Makefile(String filepath) {
@@ -30,7 +30,7 @@ public class Makefile {
     }
 
     /**
-     * CC ¥Ş¥¯¥í¤¬ÄêµÁ¤µ¤ì¤Æ¤¤¤ë¤«
+     * CC ãƒã‚¯ãƒ­ãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ã‹
      * @return
      */
     public boolean isContainedCCMacro() throws FileNotFoundException {

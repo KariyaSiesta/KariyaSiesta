@@ -22,25 +22,25 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 108 ¹½Â¤ÂÎËô¤Ï¶¦ÍÑÂÎ¤ÎÄêµÁ¤Ë¤ª¤¤¤Æ¤Ï¡¤¤½¤Î¹½Â¤ÂÎËô¤Ï¶¦ÍÑÂÎ¤Î¤¹¤Ù¤Æ¤Î¥á¥ó¥Ğ¤¬´°Á´·¿¤Ç»ØÄê¤µ¤ì¤Ê¤±¤ì¤Ğ¤Ê¤é¤Ê¤¤
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 108 æ§‹é€ ä½“åˆã¯å…±ç”¨ä½“ã®å®šç¾©ã«ãŠã„ã¦ã¯ï¼Œãã®æ§‹é€ ä½“åˆã¯å…±ç”¨ä½“ã®ã™ã¹ã¦ã®ãƒ¡ãƒ³ãƒãŒå®Œå…¨å‹ã§æŒ‡å®šã•ã‚Œãªã‘ã‚Œã°ãªã‚‰ãªã„
  *
  * @author Eiji Hirumuta
  */
 public class Misra108 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "MISRA-C Rule 108";
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
 	 *
 	 * @return results
 	 */
@@ -64,7 +64,7 @@ public class Misra108 implements CheckerClass {
 
 		}
 
-		/* ¸¡½Ğ·ë²Ì¤òÊÖ¤êÃÍ¤ËÄÉ²Ã */
+		/* æ¤œå‡ºçµæœã‚’è¿”ã‚Šå€¤ã«è¿½åŠ  */
 		for (Iterator<Element> itr = problemNodes.iterator(); itr.hasNext();) {
 			results.add(new Result(null, new NodeOffsetUtil(itr.next())
 					.getRange(), LEVEL, MESSAGE));
@@ -73,14 +73,14 @@ public class Misra108 implements CheckerClass {
 	}
 
 	/*
-	 * °ú¿ô¤¬´°Á´·¿¤«¤É¤¦¤«¥Á¥§¥Ã¥¯¤¹¤ë
+	 * å¼•æ•°ãŒå®Œå…¨å‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	 *
 	 * @return
 	 */
 	private boolean checkIncomplete(Node node) {
 		try {
 
-			// Ä¹¤µ¤Ê¤·¤ÎÇÛÎó¤Î¾ì¹ç
+			// é•·ã•ãªã—ã®é…åˆ—ã®å ´åˆ
 			Node node1 = node.getNextSibling();
 			if ( node1 != null && node1.getTextContent().equals("[") ){
 				Node node2 = node1.getNextSibling();

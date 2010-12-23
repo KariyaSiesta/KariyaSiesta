@@ -16,21 +16,21 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 /**
- * C е╒ебедеыд╬╛Ё╩єдЄ╗¤д─епеще╣
+ * C уГХуВбуВдуГлуБоцГЕха▒уВТцМБуБдуВпуГйуВ╣
  * @author Toshinori OSUKA
  */
 public class CFile implements IFile {
 
-    /** ┬╨╛▌е╒ебедеыд╬е╒еые╤е╣ */
+    /** хп╛ш▒буГХуВбуВдуГлуБоуГХуГлуГСуВ╣ */
     private String filename;
 
-    /** ▓Є└╧╖ы▓╠д╬ DOM */
+    /** шзгцЮРч╡РцЮЬуБо DOM */
     private Document dom = null;
 
-    /** SDB д╬е╟егеьепе╚еъ╠╛ */
+    /** SDB уБоуГЗуВгуГмуВпуГИуГкхРН */
     private final static String SDB = Messages.getString("SDB_SPEC");
 
-    /** е│еєе╣е╚ещепе┐ */
+    /** уВ│уГ│уВ╣уГИуГйуВпуВ┐ */
     public CFile(String filename) {
         super();
         this.filename = filename;
@@ -71,7 +71,7 @@ public class CFile implements IFile {
     }
 
     /**
-     * SDB/SPEC дмдвдые╟егеьепе╚еъд╬е╤е╣дЄ╩╓д╣
+     * SDB/SPEC уБМуБВуВЛуГЗуВгуГмуВпуГИуГкуБоуГСуВ╣уВТш┐ФуБЩ
      * @param filepath
      * @return
      * @throws IOException

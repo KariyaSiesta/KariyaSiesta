@@ -20,24 +20,24 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 88 ÈóÉ¸½àÊ¸»úÎó¤Ï#include»ØÎá¤Î¥Ø¥Ã¥À¥Õ¥¡¥¤¥ëÌ¾¤Ë¸½¤ì¤Æ¤Ï¤Ê¤é¤Ê¤¤ (", /*, \¤Î3¤Ä¤Ï½ü³°)
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 88 éæ¨™æº–æ–‡å­—åˆ—ã¯#includeæŒ‡ä»¤ã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«åã«ç¾ã‚Œã¦ã¯ãªã‚‰ãªã„ (", /*, \ã®3ã¤ã¯é™¤å¤–)
  * @author Eiji Hirumuta
  */
 public class Misra88 implements CheckerClass {
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 88";
 
-    /** ¸¡ºº·ë²Ì */
+    /** æ¤œæŸ»çµæœ */
     List<Result> results = new ArrayList<Result>();
 
-    /** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+    /** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
     Set<Element> problemNodes = new HashSet<Element>();
 
     /*
-     * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+     * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
      * @return results
      */
     public List<Result> check(IFile file, CheckRule rule) {
@@ -53,7 +53,7 @@ public class Misra88 implements CheckerClass {
 			}
 		}
         
-        /* ¸¡½Ğ·ë²Ì¤òÊÖ¤êÃÍ¤ËÄÉ²Ã */
+        /* æ¤œå‡ºçµæœã‚’è¿”ã‚Šå€¤ã«è¿½åŠ  */
         for (Iterator<Element> itr = problemNodes.iterator(); itr.hasNext();) {
             results.add(new Result(null, new NodeOffsetUtil(itr.next())
                     .getRange(), LEVEL, MESSAGE));

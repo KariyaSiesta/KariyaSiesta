@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * ¼°¡ÊExprÍ×ÁÇ¡Ë¤¬Èæ³Ó¼°¤«¤É¤¦¤«¤òÄ´¤Ù¤ëXPath´Ø¿ô
+ * å¼ï¼ˆExprè¦ç´ ï¼‰ãŒæ¯”è¼ƒå¼ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹XPathé–¢æ•°
  * @author uehara
  */
 public class IsComparison implements XPathFunction {

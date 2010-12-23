@@ -19,10 +19,10 @@ public class CWhileStatementElement extends CControlStatementElement {
     }
 
     /**
-     * ¾ò·ïÉô¤ò¼èÆÀ¤¹¤ë<br>
+     * æ¡ä»¶éƒ¨ã‚’å–å¾—ã™ã‚‹<br>
      * while ($i < 10$){}<br>
-     * Ìµ¤¤¾ì¹ç¤Ï null
-     * @deprecated {@link #getConditionExpression()}¤ËÃÖ¤­´¹¤¨
+     * ç„¡ã„å ´åˆã¯ null
+     * @deprecated {@link #getConditionExpression()}ã«ç½®ãæ›ãˆ
      */
     @Override
     @Deprecated
@@ -42,9 +42,9 @@ public class CWhileStatementElement extends CControlStatementElement {
     }
 
     /**
-     * ¥Ö¥í¥Ã¥¯¤ò¼èÆÀ¤¹¤ë<br>
+     * ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹<br>
      * while (i < 10){$$}<br>
-     * Ìµ¤¤¾ì¹ç¤Ï¶õ¤ÎÇÛÎó¤¬ÊÖ¤ë
+     * ç„¡ã„å ´åˆã¯ç©ºã®é…åˆ—ãŒè¿”ã‚‹
      */
     @Override
     public Element[] getTrueBlock() {
@@ -53,7 +53,7 @@ public class CWhileStatementElement extends CControlStatementElement {
     }
 
     /**
-     * While Ê¸¤«¤É¤¦¤«
+     * While æ–‡ã‹ã©ã†ã‹
      * @param node
      * @return
      */

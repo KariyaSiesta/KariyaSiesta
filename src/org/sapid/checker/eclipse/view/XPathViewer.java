@@ -94,7 +94,7 @@ public class XPathViewer extends ViewPart {
 
 	@Override
 	public void dispose() {
-		// XPath¥Á¥§¥Ã¥¯µ¡Ç½¤Ç¤Ä¤±¤¿¥Ş¡¼¥«¡¼¤ò½üµî
+		// XPathãƒã‚§ãƒƒã‚¯æ©Ÿèƒ½ã§ã¤ã‘ãŸãƒãƒ¼ã‚«ãƒ¼ã‚’é™¤å»
 		removeXPathMarkers();
 		super.dispose();
 	}
@@ -141,7 +141,7 @@ public class XPathViewer extends ViewPart {
 		}
 	}
 
-	// ¥­¡¼ÆşÎÏ»ş¤ÎXPathÉ¾²Á
+	// ã‚­ãƒ¼å…¥åŠ›æ™‚ã®XPathè©•ä¾¡
 	public void Traverseselected() {
 		ITextEditor activeEditor = getActiveEditor();
 		if (activeEditor == null) {
@@ -164,16 +164,16 @@ public class XPathViewer extends ViewPart {
 				if (result.size() == 0) {
 					xpathEditor
 							.setBackground(new Color(display, 255, 255, 180));
-					outputLabel.setText("¸¡½Ğ²Õ½ê¤¬¤¢¤ê¤Ş¤»¤ó");
+					outputLabel.setText("æ¤œå‡ºç®‡æ‰€ãŒã‚ã‚Šã¾ã›ã‚“");
 				} else {
 					outputLabel.setText(Integer.valueOf(result.size())
-							.toString() + "¸Ä¤Î¥Î¡¼¥É¤¬¸¡½Ğ¤µ¤ì¤Ş¤·¤¿");
+							.toString() + "å€‹ã®ãƒãƒ¼ãƒ‰ãŒæ¤œå‡ºã•ã‚Œã¾ã—ãŸ");
 					xpathEditor
 							.setBackground(new Color(display, 255, 255, 255));
 				}
 			} catch (XPathExpressionException e) {
 				xpathEditor.setBackground(new Color(display, 255, 180, 180));
-				outputLabel.setText("¹½Ê¸¥¨¥é¡¼¤Ç¤¹");
+				outputLabel.setText("æ§‹æ–‡ã‚¨ãƒ©ãƒ¼ã§ã™");
 			}
 		} catch (ParseException ex) {
 			CheckerActivator.log(ex);
@@ -183,7 +183,7 @@ public class XPathViewer extends ViewPart {
 	}
 
 	/**
-	 * ¥¯¥ê¥¢¥Ü¥¿¥ó
+	 * ã‚¯ãƒªã‚¢ãƒœã‚¿ãƒ³
 	 * 
 	 * @author r-mizuno
 	 */
@@ -227,7 +227,7 @@ public class XPathViewer extends ViewPart {
 	}
 
 	/**
-	 * ¼èÆÀ¥Ü¥¿¥ó
+	 * å–å¾—ãƒœã‚¿ãƒ³
 	 * 
 	 * @author r-mizuno
 	 */
@@ -269,7 +269,7 @@ public class XPathViewer extends ViewPart {
 	}
 
 	/**
-	 * ¥³¥Ô¡¼¥Ü¥¿¥ó
+	 * ã‚³ãƒ”ãƒ¼ãƒœã‚¿ãƒ³
 	 * 
 	 * @author r-mizuno
 	 */

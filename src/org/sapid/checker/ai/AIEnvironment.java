@@ -12,7 +12,7 @@ import org.sapid.checker.ai.concrete.LiteralValue;
 import org.w3c.dom.Element;
 
 /**
- * ÊÑ¿ô¤È´Ø¿ô¤ÎÊİ»ı¤¹¤ë´Ä¶­¤òÉ½¤ï¤¹¥¯¥é¥¹
+ * å¤‰æ•°ã¨é–¢æ•°ã®ä¿æŒã™ã‚‹ç’°å¢ƒã‚’è¡¨ã‚ã™ã‚¯ãƒ©ã‚¹
  * 
  * @author hirumuta
  * 
@@ -23,10 +23,10 @@ public class AIEnvironment {
 		this.result_set = new HashSet<Element>();
 	}
 	
-	// ´Ø¿ô¤Î id ¤È¡¤AIFunction ¤Ø¤Î»²¾È
+	// é–¢æ•°ã® id ã¨ï¼ŒAIFunction ã¸ã®å‚ç…§
 	public HashMap<String, AIFunction> funcs;
 
-	// ÊÑ¿ô¤Î id ¤È¡¤Variable ¤Ø¤Î»²¾È
+	// å¤‰æ•°ã® id ã¨ï¼ŒVariable ã¸ã®å‚ç…§
 	public HashMap<String, Variable> vars;
 	
 	public HashSet<Element> result_set;

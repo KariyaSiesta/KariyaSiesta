@@ -12,7 +12,7 @@ public class Parse implements Cloneable{
 
 
 	public Parse() {
-		// TODO ¼«Æ°À¸À®¤µ¤ì¤¿¥³¥ó¥¹¥È¥é¥¯¥¿¡¼¡¦¥¹¥¿¥Ö
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ã‚¹ã‚¿ãƒ–
 	}
 
 
@@ -31,7 +31,7 @@ public class Parse implements Cloneable{
 			State s = null;
 			ReduceTransition rt = null;
 
-			if(state.isReduce() == false && state.isShift() == false	//t¾ò·ï
+			if(state.isReduce() == false && state.isShift() == false	//tæ¡ä»¶
 					&& state.isNecessary() == true && state.getTransitionList().size() >= 2) {
 				int tssize = state.getTransitionList().size();
 				copystack = tempstack.copy(state.getTransitionList().size());
@@ -52,7 +52,7 @@ public class Parse implements Cloneable{
 					stacklist.add(copystack.get(i));
 				}
 
-			} else if(state.isShift() == true) {		//¥·¥Õ¥È¤Î¤È¤­
+			} else if(state.isShift() == true) {		//ã‚·ãƒ•ãƒˆã®ã¨ã
 				if(state.isNecessary() == true) {
 					s = state.getTransitionList().get(0).next;
 					tempstack.push(s);
@@ -72,7 +72,7 @@ public class Parse implements Cloneable{
 					}
 				}
 
-			} else if (state.isReduce() == true && tempstack.size() == 1) { //¾õÂÖÁ«°Ü¤¬´°Á´¤Ë½ª¤ï¤ë¤È¤­
+			} else if (state.isReduce() == true && tempstack.size() == 1) { //çŠ¶æ…‹é·ç§»ãŒå®Œå…¨ã«çµ‚ã‚ã‚‹ã¨ã
 
 			} else if (state.isReduce() == true && tempstack.size() >= 2) { //reduce
 
@@ -104,7 +104,7 @@ public class Parse implements Cloneable{
 						}
 					}
 
-					for(int j = loopstack.size(); j > 0; j--) {			//²şÎÉ¤¹¤ë
+					for(int j = loopstack.size(); j > 0; j--) {			//æ”¹è‰¯ã™ã‚‹
 						copystack.get(1).push(loopstack.get(j-1));
 					}
 
@@ -129,7 +129,7 @@ public class Parse implements Cloneable{
 				}
 
 
-			} else if(state.isShift() == false && state.isReduce() == false) {	//¦ÅÁ«°Ü & TokenÄ¾Á°
+			} else if(state.isShift() == false && state.isReduce() == false) {	//Îµé·ç§» & Tokenç›´å‰
 
 				for(int i = 0; i < state.getTransitionList().size(); i++){
 					if((state.getTransitionList().get(i) instanceof TokenTransition)){	//Token
@@ -153,7 +153,7 @@ public class Parse implements Cloneable{
 							}
 						}
 						break;
-					} else if(i == state.getTransitionList().size()-1){	//¦ÅÁ«°Ü
+					} else if(i == state.getTransitionList().size()-1){	//Îµé·ç§»
 						if(state.isNecessary() == true){
 							s = state.getTransitionList().get(0).next;
 							tempstack.swap(s);
@@ -189,7 +189,7 @@ public class Parse implements Cloneable{
 
 		for(int i = 0; i < trslist.size(); i++) {
 			TokenTransition t = (TokenTransition)trslist.get(i).getLast().getTransitionList().get(0);
-			if(t.token != null){	//t¤Î¥³¥ó¥¹¥È¥é¥¯¥¿¤ÎÈ½ÊÌ   °ú¿ô¤Ëlist¤¬¤¢¤ë¤È¤­¤Ïtokenlist¤ËlistÊ¬ÄÉ²Ã¤¹¤ë
+			if(t.token != null){	//tã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®åˆ¤åˆ¥   å¼•æ•°ã«listãŒã‚ã‚‹ã¨ãã¯tokenlistã«liståˆ†è¿½åŠ ã™ã‚‹
 				t.token.setOffset(0);
 				this.tokenlist.add(t.token);
 			} else {
@@ -224,7 +224,7 @@ public class Parse implements Cloneable{
 							}
 						}
 					}
-				} else if(xpathtoken.size() > 1) {		//1¤ÄÁ°¤Î¥È¡¼¥¯¥ó¥ê¥¹¥È
+				} else if(xpathtoken.size() > 1) {		//1ã¤å‰ã®ãƒˆãƒ¼ã‚¯ãƒ³ãƒªã‚¹ãƒˆ
 					for(int j = 0; j < preTokenList.size(); j++) {
 						Token t = preTokenList.get(j);
 						partToken = preTokenList.get(j).getToken();
@@ -255,7 +255,7 @@ public class Parse implements Cloneable{
 					if(trs != null){
 						for (int k = 0; k < trs.size(); k++) {
 							TokenTransition tt = (TokenTransition)trs.get(k).getLast().getTransitionList().get(0);
-							if(tt.token != null){	//t¤Î¥³¥ó¥¹¥È¥é¥¯¥¿¤ÎÈ½ÊÌ¡¡°ú¿ô¤Ëlist¤¬¤¢¤ë¤È¤­¤Ïtokenlist¤ËlistÊ¬ÄÉ²Ã¤¹¤ë¤¿¤á
+							if(tt.token != null){	//tã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®åˆ¤åˆ¥ã€€å¼•æ•°ã«listãŒã‚ã‚‹ã¨ãã¯tokenlistã«liståˆ†è¿½åŠ ã™ã‚‹ãŸã‚
 								tt.token.setOffset(0);
 								tokenlist.add(tt.token);
 							} else {
@@ -302,7 +302,7 @@ public class Parse implements Cloneable{
 		}
 	}
 
-	public void realloc(ArrayList<Token> tokenlist){		//½ÅÊ£token¤Î½üµî
+	public void realloc(ArrayList<Token> tokenlist){		//é‡è¤‡tokenã®é™¤å»
 		ArrayList<Token> templist = new ArrayList<Token>();
 		for(int j = 0; j < tokenlist.size(); j++) {
 			if(j == 0) {

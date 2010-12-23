@@ -9,7 +9,7 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 /**
- * Builder ¥Ñ¥¿¡¼¥ó¤Ë¤ª¤±¤ë Builder ¥¯¥é¥¹¤òÉ½¤¹¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹
+ * Builder ãƒ‘ã‚¿ãƒ¼ãƒ³ã«ãŠã‘ã‚‹ Builder ã‚¯ãƒ©ã‚¹ã‚’è¡¨ã™ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  * @author hirumuta
  *
  */

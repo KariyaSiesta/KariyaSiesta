@@ -25,7 +25,7 @@ public class Stack<State> implements Cloneable{
 			Stack<State> ss = (Stack<State>)super.clone();
 			return ss;
 		} catch (CloneNotSupportedException e) {
-			// TODO ¼«Æ°À¸À®¤µ¤ì¤¿ catch ¥Ö¥í¥Ã¥¯
+			// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸ catch ãƒ–ãƒ­ãƒƒã‚¯
 			e.printStackTrace();
 			return null;
 		}

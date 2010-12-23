@@ -10,33 +10,33 @@ import org.sapid.parser.common.ParseException;
 import org.w3c.dom.Document;
 
 /**
- * ²òÀÏÂĞ¾İ¤È¤Ê¤ë¥Õ¥¡¥¤¥ë¤Î¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹
+ * è§£æå¯¾è±¡ã¨ãªã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
  * @author Toshinori OSUKA
  */
 public interface IFile {
     /**
-     * ¥Õ¥¡¥¤¥ëÌ¾¤ò¼èÆÀ¤¹¤ë
+     * ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹
      * @return
      */
     public String getFileName();
 
     /**
-     * ²òÀÏ·ë²Ì¤Î DOM ¤ò¼èÆÀ¤¹¤ë<br />
-     * DOM ¤¬¤Ê¤¤¾ì¹ç¤Ï¹½ÃÛ¤¹¤ë
-     * @throws ParseException ¹½Ê¸²òÀÏ¤Ë¼ºÇÔ¤·¤¿¾ì¹ç
-     * @throws IOException ²òÀÏÂĞ¾İ¤¬¤Ê¤¤¾ì¹ç
+     * è§£æçµæœã® DOM ã‚’å–å¾—ã™ã‚‹<br />
+     * DOM ãŒãªã„å ´åˆã¯æ§‹ç¯‰ã™ã‚‹
+     * @throws ParseException æ§‹æ–‡è§£æã«å¤±æ•—ã—ãŸå ´åˆ
+     * @throws IOException è§£æå¯¾è±¡ãŒãªã„å ´åˆ
      * @return DOM
      */
     public void buildDOM() throws ParseException, IOException;
 
     /**
-     * ²òÀÏÂĞ¾İ¤ò»ØÄê¤¹¤ë
-     * @param filename ¥Õ¥ë¥Ñ¥¹
+     * è§£æå¯¾è±¡ã‚’æŒ‡å®šã™ã‚‹
+     * @param filename ãƒ•ãƒ«ãƒ‘ã‚¹
      */
     public void setFileName(String filename);
     
     /**
-     * DOM ¤ò¼èÆÀ¤¹¤ë
+     * DOM ã‚’å–å¾—ã™ã‚‹
      * @return
      */
     public Document getDOM();

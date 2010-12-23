@@ -57,10 +57,10 @@ public class JsRule implements CheckerClass {
 
 		} catch (FileNotFoundException e) {
 			throw new IllegalArgumentException(this.getClass().getName()
-					+ " : " + path + "§¨§¢§Í§ﬁ§ª§Û°£");
+					+ " : " + path + "„Åå„ÅÇ„Çä„Åæ„Åõ„Çì„ÄÇ");
 		} catch (Exception e) {
 			throw new IllegalArgumentException(this.getClass().getName()
-					+ " : •Î°º•ÎXML§Œ" + path + "§¨…‘¿µ§«§π°£ : " + e.toString());
+					+ " : „É´„Éº„É´XML„ÅÆ" + path + "„Åå‰∏çÊ≠£„Åß„Åô„ÄÇ : " + e.toString());
 		}
 	}
 

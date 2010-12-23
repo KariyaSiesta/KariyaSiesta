@@ -24,24 +24,24 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 public class Misra17 implements CheckerClass {
     private Set<String> typeNames = new HashSet<String>();
     private List<Result> results = new ArrayList<Result>();
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 17";
 
     public List<Result> check(IFile file, CheckRule rule) {
         CFileElement cfile = new CFileElement(file.getDOM());
         CDeclarationElement[] decls = cfile.getDeclarations();
-        // 1-pass ÌÜ¤Ï typedecf ¤Î¼ı½¸¤È½ÅÊ£¥Á¥§¥Ã¥¯
+        // 1-pass ç›®ã¯ typedecf ã®åé›†ã¨é‡è¤‡ãƒã‚§ãƒƒã‚¯
         for (int i = 0; i < decls.length; i++) {
             if ("Typedecl".equals(decls[i].getNodeName())) {
                 detect(decls[i]);
                 typeNames.add(decls[i].getName());
             }
         }
-        // 2-pass ÌÜ¤ÏÊÑ¿ô¤Î¥Á¥§¥Ã¥¯
-        // 2-pass ¤·¤Ê¤¤¤ÈÊÑ¿ô¤¬Àè¤Ë½Ğ¸½¤·¤¿¾ì¹ç¤ËÂĞ½è¤Ç¤­¤Ê¤¤
+        // 2-pass ç›®ã¯å¤‰æ•°ã®ãƒã‚§ãƒƒã‚¯
+        // 2-pass ã—ãªã„ã¨å¤‰æ•°ãŒå…ˆã«å‡ºç¾ã—ãŸå ´åˆã«å¯¾å‡¦ã§ããªã„
         for (int i = 0; i < decls.length; i++) {
             if ("Global".equals(decls[i].getNodeName())
                     || "Local".equals(decls[i].getNodeName())) {
@@ -52,7 +52,7 @@ public class Misra17 implements CheckerClass {
     }
 
     /**
-     * ¸¡½Ğ
+     * æ¤œå‡º
      * @param decl
      */
     private void detect(CDeclarationElement decl) {

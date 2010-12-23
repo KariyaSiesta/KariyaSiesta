@@ -45,13 +45,13 @@ public class CheckRuleParser extends DefaultHandler {
     }
 
     /**
-     * ¥É¥­¥å¥á¥ó¥È³«»Ï»ş
+     * ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆé–‹å§‹æ™‚
      */
     public void startDocument() {
     }
 
     /**
-     * Í×ÁÇ¤Î³«»Ï¥¿¥°ÆÉ¤ß¹ş¤ß»ş
+     * è¦ç´ ã®é–‹å§‹ã‚¿ã‚°èª­ã¿è¾¼ã¿æ™‚
      */
     public void startElement(String uri, String localName, String qName,
             Attributes attributes) {
@@ -75,13 +75,13 @@ public class CheckRuleParser extends DefaultHandler {
     }
 
     /**
-     * ¥Æ¥­¥¹¥È¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß»ş
+     * ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿æ™‚
      */
     public void characters(char[] ch, int offset, int length) {
     }
 
     /**
-     * Í×ÁÇ¤Î½ªÎ»¥¿¥°ÆÉ¤ß¹ş¤ß»ş
+     * è¦ç´ ã®çµ‚äº†ã‚¿ã‚°èª­ã¿è¾¼ã¿æ™‚
      */
     public void endElement(String uri, String localName, String qName) {
 
@@ -92,7 +92,7 @@ public class CheckRuleParser extends DefaultHandler {
     }
 
     /**
-     * ¥É¥­¥å¥á¥ó¥È½ªÎ»»ş
+     * ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆçµ‚äº†æ™‚
      */
     public void endDocument() {
     }

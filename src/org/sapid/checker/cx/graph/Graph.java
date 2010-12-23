@@ -9,13 +9,13 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * ¥°¥é¥Õ¤Ï¥Î¡¼¥É¤È¥¨¥Ã¥¸¤Î½¸¹ç¤ò»ı¤Ä
+ * ã‚°ãƒ©ãƒ•ã¯ãƒãƒ¼ãƒ‰ã¨ã‚¨ãƒƒã‚¸ã®é›†åˆã‚’æŒã¤
  * @author Toshinori OSUKA
  */
 public class Graph<T> {
-    /** ¥Î¡¼¥É¤Î½¸¹ç */
+    /** ãƒãƒ¼ãƒ‰ã®é›†åˆ */
     protected List<GraphNode<T>> nodes = new ArrayList<GraphNode<T>>();
-    /** ¥¨¥Ã¥¸¤Î½¸¹ç */
+    /** ã‚¨ãƒƒã‚¸ã®é›†åˆ */
     protected List<GraphEdge<T>> edges = new ArrayList<GraphEdge<T>>();
 
     protected GraphNode<T> root = null;
@@ -49,7 +49,7 @@ public class Graph<T> {
     }
 
     /**
-     * ¥Î¡¼¥É¤òÄÉ²Ã¤¹¤ë
+     * ãƒãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹
      * @param node
      */
     public void addNode(GraphNode<T> node) {
@@ -57,7 +57,7 @@ public class Graph<T> {
     }
 
     /**
-     * ¥¨¥Ã¥¸¤òÄÉ²Ã¤¹¤ë
+     * ã‚¨ãƒƒã‚¸ã‚’è¿½åŠ ã™ã‚‹
      * @param edge
      */
     public void addEdge(GraphEdge<T> edge) {
@@ -81,8 +81,8 @@ public class Graph<T> {
     }
 
     /**
-     * ÆâÍÆ¤¬°ìÃ×¤¹¤ë¥Î¡¼¥É¤òÊÖ¤¹<br>
-     * ¸«¤Ä¤«¤é¤Ê¤±¤ì¤Ğ null
+     * å†…å®¹ãŒä¸€è‡´ã™ã‚‹ãƒãƒ¼ãƒ‰ã‚’è¿”ã™<br>
+     * è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° null
      * @param content
      * @return
      */
@@ -97,19 +97,19 @@ public class Graph<T> {
     }
 
     /**
-     * ÅşÃ£¤·¤Ê¤¤¥Î¡¼¥ÉµÚ¤Ó¥¨¥Ã¥¸¤òºï½ü¤¹¤ë
+     * åˆ°é”ã—ãªã„ãƒãƒ¼ãƒ‰åŠã³ã‚¨ãƒƒã‚¸ã‚’å‰Šé™¤ã™ã‚‹
      */
     public void clean() {
         if (getRoot() == null) {
             return;
         }
 
-        // ¥¨¥Ã¥¸¤ÎÁİ½ü
+        // ã‚¨ãƒƒã‚¸ã®æƒé™¤
         List<GraphEdge<T>> visitedEdge = new ArrayList<GraphEdge<T>>();
         traverse(getRoot(), visitedEdge);
         edges = visitedEdge;
 
-        // ¥Î¡¼¥É¤ÎÁİ½ü
+        // ãƒãƒ¼ãƒ‰ã®æƒé™¤
         List<GraphNode<T>> visitedNode = new ArrayList<GraphNode<T>>();
         for (Iterator<GraphEdge<T>> itr = visitedEdge.iterator(); itr.hasNext();) {
             GraphEdge<T> e = itr.next();
@@ -124,8 +124,8 @@ public class Graph<T> {
     }
 
     /**
-     * a->b, b->c, b->d ¤ß¤¿¤¤¤Ê¥°¥é¥Õ¤ò<br>
-     * a->b->c, a->b->d ¤ß¤¿¤¤¤Ê¥ê¥¹¥È¤Î¥ê¥¹¥È¤Ë¤¹¤ë
+     * a->b, b->c, b->d ã¿ãŸã„ãªã‚°ãƒ©ãƒ•ã‚’<br>
+     * a->b->c, a->b->d ã¿ãŸã„ãªãƒªã‚¹ãƒˆã®ãƒªã‚¹ãƒˆã«ã™ã‚‹
      * @return
      */
     public List<List<GraphNode<T>>> toPathList() {
@@ -137,11 +137,11 @@ public class Graph<T> {
     }
 
     /**
-     * ¥°¥é¥Õ¤«¤é¥Ñ¥¹¤ËÊÑ´¹
+     * ã‚°ãƒ©ãƒ•ã‹ã‚‰ãƒ‘ã‚¹ã«å¤‰æ›
      * @param graph
-     * @param node ¸½ºß¤Î¥Î¡¼¥É
-     * @param path ¸½ºß¤Î¥Î¡¼¥É¤Ş¤Ç¤Î¥Ñ¥¹
-     * @param paths ºÇ½ªÅª¤Ë¤Ç¤­¤¢¤¬¤ë¥Ñ¥¹¤Î½¸¹ç
+     * @param node ç¾åœ¨ã®ãƒãƒ¼ãƒ‰
+     * @param path ç¾åœ¨ã®ãƒãƒ¼ãƒ‰ã¾ã§ã®ãƒ‘ã‚¹
+     * @param paths æœ€çµ‚çš„ã«ã§ãã‚ãŒã‚‹ãƒ‘ã‚¹ã®é›†åˆ
      */
     private void makePath(GraphNode<T> node, List<GraphNode<T>> path,
             List<List<GraphNode<T>>> paths) {
@@ -159,7 +159,7 @@ public class Graph<T> {
     }
 
     /**
-     * List ¤ò¥³¥Ô¡¼¤¹¤ë
+     * List ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
      * @param list
      * @return
      */
@@ -172,8 +172,8 @@ public class Graph<T> {
     }
 
     /**
-     * ÅşÃ£²ÄÇ½¤Ê¥¨¥Ã¥¸¤Î½¸¹ç¤ò visited ¤Ë³ÊÇ¼¤¹¤ë<br>
-     * ¥°¥é¥Õ¤Ë¥ë¡¼¥×¤¬¤¢¤ë¤È¤È¤Ş¤é¤Ê¤¤¤«¤â
+     * åˆ°é”å¯èƒ½ãªã‚¨ãƒƒã‚¸ã®é›†åˆã‚’ visited ã«æ ¼ç´ã™ã‚‹<br>
+     * ã‚°ãƒ©ãƒ•ã«ãƒ«ãƒ¼ãƒ—ãŒã‚ã‚‹ã¨ã¨ã¾ã‚‰ãªã„ã‹ã‚‚
      * @param node
      * @param visited
      */
@@ -190,8 +190,8 @@ public class Graph<T> {
     }
 
     /**
-     * »ØÄê¤·¤¿¥Î¡¼¥É¤ËÆş¤Ã¤Æ¤¯¤ë¥¨¥Ã¥¸¤Î¥ê¥¹¥È¤ò¼èÆÀ¤¹¤ë<br>
-     * Ìµ¤±¤ì¤ĞÄ¹¤µ0¤ÎÇÛÎó¤¬ÊÖ¤ë
+     * æŒ‡å®šã—ãŸãƒãƒ¼ãƒ‰ã«å…¥ã£ã¦ãã‚‹ã‚¨ãƒƒã‚¸ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹<br>
+     * ç„¡ã‘ã‚Œã°é•·ã•0ã®é…åˆ—ãŒè¿”ã‚‹
      * @param node
      * @return
      */
@@ -207,8 +207,8 @@ public class Graph<T> {
     }
 
     /**
-     * »ØÄê¤·¤¿¥Î¡¼¥É¤«¤é½Ğ¤Æ¹Ô¤¯¥¨¥Ã¥¸¤Î¥ê¥¹¥È¤ò¼èÆÀ¤¹¤ë<br>
-     * Ìµ¤±¤ì¤ĞÄ¹¤µ0¤ÎÇÛÎó¤¬ÊÖ¤ë
+     * æŒ‡å®šã—ãŸãƒãƒ¼ãƒ‰ã‹ã‚‰å‡ºã¦è¡Œãã‚¨ãƒƒã‚¸ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹<br>
+     * ç„¡ã‘ã‚Œã°é•·ã•0ã®é…åˆ—ãŒè¿”ã‚‹
      * @param node
      * @return
      */
@@ -224,9 +224,9 @@ public class Graph<T> {
     }
 
     /**
-     * ¥¨¥Ã¥¸¤òÄÉ²Ã¤¹¤ë<br>
-     * ¥Î¡¼¥É¤¬Ìµ¤¤¤â¤Î¤Ï¥Î¡¼¥É¤ò¥°¥é¥Õ¤ËÄÉ²Ã¤¹¤ë<br>
-     * ½ÅÊ£¥Á¥§¥Ã¥¯¤änull¥Á¥§¥Ã¥¯¤ò¹Ô¤¦¤Î¤ÇÊØÍø<br>
+     * ã‚¨ãƒƒã‚¸ã‚’è¿½åŠ ã™ã‚‹<br>
+     * ãƒãƒ¼ãƒ‰ãŒç„¡ã„ã‚‚ã®ã¯ãƒãƒ¼ãƒ‰ã‚’ã‚°ãƒ©ãƒ•ã«è¿½åŠ ã™ã‚‹<br>
+     * é‡è¤‡ãƒã‚§ãƒƒã‚¯ã‚„nullãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã®ã§ä¾¿åˆ©<br>
      * @param src
      * @param dst
      */

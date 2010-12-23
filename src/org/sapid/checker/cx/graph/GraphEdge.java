@@ -5,7 +5,7 @@
 package org.sapid.checker.cx.graph;
 
 /**
- * ¥°¥é¥Õ¤Î¥¨¥Ã¥¸
+ * ã‚°ãƒ©ãƒ•ã®ã‚¨ãƒƒã‚¸
  * @author Toshinori OSUKA
  */
 public class GraphEdge<T> {
@@ -13,9 +13,9 @@ public class GraphEdge<T> {
     private GraphNode<T> dstNode;
 
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
-     * @param srcNode ¥¨¥Ã¥¸¤Îº¬¸µ
-     * @param dstNode ¥¨¥Ã¥¸¤ÎÀè
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     * @param srcNode ã‚¨ãƒƒã‚¸ã®æ ¹å…ƒ
+     * @param dstNode ã‚¨ãƒƒã‚¸ã®å…ˆ
      */
     public GraphEdge(GraphNode<T> srcNode, GraphNode<T> dstNode) {
         super();

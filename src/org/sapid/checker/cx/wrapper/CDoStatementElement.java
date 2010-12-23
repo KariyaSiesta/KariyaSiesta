@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Stmt sort="Do" Í×ÁÇ
+ * Stmt sort="Do" è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CDoStatementElement extends CControlStatementElement {
@@ -22,15 +22,15 @@ public class CDoStatementElement extends CControlStatementElement {
     }
 
     /**
-     * ¾ò·ïÉô¤òÊÖ¤¹<br>
+     * æ¡ä»¶éƒ¨ã‚’è¿”ã™<br>
      * do { } while($ i < 10 $);<br>
-     * Stmt ¤¬Ìµ¤¤¾ì¹ç¤Ë¤Ï null ¤òÊÖ¤¹
-     * @deprecated {@link #getConditionExpression()}¤ËÃÖ¤­´¹¤¨
+     * Stmt ãŒç„¡ã„å ´åˆã«ã¯ null ã‚’è¿”ã™
+     * @deprecated {@link #getConditionExpression()}ã«ç½®ãæ›ãˆ
      */
     @Override
     @Deprecated
     public CStatementElement getConditionStatement() {
-        // ºÇ¸å¤Î(¤ÈºÇ¸å¤Î)¤Î´Ö
+        // æœ€å¾Œã®(ã¨æœ€å¾Œã®)ã®é–“
         Element[] lparens = getChildNodesByNodeNameAndText("op", "(");
         Element[] rparens = getChildNodesByNodeNameAndText("op", ")");
         return getInnerStatement(lparens[lparens.length - 1],
@@ -49,13 +49,13 @@ public class CDoStatementElement extends CControlStatementElement {
     }
 
     /**
-     * ¥Ö¥í¥Ã¥¯Éô¤òÊÖ¤¹<br>
+     * ãƒ–ãƒ­ãƒƒã‚¯éƒ¨ã‚’è¿”ã™<br>
      * do$ { } $while( i < 10 );<br>
-     * Ìµ¤¤¾ì¹ç¤Ë¤ÏÄ¹¤µ0¤ÎÇÛÎó¤¬ÊÖ¤ë
+     * ç„¡ã„å ´åˆã«ã¯é•·ã•0ã®é…åˆ—ãŒè¿”ã‚‹
      */
     @Override
     public Element[] getTrueBlock() {
-        // do ¤«¤é while ¤Ş¤Ç¤Î´Ö
+        // do ã‹ã‚‰ while ã¾ã§ã®é–“
         Element kwdo = getChildNodesByNodeNameAndText("kw", "do")[0];
         Element kwwhile = getChildNodesByNodeNameAndText("kw", "while")[0];
         List<Element> list = new ArrayList<Element>();
@@ -68,7 +68,7 @@ public class CDoStatementElement extends CControlStatementElement {
     }
 
     /**
-     * Do Ê¸¤«¤É¤¦¤«
+     * Do æ–‡ã‹ã©ã†ã‹
      * @param node
      * @return
      */

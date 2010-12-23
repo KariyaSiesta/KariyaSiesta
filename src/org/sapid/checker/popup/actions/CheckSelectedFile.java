@@ -47,13 +47,13 @@ public class CheckSelectedFile implements IObjectActionDelegate {
         IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
         Shell shell = window.getShell();
 
-        // ¥×¥í¥°¥ì¥¹¥Ğ¡¼¤ò»È¤¦
+        // ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã‚’ä½¿ã†
         ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
         CheckWithProgress searchThread = new CheckWithProgress();
         searchThread.setFile((IFile) file);
 
         try {
-            // ¥×¥í¥¸¥§¥¯¥È¤ÎÀßÄê¤ò¼èÆÀ
+            // ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®è¨­å®šã‚’å–å¾—
             IFile ruleXML = PropertyStore.getProjectSettingAsFile(file
                     .getProject());
             searchThread.setRuleXML(ruleXML.getRawLocation().toOSString());
@@ -86,8 +86,8 @@ public class CheckSelectedFile implements IObjectActionDelegate {
             if (obj instanceof IFile) {
                 file = (IFile) obj;
                 // } else if (obj instanceof ITranslationUnit) {
-                // // CDT ¤Î Package Explorer ¤Ï C/H ¤¬
-                // // ITranslationUnit ¤Ç¤¯¤ë¤¿¤á¤½¤ì¤ËÂĞ¤¹¤ë½èÍı
+                // // CDT ã® Package Explorer ã¯ C/H ãŒ
+                // // ITranslationUnit ã§ãã‚‹ãŸã‚ãã‚Œã«å¯¾ã™ã‚‹å‡¦ç†
                 //                 
                 // file = ResourcesPlugin.getWorkspace().getRoot().getFile(
                 // ((ITranslationUnit) obj).getPath());

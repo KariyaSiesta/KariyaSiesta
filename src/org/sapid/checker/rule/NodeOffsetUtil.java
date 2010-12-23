@@ -11,21 +11,21 @@ import org.w3c.dom.NodeList;
 
 /**
  * Node <-> Offset <-> Range -> XPath<br />
- * ¤òÁê¸ßÊÑ´¹¤¹¤ë
+ * ã‚’ç›¸äº’å¤‰æ›ã™ã‚‹
  * @author Toshinori OSUKA
  */
 public class NodeOffsetUtil {
-    /** ¥â¥Ç¥ë XML */
+    /** ãƒ¢ãƒ‡ãƒ« XML */
     private Document document = null;
-    /** ÂĞ¾İ¥Î¡¼¥É */
+    /** å¯¾è±¡ãƒãƒ¼ãƒ‰ */
     private Node node = null;
-    /** ÀèÆ¬¤«¤é¤Î¥ª¥Õ¥»¥Ã¥È */
+    /** å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
     private int offset = -1;
-    /** ¥Î¡¼¥É¤ÎÈÏ°Ï */
+    /** ãƒãƒ¼ãƒ‰ã®ç¯„å›² */
     private Range range = null;
 
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿(¥Î¡¼¥É)
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿(ãƒãƒ¼ãƒ‰)
      * @param document
      * @param node
      */
@@ -35,7 +35,7 @@ public class NodeOffsetUtil {
     }
     
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿(¥Î¡¼¥É)
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿(ãƒãƒ¼ãƒ‰)
      * @param document
      * @param node
      */
@@ -45,7 +45,7 @@ public class NodeOffsetUtil {
     }
 
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿(¥ª¥Õ¥»¥Ã¥È)
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿(ã‚ªãƒ•ã‚»ãƒƒãƒˆ)
      * @param document
      * @param offset
      */
@@ -55,7 +55,7 @@ public class NodeOffsetUtil {
     }
 
     /**
-     * ¥Õ¥¡¥¤¥ë¤ÎÀèÆ¬¤«¤é¤Î¥Ğ¥¤¥È¿ô
+     * ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‹ã‚‰ã®ãƒã‚¤ãƒˆæ•°
      * @return
      */
     public int getOffset() {
@@ -68,7 +68,7 @@ public class NodeOffsetUtil {
     }
 
     /**
-     * Range ¤ò¼èÆÀ¤¹¤ë
+     * Range ã‚’å–å¾—ã™ã‚‹
      * @return
      */
     public Range getRange() {
@@ -80,7 +80,7 @@ public class NodeOffsetUtil {
     }
 
     /**
-     * XPath ¤ò¼èÆÀ¤¹¤ë
+     * XPath ã‚’å–å¾—ã™ã‚‹
      * @return
      */
     public String getXPath() {
@@ -97,7 +97,7 @@ public class NodeOffsetUtil {
     }
 
     /**
-     * ¥Î¡¼¥É¤ò¼èÆÀ¤¹¤ë
+     * ãƒãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
      * @return
      */
     public Node getNode() {
@@ -108,11 +108,11 @@ public class NodeOffsetUtil {
         return node;
     }
 
-    /** ¥Õ¥¡¥¤¥ë¤Î²ş¹Ô¥³¡¼¥É */
+    /** ãƒ•ã‚¡ã‚¤ãƒ«ã®æ”¹è¡Œã‚³ãƒ¼ãƒ‰ */
     private String nlop = "\n";
 
     /**
-     * Node ¤«¤é Range ¤òÎÏµ»¤Ç¼èÆÀ
+     * Node ã‹ã‚‰ Range ã‚’åŠ›æŠ€ã§å–å¾—
      * @param node
      * @return
      */
@@ -136,7 +136,7 @@ public class NodeOffsetUtil {
     }
 
     /**
-     * »ØÄê¥Î¡¼¥É°Ê²¼¤Î¥Æ¥­¥¹¥È¥Î¡¼¥É¤ÎÃæ¿È¤ò·ë¹ç¤·¤ÆÊÖ¤¹¡¥½çÈÖ¤ÏÊİ¾ã¤·¤Ê¤¤¡¥
+     * æŒ‡å®šãƒãƒ¼ãƒ‰ä»¥ä¸‹ã®ãƒ†ã‚­ã‚¹ãƒˆãƒãƒ¼ãƒ‰ã®ä¸­èº«ã‚’çµåˆã—ã¦è¿”ã™ï¼é †ç•ªã¯ä¿éšœã—ãªã„ï¼
      * @param node
      * @return
      */
@@ -149,11 +149,11 @@ public class NodeOffsetUtil {
                 String textContent = n.getTextContent();
                 if ("\n".equals(textContent)
                         && "sp".equals(n.getParentNode().getNodeName())) {
-                    // DOM ¤Ë¤¹¤ë¤È²ş¹Ô¥³¡¼¥É¤¬¤¹¤Ù¤Æ LF ¤Ë¤Ê¤ë¤¬
-                    // Windows ¤Ç»È¤¦¤È ²ş¹Ô¤Î CRLF ¤¬ <sp>CR</sp><nl>LF</nl>
-                    // ¤È¤Ê¤ë CX-Model ¤Î¥Ğ¥°¤òÍøÍÑ¤·¤Æ <sp>CR</sp> ¤¬
-                    // ¤Ò¤È¤Ä¤Ç¤â¤¢¤ì¤Ğ¥Õ¥¡¥¤¥ë¤Î²ş¹Ô¥³¡¼¥É¤ò CRLF ¤ÈÈ½ÃÇ¤¹¤ë
-                    // FIXME ¥¢¥É¥Û¥Ã¥¯¤¹¤®¤ë¤Î¤Ç CX-Model ¤¬Ä¾¤ê¼¡Âè¤³¤³¤âÄ¾¤¹
+                    // DOM ã«ã™ã‚‹ã¨æ”¹è¡Œã‚³ãƒ¼ãƒ‰ãŒã™ã¹ã¦ LF ã«ãªã‚‹ãŒ
+                    // Windows ã§ä½¿ã†ã¨ æ”¹è¡Œã® CRLF ãŒ <sp>CR</sp><nl>LF</nl>
+                    // ã¨ãªã‚‹ CX-Model ã®ãƒã‚°ã‚’åˆ©ç”¨ã—ã¦ <sp>CR</sp> ãŒ
+                    // ã²ã¨ã¤ã§ã‚‚ã‚ã‚Œã°ãƒ•ã‚¡ã‚¤ãƒ«ã®æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’ CRLF ã¨åˆ¤æ–­ã™ã‚‹
+                    // FIXME ã‚¢ãƒ‰ãƒ›ãƒƒã‚¯ã™ãã‚‹ã®ã§ CX-Model ãŒç›´ã‚Šæ¬¡ç¬¬ã“ã“ã‚‚ç›´ã™
                     nlop = "\r\n";
                 }
                 if ("comment".equals(n.getParentNode().getNodeName())) {
@@ -168,12 +168,12 @@ public class NodeOffsetUtil {
         return ret;
     }
 
-    /** ÆÉ¤ß¹ş¤ó¤À¥Æ¥­¥¹¥È¤Î¹ç·×¥µ¥¤¥º */
+    /** èª­ã¿è¾¼ã‚“ã ãƒ†ã‚­ã‚¹ãƒˆã®åˆè¨ˆã‚µã‚¤ã‚º */
     private int readsize = 0;
 
     /**
-     * ¥Õ¥¡¥¤¥ëÀèÆ¬¤«¤éÆÉ¤ß¹ş¤ó¤À¥Ğ¥¤¥È¿ô¤¬¡¤<br>
-     * offset ¤ÎÎÌ¤ò±Û¤¨¤¿»şÅÀ¤ÇÆÉ¤ó¤Ç¤¤¤ë¹½Ê¸Í×ÁÇ¤Î¥Î¡¼¥É¤òÊÖ¤¹
+     * ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°ãŒï¼Œ<br>
+     * offset ã®é‡ã‚’è¶ŠãˆãŸæ™‚ç‚¹ã§èª­ã‚“ã§ã„ã‚‹æ§‹æ–‡è¦ç´ ã®ãƒãƒ¼ãƒ‰ã‚’è¿”ã™
      * @param node
      * @param offset
      * @return

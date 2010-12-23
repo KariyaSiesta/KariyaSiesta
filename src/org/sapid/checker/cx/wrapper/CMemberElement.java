@@ -7,12 +7,12 @@ package org.sapid.checker.cx.wrapper;
 import org.w3c.dom.Element;
 
 /**
- * Member Õ◊¡«
+ * Member Ë¶ÅÁ¥†
  * @author Toshinori OSUKA
  */
 public class CMemberElement extends CDeclarationElement {
     /**
-     * •≥•Û•π•»•È•Ø•ø
+     * „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
      * @param elem
      */
     public CMemberElement(Element elem) {

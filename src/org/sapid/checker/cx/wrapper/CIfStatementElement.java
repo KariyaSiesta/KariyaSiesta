@@ -11,12 +11,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Stmt sort="If" Í×ÁÇ
+ * Stmt sort="If" è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CIfStatementElement extends CControlStatementElement {
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CIfStatementElement(Element elem) {
@@ -37,11 +37,11 @@ public class CIfStatementElement extends CControlStatementElement {
     }
 
     /**
-     * True Àá¤ò¼èÆÀ <br>
-     * °Ê²¼¤Î$´Ö¤¬ÊÖ¤ë <br>
+     * True ç¯€ã‚’å–å¾— <br>
+     * ä»¥ä¸‹ã®$é–“ãŒè¿”ã‚‹ <br>
      * if (condition)$ { stmt; } $ else { stmt; }
      * @return
-     * @deprecated {@link #getTrueStatement()}¤ËÃÖ¤­´¹¤¨
+     * @deprecated {@link #getTrueStatement()}ã«ç½®ãæ›ãˆ
      */
     @Override
     @Deprecated
@@ -65,8 +65,8 @@ public class CIfStatementElement extends CControlStatementElement {
     }
     
     /**
-     * ¾ò·ï¼°¤ÎÉ¾²Á·ë²Ì¤¬ÈóÎí¤Î¾ì¹ç¤Ë¼Â¹Ô¤µ¤ì¤ëÊ¸¤òÊÖ¤¹
-     * @return ¾ò·ï¼°¤ÎÉ¾²Á·ë²Ì¤¬ÈóÎí¤Î¾ì¹ç¤Ë¼Â¹Ô¤µ¤ì¤ëÊ¸ ¤¿¤À¤·¸«¤Ä¤«¤é¤Ê¤«¤Ã¤¿¾ì¹ç¤Ïnull
+     * æ¡ä»¶å¼ã®è©•ä¾¡çµæœãŒéé›¶ã®å ´åˆã«å®Ÿè¡Œã•ã‚Œã‚‹æ–‡ã‚’è¿”ã™
+     * @return æ¡ä»¶å¼ã®è©•ä¾¡çµæœãŒéé›¶ã®å ´åˆã«å®Ÿè¡Œã•ã‚Œã‚‹æ–‡ ãŸã ã—è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯null
      */
     public CStatementElement getTrueStatement() {
     	Element firstStatementElement = this.getFirstChildNode("Stmt");
@@ -79,12 +79,12 @@ public class CIfStatementElement extends CControlStatementElement {
     }
 
     /**
-     * False Àá¤ò¼èÆÀ <br>
-     * °Ê²¼¤Î$´Ö¤¬ÊÖ¤ë <br>
+     * False ç¯€ã‚’å–å¾— <br>
+     * ä»¥ä¸‹ã®$é–“ãŒè¿”ã‚‹ <br>
      * if (condition) { stmt; } else $ { stmt; } $<br>
-     * Â¸ºß¤·¤Ê¤±¤ì¤ĞÄ¹¤µ 0 ¤ÎÇÛÎó¤¬ÊÖ¤ë
+     * å­˜åœ¨ã—ãªã‘ã‚Œã°é•·ã• 0 ã®é…åˆ—ãŒè¿”ã‚‹
      * @return
-     * @deprecated {@link #getFalseStatement()}¤ËÃÖ¤­´¹¤¨
+     * @deprecated {@link #getFalseStatement()}ã«ç½®ãæ›ãˆ
      */
     @Deprecated
     public Element[] getFalseBlock() {
@@ -103,8 +103,8 @@ public class CIfStatementElement extends CControlStatementElement {
     }
 
     /**
-     * ¾ò·ï¼°¤ÎÉ¾²Á·ë²Ì¤¬Îí¤Î¾ì¹ç¤Ë¼Â¹Ô¤µ¤ì¤ëÊ¸¤òÊÖ¤¹
-     * @return ¾ò·ï¼°¤ÎÉ¾²Á·ë²Ì¤¬Îí¤Î¾ì¹ç¤Ë¼Â¹Ô¤µ¤ì¤ëÊ¸ ¤¿¤À¤·¸«¤Ä¤«¤é¤Ê¤«¤Ã¤¿¾ì¹ç¤Ïnull
+     * æ¡ä»¶å¼ã®è©•ä¾¡çµæœãŒé›¶ã®å ´åˆã«å®Ÿè¡Œã•ã‚Œã‚‹æ–‡ã‚’è¿”ã™
+     * @return æ¡ä»¶å¼ã®è©•ä¾¡çµæœãŒé›¶ã®å ´åˆã«å®Ÿè¡Œã•ã‚Œã‚‹æ–‡ ãŸã ã—è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯null
      */
     public CStatementElement getFalseStatement() {
     	Element[] childStatementElements = this.getChildrenNode("Stmt");
@@ -117,7 +117,7 @@ public class CIfStatementElement extends CControlStatementElement {
     }
 
     /**
-     * If Ê¸¤«¤É¤¦¤«
+     * If æ–‡ã‹ã©ã†ã‹
      * @param node
      * @return
      */

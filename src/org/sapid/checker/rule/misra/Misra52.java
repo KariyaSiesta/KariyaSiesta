@@ -25,38 +25,38 @@ import org.w3c.dom.Element;
  */
 public class Misra52 implements CheckerClass {
 
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 52";
 
-    /** ¸¡ºº·ë²Ì */
+    /** æ¤œæŸ»çµæœ */
     List<Result> results = new ArrayList<Result>();
 
     public List<Result> check(IFile file, CheckRule rule) {
         CFileElement cfile = new CFileElement(file.getDOM());
 
-        // ¥Î¡¼¥É¤¬Â¸ºß¤·¤Ê¤¤¤â¤Î¤òÃµ¤¹
+        // ãƒãƒ¼ãƒ‰ãŒå­˜åœ¨ã—ãªã„ã‚‚ã®ã‚’æ¢ã™
         CFunctionElement[] functions = cfile.getFunctions();
         for (int i = 0; i < functions.length; i++) {
             PathGraph graph = new PathGraph(functions[i]);
             List<Element> instructions = new ArrayList<Element>();
 
-            // Ê¸
+            // æ–‡
             CStatementElement[] stmts = functions[i].getStatments();
             for (int j = 0; j < stmts.length; j++) {
             	if (! stmts[j].isBlockStatement()) {
             		instructions.add(stmts[j].getElem());
             	}
             }
-            // Àë¸À
+            // å®£è¨€
             CDeclarationElement[] locals = functions[i]
                     .getVarialbeDeclarations();
             for (int j = 0; j < locals.length; j++) {
                 instructions.add(locals[j].getElem());
             }
-            // ¥Á¥§¥Ã¥¯
+            // ãƒã‚§ãƒƒã‚¯
             for (int j = 0; j < instructions.size(); j++) {
                 if (graph.findNode(instructions.get(j)) != null) {
                     continue;

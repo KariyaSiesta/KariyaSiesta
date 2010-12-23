@@ -24,7 +24,7 @@ import org.sapid.checker.rule.CheckRuleParser;
 import org.sapid.parser.common.ParseException;
 
 /**
- * ²òÀÏ¤Î²áÄø¤ò¥×¥í¥°¥ì¥¹¥Ğ¡¼¤ËÉ½¼¨
+ * è§£æã®éç¨‹ã‚’ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã«è¡¨ç¤º
  */
 public class CheckWithProgress implements IRunnableWithProgress {
 	public String fileName = null;
@@ -32,7 +32,7 @@ public class CheckWithProgress implements IRunnableWithProgress {
 	IFile file;
 
 	/**
-	 * Trowable ¤òÊ¸»úÎó¤Ë¤¹¤ë
+	 * Trowable ã‚’æ–‡å­—åˆ—ã«ã™ã‚‹
 	 * 
 	 * @param t
 	 * @return
@@ -44,7 +44,7 @@ public class CheckWithProgress implements IRunnableWithProgress {
 	}
 
 	/**
-	 * ²òÀÏÂĞ¾İ¤Î¥Õ¥¡¥¤¥ë¤ò»ØÄê
+	 * è§£æå¯¾è±¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡å®š
 	 * 
 	 * @param fName
 	 */
@@ -54,7 +54,7 @@ public class CheckWithProgress implements IRunnableWithProgress {
 	}
 
 	/**
-	 * ¥ë¡¼¥ë XML ¤ò»ØÄê
+	 * ãƒ«ãƒ¼ãƒ« XML ã‚’æŒ‡å®š
 	 * 
 	 * @param fName
 	 */
@@ -160,7 +160,7 @@ public class CheckWithProgress implements IRunnableWithProgress {
 	}
 
 	/**
-	 * checkerClassName¤Ç»ØÄê¤µ¤ì¤¿CheckerClass¥ª¥Ö¥¸¥§¥¯¥È¤ò³ÍÆÀ¤·¡¢ÊÖ¤¹¡£
+	 * checkerClassNameã§æŒ‡å®šã•ã‚ŒãŸCheckerClassã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç²å¾—ã—ã€è¿”ã™ã€‚
 	 * 
 	 * @param checkerClassName
 	 * @return
@@ -178,7 +178,7 @@ public class CheckWithProgress implements IRunnableWithProgress {
 	}
 
 	/**
-	 * ¹ÔÈÖ¹æ¤Î¤ß¤«¤é¥Ş¡¼¥«¡¼ºîÀ®
+	 * è¡Œç•ªå·ã®ã¿ã‹ã‚‰ãƒãƒ¼ã‚«ãƒ¼ä½œæˆ
 	 * 
 	 * @param file
 	 * @param lineNumber
@@ -201,7 +201,7 @@ public class CheckWithProgress implements IRunnableWithProgress {
 	}
 
 	/**
-	 * offset ¤ò»ØÄê¤·¤Æ¥Ş¡¼¥«¡¼¤òºîÀ® TODO ¥¯¥é¥¹¤Ë¤¹¤ë
+	 * offset ã‚’æŒ‡å®šã—ã¦ãƒãƒ¼ã‚«ãƒ¼ã‚’ä½œæˆ TODO ã‚¯ãƒ©ã‚¹ã«ã™ã‚‹
 	 * 
 	 * @param file
 	 * @param linenum
@@ -228,7 +228,7 @@ public class CheckWithProgress implements IRunnableWithProgress {
 	}
 
 	/**
-	 * ·ë²Ì¤ò¸µ¤Ë¥Ş¡¼¥«¡¼¤òºîÀ®¤¹¤ë
+	 * çµæœã‚’å…ƒã«ãƒãƒ¼ã‚«ãƒ¼ã‚’ä½œæˆã™ã‚‹
 	 * 
 	 * @param results
 	 */

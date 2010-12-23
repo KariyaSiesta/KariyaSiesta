@@ -15,13 +15,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * µ¬Ìó°ãÈ¿¤Î¥í¥®¥ó¥°¤ò¹Ô¤¦
+ * è¦ç´„é•åã®ãƒ­ã‚®ãƒ³ã‚°ã‚’è¡Œã†
  * @author takai
  *
  */
 public class Logger {
 	/*
-	 * ¥í¥®¥ó¥°¤òÍ­¸ú¤Ë¤¹¤ë¾ì¹ç¤Ï¡¢¥³¥ó¥Õ¥£¥°¥Õ¥¡¥¤¥ë¤Ë¡ÖLOGGING_KEY=LOGGING_VALUE¡×¤òµ­½Ò
+	 * ãƒ­ã‚®ãƒ³ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹å ´åˆã¯ã€ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«ã€ŒLOGGING_KEY=LOGGING_VALUEã€ã‚’è¨˜è¿°
 	 */
 	private static final String LOGGING_KEY   = "DoLogging";
 	private static final String LOGGING_VALUE = "yes!";
@@ -33,7 +33,7 @@ public class Logger {
 
 	/**
 	 * LogDataElement<br>
-	 * Result¤ÈIFile¤Î¥»¥Ã¥È
+	 * Resultã¨IFileã®ã‚»ãƒƒãƒˆ
 	 * @author takai
 	 *
 	 */
@@ -79,9 +79,9 @@ public class Logger {
 		
 		public String getFunctionName() {
 			String result = "%None%";
-			//°ãÈ¿¥Î¡¼¥É¤ò¼èÆÀ
+			//é•åãƒãƒ¼ãƒ‰ã‚’å–å¾—
 			Node node = new NodeOffsetUtil(myFileElement.getElem().getOwnerDocument(), myResult.getRange().getOffset()).getNode();
-			//nl¤ÎÄ¾Á°¤ÎFunction¤òÃµ¤¹
+			//nlã®ç›´å‰ã®Functionã‚’æ¢ã™
 			while (node!=null) {
 				if (node.getNodeName()!=null && node.getNodeName().equals("Function")) {
 					break;
@@ -91,7 +91,7 @@ public class Logger {
 			}
 			
 			if (node!=null) {
-				//Function¥Î¡¼¥É¤ÎÄ¾¶á¤Îident¥Î¡¼¥É¤«¤é´Ø¿ôÌ¾¤ò¼èÆÀ
+				//Functionãƒãƒ¼ãƒ‰ã®ç›´è¿‘ã®identãƒãƒ¼ãƒ‰ã‹ã‚‰é–¢æ•°åã‚’å–å¾—
 				NodeList nl = node.getChildNodes();
 				for (int i=0; i<nl.getLength(); i++) {
 					Node n = nl.item(i);
@@ -110,8 +110,8 @@ public class Logger {
 	private String DateTime;
 
 	/**
-	 * ¥í¥®¥ó¥°µ¡Ç½¤¬Í­¸ú¤«¤É¤¦¤«¤òÊÖ¤¹
-	 * @return ¥í¥®¥ó¥°µ¡Ç½¤¬Í­¸ú¤«¤É¤¦¤«
+	 * ãƒ­ã‚®ãƒ³ã‚°æ©Ÿèƒ½ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’è¿”ã™
+	 * @return ãƒ­ã‚®ãƒ³ã‚°æ©Ÿèƒ½ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
 	 */
 	public static boolean isEnableSaveLog() {
 		boolean result = false;
@@ -125,8 +125,8 @@ public class Logger {
 	}
 
 	/**
-	 * ¥í¥¬¡¼¥³¥ó¥¹¥È¥é¥¯¥¿
-	 * ¥æ¡¼¥¶¡¼Ì¾¤ÎÀßÄê¡¦Æü»ş¤ÎÀßÄê¡¦¥í¥°¥Ç¥£¥ì¥¯¥È¥ê¤ÎÀßÄê¡¦¥í¥°¥Õ¥¡¥¤¥ëÌ¾¤ÎÀßÄê¤ò¹Ô¤¦¡£
+	 * ãƒ­ã‚¬ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * ãƒ¦ãƒ¼ã‚¶ãƒ¼åã®è¨­å®šãƒ»æ—¥æ™‚ã®è¨­å®šãƒ»ãƒ­ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®è¨­å®šãƒ»ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«åã®è¨­å®šã‚’è¡Œã†ã€‚
 	 */
 	public Logger() {
 		super();
@@ -136,7 +136,7 @@ public class Logger {
 	}
 	
 	/**
-	 * ¥æ¡¼¥¶¡¼Ì¾¤Î¼èÆÀ¤ÈÀßÄê¤ò¹Ô¤¦¡£
+	 * ãƒ¦ãƒ¼ã‚¶ãƒ¼åã®å–å¾—ã¨è¨­å®šã‚’è¡Œã†ã€‚
 	 */
 	private void setUserName() {
 		String name = ConfigManager.getProperty(KEY_USER_NAME);
@@ -160,19 +160,19 @@ public class Logger {
 				}
 			}
 
-			//¥æ¡¼¥¶¡¼Ì¾¤¬¼èÆÀ¤Ç¤­¤Ê¤«¤Ã¤¿¾ì¹ç¤ÏUUID
+			//ãƒ¦ãƒ¼ã‚¶ãƒ¼åãŒå–å¾—ã§ããªã‹ã£ãŸå ´åˆã¯UUID
 			if (name==null || name.equals("")) {
 				name = UUID.randomUUID().toString();
 			}
 
-			//¥æ¡¼¥¶¡¼Ì¾¤ÎÊİÂ¸
+			//ãƒ¦ãƒ¼ã‚¶ãƒ¼åã®ä¿å­˜
 			ConfigManager.setProperty(KEY_USER_NAME, name);
 		}
 		UserName = name;
 	}
 
 	/**
-	 * Æü»ş¤Î¼èÆÀ¤ÈÀßÄê¤ò¹Ô¤¦¡£
+	 * æ—¥æ™‚ã®å–å¾—ã¨è¨­å®šã‚’è¡Œã†ã€‚
 	 */
 	private void setDateTime() {
 		Date date = new Date();
@@ -182,7 +182,7 @@ public class Logger {
 	}
 
 	/**
-	 * ¥í¥°¥Õ¥¡¥¤¥ëÌ¾¤Î¼èÆÀ
+	 * ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾—
 	 */
 	private String getLogFileName() {
 		String name = ConfigManager.getProperty(KEY_LOG_FILE);
@@ -190,7 +190,7 @@ public class Logger {
 			name = ((ConfigManager.SAPID_DEST==null)? "":(ConfigManager.SAPID_DEST+"/")) + LOG_DIRECTORY + UUID.randomUUID().toString() + ".log";
 			SimpleCommandOutput simpleCommandOutput = new SimpleCommandOutput();
 			try {
-				if (System.getProperty("os.name").contains("Windows")) { // Windows ¤Î¾ì¹ç¡¤Cygwin ·Á¼°¤Î¥Ñ¥¹¤Ï Java ¤«¤é°·¤¨¤Ê¤¤¤¿¤á¡¤Windows·Á¼°¤Î¥Ñ¥¹¤ËÊÑ´¹¤¹¤ëÉ¬Í×¤¬¤¢¤ë¡¥
+				if (System.getProperty("os.name").contains("Windows")) { // Windows ã®å ´åˆï¼ŒCygwin å½¢å¼ã®ãƒ‘ã‚¹ã¯ Java ã‹ã‚‰æ‰±ãˆãªã„ãŸã‚ï¼ŒWindowså½¢å¼ã®ãƒ‘ã‚¹ã«å¤‰æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ï¼
 					new Command("cygpath -w \"" + name + "\"",  System.getProperty("user.dir")).run(simpleCommandOutput);
 					name =  simpleCommandOutput.getOutput();
 				}
@@ -203,7 +203,7 @@ public class Logger {
 	}
 
 	/**
-	 * ¥ê¥¶¥ë¥È¥ê¥¹¥È¤ÎÄÉ²Ã
+	 * ãƒªã‚¶ãƒ«ãƒˆãƒªã‚¹ãƒˆã®è¿½åŠ 
 	 * @param FileName
 	 * @param results
 	 */
@@ -214,8 +214,8 @@ public class Logger {
 	}
 	
 	/**
-	 * ¥í¥°¤ÎÊİÂ¸¤ò¹Ô¤¦<br>
-	 * addResults¤ò¹Ô¤Ã¤¿Ä¾¸å¤Ë°ú¿ô¤Ê¤·¤ÎsaveLog¤ò¹Ô¤¦¤Î¤ÈÆ±µÁ
+	 * ãƒ­ã‚°ã®ä¿å­˜ã‚’è¡Œã†<br>
+	 * addResultsã‚’è¡Œã£ãŸç›´å¾Œã«å¼•æ•°ãªã—ã®saveLogã‚’è¡Œã†ã®ã¨åŒç¾©
 	 * @param file
 	 * @param results
 	 */
@@ -225,13 +225,13 @@ public class Logger {
 	}
 	
 	/**
-	 * ¥í¥°¤ÎÊİÂ¸¤ò¹Ô¤¦
+	 * ãƒ­ã‚°ã®ä¿å­˜ã‚’è¡Œã†
 	 */
 	public void saveLog() {
 		if (isEnableSaveLog()) {
 			try {
 				String NewLine = getNewLine();
-				FileWriter fw = new FileWriter(getLogFileName(), true);  //ÄÉµ­¥â¡¼¥É¤Ç¥ª¡¼¥×¥ó
+				FileWriter fw = new FileWriter(getLogFileName(), true);  //è¿½è¨˜ãƒ¢ãƒ¼ãƒ‰ã§ã‚ªãƒ¼ãƒ—ãƒ³
 				try {
 					for (LogDataElement res: resultList) {
 						fw.write(getLogString(res)+NewLine);
@@ -247,30 +247,30 @@ public class Logger {
 	}
 
 	/**
-	 * ¥í¥°¤Ë½ñ¤­¹ş¤à¥Æ¥­¥¹¥È¥Ç¡¼¥¿¤òÀ¸À®¤¹¤ë
+	 * ãƒ­ã‚°ã«æ›¸ãè¾¼ã‚€ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹
 	 * @param result
 	 * @return
 	 */
 	private String getLogString(LogDataElement result) {
 		String str = 
-			  DateTime.replace("\t", "¡ït") + "\t"
-			+ UserName.replace("\t", "¡ït") + "\t"
-			+ result.getFileName().replace("\t", "¡ït") + "\t"
-			+ result.getRuleName().replace("\t", "¡ït") + "\t"
+			  DateTime.replace("\t", "Â¥t") + "\t"
+			+ UserName.replace("\t", "Â¥t") + "\t"
+			+ result.getFileName().replace("\t", "Â¥t") + "\t"
+			+ result.getRuleName().replace("\t", "Â¥t") + "\t"
 			+ result.getLevel() + "\t"
 			+ result.getRange().getStartLine() + "\t"
 			+ result.getRange().getStartColumn() + "\t"
 			+ result.getRange().getLength() + "\t"
-			+ result.getFileName().replace("\t", "¡ït") + "\t"
-			+ result.getFunctionName().replace("\t", "¡ït") + "\t"
+			+ result.getFileName().replace("\t", "Â¥t") + "\t"
+			+ result.getFunctionName().replace("\t", "Â¥t") + "\t"
 			+ result.getLineCount() + "\t"
 			+ result.getFunctionCount();
 		return str;
 	}
 	
 	/**
-	 * ²ş¹Ô¥³¡¼¥É¤òOSËè¤Ë¼èÆÀ¡£<br>
-	 * ¤â¤Ã¤È¤¦¤Ş¤¤ÊıË¡¤¬¤¢¤ë¤è¤¦¤Êµ¤¤â¤¹¤ë¤·¡¢Á´¤ÆÅı°ì¤Ç¤âÎÉ¤¤¤è¤¦¤Êµ¤¤â¤¹¤ë¡£
+	 * æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’OSæ¯ã«å–å¾—ã€‚<br>
+	 * ã‚‚ã£ã¨ã†ã¾ã„æ–¹æ³•ãŒã‚ã‚‹ã‚ˆã†ãªæ°—ã‚‚ã™ã‚‹ã—ã€å…¨ã¦çµ±ä¸€ã§ã‚‚è‰¯ã„ã‚ˆã†ãªæ°—ã‚‚ã™ã‚‹ã€‚
 	 * @return
 	 */
 	private String getNewLine() {

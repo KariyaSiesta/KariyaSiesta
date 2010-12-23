@@ -7,12 +7,12 @@ package org.sapid.checker.cx.wrapper;
 import org.w3c.dom.Element;
 
 /**
- * comment Õ◊¡«
+ * comment Ë¶ÅÁ¥†
  * @author Toshinori OSUKA
  */
 public class CCommentElement extends CElement {
     /**
-     * •≥•Û•π•»•È•Ø•ø
+     * „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
      * @param elem
      */
     public CCommentElement(Element elem) {
@@ -21,7 +21,7 @@ public class CCommentElement extends CElement {
     }
     
     /**
-     * •≥•·•Û•»§Œ•∆•≠•π•»§Ú ÷§π
+     * „Ç≥„É°„É≥„Éà„ÅÆ„ÉÜ„Ç≠„Çπ„Éà„ÇíËøî„Åô
      * @return
      */
     public String getTextContent() {

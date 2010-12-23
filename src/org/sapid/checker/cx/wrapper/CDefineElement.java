@@ -7,17 +7,17 @@ package org.sapid.checker.cx.wrapper;
 import org.w3c.dom.Element;
 
 /**
- * Define Í×ÁÇ
+ * Define è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CDefineElement extends CElement {
-    /** macroPattern Í×ÁÇ¤ÎÌ¾Á° */
+    /** macroPattern è¦ç´ ã®åå‰ */
     protected final String MACRO_PATTERN = "macroPattern";
-    /** macroBody Í×ÁÇ¤ÎÌ¾Á° */
+    /** macroBody è¦ç´ ã®åå‰ */
     protected final String MACRO_BODY = "macroBody";
     
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CDefineElement(Element elem) {
@@ -26,7 +26,7 @@ public class CDefineElement extends CElement {
     }
     
     /**
-     * macroPattern Í×ÁÇ¤Î¥Æ¥­¥¹¥È¤òÊÖ¤¹
+     * macroPattern è¦ç´ ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è¿”ã™
      * @return
      */
     public String getMacroPattern() {
@@ -34,7 +34,7 @@ public class CDefineElement extends CElement {
     }
     
     /**
-     * macroPattern Í×ÁÇ¤Î Id Â°À­¤òÊÖ¤¹
+     * macroPattern è¦ç´ ã® Id å±æ€§ã‚’è¿”ã™
      * @return
      */
     public String getMacroPatternId() {
@@ -42,8 +42,8 @@ public class CDefineElement extends CElement {
     }
     
     /**
-     * macroBody Í×ÁÇ¤Î¥Æ¥­¥¹¥È¤òÊÖ¤¹
-     * ¤Ê¤±¤ì¤Ğ ¶õÊ¸»ú ¤òÊÖ¤¹
+     * macroBody è¦ç´ ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è¿”ã™
+     * ãªã‘ã‚Œã° ç©ºæ–‡å­— ã‚’è¿”ã™
      * @return
      */
     public String getMacroBody() {

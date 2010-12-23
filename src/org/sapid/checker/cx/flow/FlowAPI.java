@@ -18,7 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Ãê¾İ²ò¼á¼Â¹Ô¤Ç»ÈÍÑ¤¹¤ë¥Õ¥ì¡¼¥à¥ï¡¼¥¯
+ * æŠ½è±¡è§£é‡ˆå®Ÿè¡Œã§ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
  * 
  * @author Eiji Hirumuta
  */
@@ -33,7 +33,7 @@ public class FlowAPI {
 	}
 
 	/**
-	 * ½ü»»Ê¸¤ò°ì¤ÄÊÖ¤¹¡¥¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹
+	 * é™¤ç®—æ–‡ã‚’ä¸€ã¤è¿”ã™ï¼è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯ null ã‚’è¿”ã™
 	 * 
 	 * @param Document
 	 */
@@ -58,8 +58,8 @@ public class FlowAPI {
 	}
 
 	/**
-	 * ¥Ñ¥¹¤òºîÀ®¤¹¤ë¡¥branch_true, branch_false, switch_default, switch_case
-	 * ¤Ë¤è¤Ã¤ÆÊ¬´ô¤¹¤ë¡¥¼ºÇÔ¤·¤¿¾ì¹ç¤Ï null ¤òÊÖ¤¹¡¥
+	 * ãƒ‘ã‚¹ã‚’ä½œæˆã™ã‚‹ï¼branch_true, branch_false, switch_default, switch_case
+	 * ã«ã‚ˆã£ã¦åˆ†å²ã™ã‚‹ï¼å¤±æ•—ã—ãŸå ´åˆã¯ null ã‚’è¿”ã™ï¼
 	 * 
 	 * @param functionElement
 	 */
@@ -81,7 +81,7 @@ public class FlowAPI {
 			List<List<FlowStatementElement>> lists, int index,
 			FlowStatementElement ai_stmt) {
 
-		// ¼«Ê¬¤òÄÉ²Ã
+		// è‡ªåˆ†ã‚’è¿½åŠ 
 		addItemToPath(lists, index, ai_stmt);
 
 		CFlowElement[] aiflows = getBranchAIFlowElements(ai_stmt);
@@ -138,7 +138,7 @@ public class FlowAPI {
 	}
 
 	/**
-	 * index ¤Î¥ê¥¹¥È¤ò¿·¤·¤¯ºÇ¸å¤ËÊ£À½¤¹¤ë
+	 * index ã®ãƒªã‚¹ãƒˆã‚’æ–°ã—ãæœ€å¾Œã«è¤‡è£½ã™ã‚‹
 	 * 
 	 * @param lists
 	 * @param index
@@ -157,8 +157,8 @@ public class FlowAPI {
 	}
 
 	/**
-	 * Stmt Í×ÁÇ¤¬ control_normal, branch_true, branch_false, switch_default,
-	 * switch_case ¤Î¥Õ¥í¡¼»ı¤Ä¤«Ä´¤Ù¡¤¤³¤ì¤é¤Î¥Õ¥í¡¼Í×ÁÇ¤ÎÇÛÎó¤òÊÖ¤¹¡¥¤Ê¤¤¾ì¹ç¤ÏÄ¹¤µ 0 ¤ÎÇÛÎó¤òÊÖ¤¹
+	 * Stmt è¦ç´ ãŒ control_normal, branch_true, branch_false, switch_default,
+	 * switch_case ã®ãƒ•ãƒ­ãƒ¼æŒã¤ã‹èª¿ã¹ï¼Œã“ã‚Œã‚‰ã®ãƒ•ãƒ­ãƒ¼è¦ç´ ã®é…åˆ—ã‚’è¿”ã™ï¼ãªã„å ´åˆã¯é•·ã• 0 ã®é…åˆ—ã‚’è¿”ã™
 	 */
 	public static CFlowElement[] getBranchAIFlowElements(
 			FlowStatementElement ai_stmt) {
@@ -178,7 +178,7 @@ public class FlowAPI {
 	}
 
 	/**
-	 * °ú¿ô¤Î Stmt Í×ÁÇ¤Î¥Õ¥í¡¼¤Î¤¦¤Á¡¤Â°À­¤¬ sort ¤Ç¤¢¤ë¥Õ¥í¡¼¤Î next ¤¬º¹¤¹ Stmt Í×ÁÇ¤òÊÖ¤¹¡¥¤Ê¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹
+	 * å¼•æ•°ã® Stmt è¦ç´ ã®ãƒ•ãƒ­ãƒ¼ã®ã†ã¡ï¼Œå±æ€§ãŒ sort ã§ã‚ã‚‹ãƒ•ãƒ­ãƒ¼ã® next ãŒå·®ã™ Stmt è¦ç´ ã‚’è¿”ã™ï¼ãªã„å ´åˆã¯ null ã‚’è¿”ã™
 	 * 
 	 * @param doc
 	 * @param stmt
@@ -217,7 +217,7 @@ public class FlowAPI {
 	}
 
 	/**
-	 * ¥Î¡¼¥ÉÌ¾¡¤Â°À­Ì¾¡¤Â°À­ÃÍ¤Ç»ØÄê¤µ¤ì¤ëÍ×ÁÇ¤ÎÇÛÎó¤òÊÖ¤¹¡¥¤Ê¤¤¾ì¹ç¤ÏÄ¹¤µ 0 ¤ÎÇÛÎó¤òÊÖ¤¹
+	 * ãƒãƒ¼ãƒ‰åï¼Œå±æ€§åï¼Œå±æ€§å€¤ã§æŒ‡å®šã•ã‚Œã‚‹è¦ç´ ã®é…åˆ—ã‚’è¿”ã™ï¼ãªã„å ´åˆã¯é•·ã• 0 ã®é…åˆ—ã‚’è¿”ã™
 	 */
 	public static Element[] getElementsByNodeNameAndSort(Document doc,
 			String nodename, String sort, String value) {
@@ -237,7 +237,7 @@ public class FlowAPI {
 	}
 
 	/**
-	 * ´Ø¿ô¤Î»Ï¤Ş¤ê¤È¤Ê¤ë¥¹¥Æ¡¼¥È¥á¥ó¥È¤ò¼èÆÀ¤¹¤ë¡¥¤Ê¤¤¾ì¹ç¤ÏÄ¹¤µ 0 ¤ÎÇÛÎó¤òÊÖ¤¹
+	 * é–¢æ•°ã®å§‹ã¾ã‚Šã¨ãªã‚‹ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’å–å¾—ã™ã‚‹ï¼ãªã„å ´åˆã¯é•·ã• 0 ã®é…åˆ—ã‚’è¿”ã™
 	 * 
 	 * @param doc
 	 * @return
@@ -282,7 +282,7 @@ public class FlowAPI {
 	}
 
 	/**
-	 * CElement ¤ò¼õ¤±¼è¤ê¡¤¿Æ¤ò¤¿¤É¤ë¤³¤È¤Ç¤½¤Î¥¹¥Æ¡¼¥È¥á¥ó¥ÈÍ×ÁÇ¤òÊÖ¤¹
+	 * CElement ã‚’å—ã‘å–ã‚Šï¼Œè¦ªã‚’ãŸã©ã‚‹ã“ã¨ã§ãã®ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆè¦ç´ ã‚’è¿”ã™
 	 * @param elem
 	 * @return
 	 */

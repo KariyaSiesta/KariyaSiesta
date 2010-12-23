@@ -20,10 +20,10 @@ import org.sapid.checker.rule.NodeOffsetUtil;
  * @author Toshinori OSUKA
  */
 public class Misra5 implements CheckerClass {
-    /** ¦´ */
+    /** Î¥ */
     private final static int LEVEL = 1;
 
-    /** ¦´ */
+    /** Î¥ */
     private final static String MESSAGE = "MISRA-C Rule 5";
 
     /**  */
@@ -47,7 +47,7 @@ public class Misra5 implements CheckerClass {
 
         CLiteralElement[] literals = cfile.getLiterals();
         for (int i = 0; i < literals.length; i++) {
-        	// §Þ¦´
+        	// Ð¼Î¥
             if (!literals[i].isChar() && !literals[i].isString()){
                 continue;
             }

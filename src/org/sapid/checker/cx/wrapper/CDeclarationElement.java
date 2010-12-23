@@ -11,8 +11,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Àë¸À¤òÉ½¤¹Í×ÁÇ(Global, Local, Param, Function, Prototype, Argument, Member, Typedecl
- * ¤¢¤¿¤ê) ¤³¤ÎÍ×ÁÇ¤Ï CX-model ¤Ë¤Ï¸½¤ì¤Ê¤¤
+ * å®£è¨€ã‚’è¡¨ã™è¦ç´ (Global, Local, Param, Function, Prototype, Argument, Member, Typedecl
+ * ã‚ãŸã‚Š) ã“ã®è¦ç´ ã¯ CX-model ã«ã¯ç¾ã‚Œãªã„
  * @author Toshinori OSUKA
  */
 public class CDeclarationElement extends CElement {
@@ -21,7 +21,7 @@ public class CDeclarationElement extends CElement {
                     "Prototype", "Argument", "Member", "Typedecl", "Tag" });
 
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CDeclarationElement(Element elem) {
@@ -30,7 +30,7 @@ public class CDeclarationElement extends CElement {
     }
 
     /**
-     * Àë¸À¤ÎÌ¾Á°¤òÊÖ¤¹
+     * å®£è¨€ã®åå‰ã‚’è¿”ã™
      * @return
      */
     public String getName() {
@@ -42,7 +42,7 @@ public class CDeclarationElement extends CElement {
     }
 
     /**
-     * Àë¸À¤Î·¿¤òÊÖ¤¹ ¤Ê¤±¤ì¤Ğ ¶õÊ¸»ú ¤òÊÖ¤¹
+     * å®£è¨€ã®å‹ã‚’è¿”ã™ ãªã‘ã‚Œã° ç©ºæ–‡å­— ã‚’è¿”ã™
      * @return
      */
     public String getType() {
@@ -54,7 +54,7 @@ public class CDeclarationElement extends CElement {
     }
 
     /**
-     * ½¤¾ş»Ò(static)¤òÊÖ¤¹ ½¤¾ş»Ò¤¬¤Ê¤±¤ì¤Ğ ¶õÊ¸»ú ¤òÊÖ¤¹
+     * ä¿®é£¾å­(static)ã‚’è¿”ã™ ä¿®é£¾å­ãŒãªã‘ã‚Œã° ç©ºæ–‡å­— ã‚’è¿”ã™
      * @return
      */
     public String getStorage() {
@@ -66,7 +66,7 @@ public class CDeclarationElement extends CElement {
     }
 
     /**
-     * ident Í×ÁÇ¤òÊÖ¤¹
+     * ident è¦ç´ ã‚’è¿”ã™
      * @return
      */
     public Element getIdent() {
@@ -74,7 +74,7 @@ public class CDeclarationElement extends CElement {
     }
 
     /**
-     * Node ¤¬Àë¸À¤«¤É¤¦¤«¤ò³ÎÇ§
+     * Node ãŒå®£è¨€ã‹ã©ã†ã‹ã‚’ç¢ºèª
      * @param node
      * @return
      */

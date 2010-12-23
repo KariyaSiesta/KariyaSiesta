@@ -25,7 +25,7 @@ public class DTDInfo {
 		try {
 			dtd = parser.parse();
 		} catch (IOException e) {
-			// TODO ¼«Æ°À¸À®¤µ¤ì¤¿ catch ¥Ö¥í¥Ã¥¯
+			// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸ catch ãƒ–ãƒ­ãƒƒã‚¯
 			e.printStackTrace();
 		}
 	}
@@ -51,7 +51,7 @@ public class DTDInfo {
 			project.accept(visitor);
 			dtdpath = visitor.getDTDPath();
 		} catch (CoreException e) {
-			// TODO ¼«Æ°À¸À®¤µ¤ì¤¿ catch ¥Ö¥í¥Ã¥¯
+			// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸ catch ãƒ–ãƒ­ãƒƒã‚¯
 			e.printStackTrace();
 		}
 		return dtdpath;
@@ -66,7 +66,7 @@ public class DTDInfo {
 		try {
 			dtdparser = new DTDParser(getDTDFile());
 		} catch (IOException e) {
-			// TODO ¼«Æ°À¸À®¤µ¤ì¤¿ catch ¥Ö¥í¥Ã¥¯
+			// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸ catch ãƒ–ãƒ­ãƒƒã‚¯
 			e.printStackTrace();
 		}
 		return dtdparser;

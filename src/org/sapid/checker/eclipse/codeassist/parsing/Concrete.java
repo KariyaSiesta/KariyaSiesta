@@ -16,11 +16,11 @@ public class Concrete {
 
 
 
-	private ArrayList<Token> axistokenlist = new ArrayList<Token>();		//tokenTransition¤Î°ú¿ô¤Î¥È¡¼¥¯¥ó·²
-	private ArrayList<Token> nodetokenlist = new ArrayList<Token>();		//tokenTransition¤Î°ú¿ô¤Î¥È¡¼¥¯¥ó·²
-	private ArrayList<Token> attrtokenlist = new ArrayList<Token>();		//tokenTransition¤Î°ú¿ô¤Î¥È¡¼¥¯¥ó·²
-	private ArrayList<Token> functokenlist = new ArrayList<Token>();		//tokenTransition¤Î°ú¿ô¤Î¥È¡¼¥¯¥ó·²
-	private ArrayList<Token> othertokenlist = new ArrayList<Token>();		//tokenTransition¤Î°ú¿ô¤Î¥È¡¼¥¯¥ó·²
+	private ArrayList<Token> axistokenlist = new ArrayList<Token>();		//tokenTransitionã®å¼•æ•°ã®ãƒˆãƒ¼ã‚¯ãƒ³ç¾¤
+	private ArrayList<Token> nodetokenlist = new ArrayList<Token>();		//tokenTransitionã®å¼•æ•°ã®ãƒˆãƒ¼ã‚¯ãƒ³ç¾¤
+	private ArrayList<Token> attrtokenlist = new ArrayList<Token>();		//tokenTransitionã®å¼•æ•°ã®ãƒˆãƒ¼ã‚¯ãƒ³ç¾¤
+	private ArrayList<Token> functokenlist = new ArrayList<Token>();		//tokenTransitionã®å¼•æ•°ã®ãƒˆãƒ¼ã‚¯ãƒ³ç¾¤
+	private ArrayList<Token> othertokenlist = new ArrayList<Token>();		//tokenTransitionã®å¼•æ•°ã®ãƒˆãƒ¼ã‚¯ãƒ³ç¾¤
 	private State t1 = null;
 
 	TokenTransition tt = null;
@@ -206,7 +206,7 @@ public class Concrete {
 		new Transition(t13, s138);
 		new Transition(t14, s142);
 		new Transition(t14, s144);
-		new Transition(s104, s102);	//   	 FunctionCall  	    ::=     	 FunctionName '(' ( Argument ( ',' Argument )* )? ')'  	  ¤Î*¤ËÂĞ±ş
+		new Transition(s104, s102);	//   	 FunctionCall  	    ::=     	 FunctionName '(' ( Argument ( ',' Argument )* )? ')'  	  ã®*ã«å¯¾å¿œ
 		new Transition(t25, s296);
 		new Transition(t25, s302);
 
@@ -309,7 +309,7 @@ public class Concrete {
 		new ReduceTransition(s526, s20, s18);
 		new ReduceTransition(s28, s20, s18);
 		new ReduceTransition(s30, s25, s24);
-		new ReduceTransition(s69, s20, s20);	// Step	::=	AxisSpecifier  NodeTest  Predicate* ¤Î*¤ËÂĞ±ş
+		new ReduceTransition(s69, s20, s20);	// Step	::=	AxisSpecifier  NodeTest  Predicate* ã®*ã«å¯¾å¿œ
 		new ReduceTransition(s74, s9, s8);
 		new ReduceTransition(s78, s17, s16);
 		new ReduceTransition(s80, s23, s22);

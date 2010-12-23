@@ -9,7 +9,7 @@ public class State  implements Cloneable{
 	private boolean isReduce;
 	private boolean isSubLoopShift;
 	private boolean isLoopShift;
-	private boolean isNecessary;		//¹½Ê¸µ¬Â§¤Î?,*¤ËÂĞ±ş¤¹¤ë
+	private boolean isNecessary;		//æ§‹æ–‡è¦å‰‡ã®?,*ã«å¯¾å¿œã™ã‚‹
 	ArrayList<Transition> tlist = new ArrayList<Transition>();
 
 
@@ -23,7 +23,7 @@ public class State  implements Cloneable{
 	}
 
 	public State() {
-		// TODO ¼«Æ°À¸À®¤µ¤ì¤¿¥³¥ó¥¹¥È¥é¥¯¥¿¡¼¡¦¥¹¥¿¥Ö
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ã‚¹ã‚¿ãƒ–
 	}
 
 	public void addTransition(Transition transition) {

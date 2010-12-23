@@ -8,7 +8,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * literal Í×ÁÇ
+ * literal è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CLiteralElement extends CElement {
@@ -19,7 +19,7 @@ public class CLiteralElement extends CElement {
     }
 
     /**
-     * Ê¸»úÎó¥ê¥Æ¥é¥ë¤« "abc"
+     * æ–‡å­—åˆ—ãƒªãƒ†ãƒ©ãƒ«ã‹ "abc"
      * @return
      */
     public boolean isString() {
@@ -27,7 +27,7 @@ public class CLiteralElement extends CElement {
     }
 
     /**
-     * Ê¸»ú¥ê¥Æ¥é¥ë¤« 'a'
+     * æ–‡å­—ãƒªãƒ†ãƒ©ãƒ«ã‹ 'a'
      * @return
      */
     public boolean isChar() {
@@ -35,7 +35,7 @@ public class CLiteralElement extends CElement {
     }
 
     /**
-     * ¿ô»ú¥ê¥Æ¥é¥ë¤« 1U
+     * æ•°å­—ãƒªãƒ†ãƒ©ãƒ«ã‹ 1U
      * @return
      */
     public boolean isNumber() {
@@ -43,7 +43,7 @@ public class CLiteralElement extends CElement {
     }
     
     /**
-     * ¥Î¡¼¥É¤Î textContent ¤òÊÖ¤¹
+     * ãƒãƒ¼ãƒ‰ã® textContent ã‚’è¿”ã™
      * @return
      */
     public String getTextContent() {
@@ -51,7 +51,7 @@ public class CLiteralElement extends CElement {
     }
 
     /**
-     * »ØÄê¤µ¤ì¤¿¥Î¡¼¥É¤¬ literal Í×ÁÇ¤«
+     * æŒ‡å®šã•ã‚ŒãŸãƒãƒ¼ãƒ‰ãŒ literal è¦ç´ ã‹
      * @param node
      * @return
      */

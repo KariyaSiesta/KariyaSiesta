@@ -5,15 +5,15 @@
 	<target name="javadoc" description="Javadoc">
 		<delete dir="${javadoc.dir}" />
 		<mkdir dir="${javadoc.dir}" />
-		<javadoc sourcepath="src" packagenames="*" destdir="${javadoc.dir}" 
-			author="true" version="true" use="true" 
-			encoding="EUC-JP" charset="EUC-JP"
+		<javadoc sourcepath="src" packagenames="*" destdir="${javadoc.dir}"
+			author="true" version="true" use="true"
+			encoding="UTF-8" charset="UTF-8"
 			windowtitle="${app.title}">
 			<doctitle>
 				<![CDATA[<h1>KariyaSiesta</h1>]]>
 			</doctitle>
 			<bottom>
-				<![CDATA[<i>Copyright (C) 2010 CodeFirst. All rights reserved.</i>]]>
+				<![CDATA[<i>Copyright (C) 2010 RAISIN. All rights reserved.</i>]]>
 			</bottom>
 		</javadoc>
 	</target>

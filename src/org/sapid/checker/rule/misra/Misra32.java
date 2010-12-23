@@ -28,45 +28,45 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 32 Îóµó»ÒÊÂ¤Ó¤Ë¤ª¤¤¤Æ¡¤¤¹¤Ù¤Æ¤Î¹àÌÜ¤¬ÌÀÇò¤Ë½é´ü²½¤µ¤ì¤Ê¤¤¸Â¤ê¡¤Âè°ì¹à°Ê³°¤Î¥á¥ó¥Ğ¤ò'='¤ò»ÈÍÑ¤·¤Æ½é´ü²½¤·¤Æ¤Ï¤Ê¤é¤Ê¤¤
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 32 åˆ—æŒ™å­ä¸¦ã³ã«ãŠã„ã¦ï¼Œã™ã¹ã¦ã®é …ç›®ãŒæ˜ç™½ã«åˆæœŸåŒ–ã•ã‚Œãªã„é™ã‚Šï¼Œç¬¬ä¸€é …ä»¥å¤–ã®ãƒ¡ãƒ³ãƒã‚’'='ã‚’ä½¿ç”¨ã—ã¦åˆæœŸåŒ–ã—ã¦ã¯ãªã‚‰ãªã„
  *
  * @author Eiji Hirumuta
  */
 public class Misra32 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "MISRA-C Rule 32";
 
-	/** ½èÍı·Ï¤Îint·¿¤ÇÉ½¸½¤Ç¤­¤ëºÇÂçÃÍ */
+	/** å‡¦ç†ç³»ã®intå‹ã§è¡¨ç¾ã§ãã‚‹æœ€å¤§å€¤ */
 	private final static int INT_MAX = (1<<(StandardType.getIntLength()-1))-1 ;
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
 	 *
 	 * @return results
 	 */
 	public List<Result> check(IFile file, CheckRule rule) {
 		CFileElement cfile = new CFileElement(file.getDOM());
 
-		// enum Àë¸À¤òÃµ¤¹
+		// enum å®£è¨€ã‚’æ¢ã™
 		NodeList tags = cfile.getElem().getElementsByTagName("Tag");
 		for (int i = 0; i < tags.getLength(); i++) {
 			CTagElement tag = new CTagElement((Element) tags.item(i));
 			if (tag.getFirstChildNode("kw").getTextContent().equals("enum")) {
-				// Ãæ¤ÎÊÑ¿ô¤ò¼èÆÀ¤·¡¤¥Á¥§¥Ã¥¯¤¹¤ë
+				// ä¸­ã®å¤‰æ•°ã‚’å–å¾—ã—ï¼Œãƒã‚§ãƒƒã‚¯ã™ã‚‹
 				Element[] enums = tag.getChildrenNode("Enum");
-				// ½é´ü²½¼°¤«¤é»Ï¤Ş¤ë¾ì¹ç
+				// åˆæœŸåŒ–å¼ã‹ã‚‰å§‹ã¾ã‚‹å ´åˆ
 				if (enums[0].getTextContent().contains("=")) {
 					for (int j = 1; j < 2; j++) {
-						// Æó¤ÄÌÜ°Ê¹ß =
+						// äºŒã¤ç›®ä»¥é™ =
 						if (enums[j].getTextContent().contains("=")) {
 							for (int k = j + 1; k < enums.length; k++) {
 								if (!(enums[k].getTextContent().contains("="))) {
@@ -75,7 +75,7 @@ public class Misra32 implements CheckerClass {
 								}
 							}
 						} else {
-							// Æó¤ÄÌÜ°Ê¹ß = ¤Ç¤Ê¤¤
+							// äºŒã¤ç›®ä»¥é™ = ã§ãªã„
 							int max_f = 0;
 							for (int k = j + 1; k < enums.length; k++) {
 								if ((enums[k].getTextContent().contains("="))) {
@@ -84,7 +84,7 @@ public class Misra32 implements CheckerClass {
 									break;
 								}
 							}
-							// 2¤ÄÌÜ°Ê¹ß¤¬¥ª¡¼¥Ğ¥Õ¥í¡¼¤·¤Ê¤¤¤«¤É¤¦¤«¥Á¥§¥Ã¥¯
+							// 2ã¤ç›®ä»¥é™ãŒã‚ªãƒ¼ãƒãƒ•ãƒ­ãƒ¼ã—ãªã„ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 							/*
 							 * if (max_f == 0) { if (checkMaximum(enums[0])) {
 							 * problemNodes.add(enums[1]); } }
@@ -103,7 +103,7 @@ public class Misra32 implements CheckerClass {
 						}
 					}
 				} else {
-					// ½é´ü²½¤·¤Ê¤¤¼°¤«¤é»Ï¤Ş¤ë¾ì¹ç
+					// åˆæœŸåŒ–ã—ãªã„å¼ã‹ã‚‰å§‹ã¾ã‚‹å ´åˆ
 					for (int j = 1; j < enums.length; j++) {
 						if (enums[j].getTextContent().contains("=")) {
 							problemNodes.add(enums[j]);
@@ -115,7 +115,7 @@ public class Misra32 implements CheckerClass {
 		}
 
 
-		// enum ¤ÎÊÑ¿ôÀë¸À¤òÃµ¤¹
+		// enum ã®å¤‰æ•°å®£è¨€ã‚’æ¢ã™
 		CExpressionElement[] es = cfile.getExpressions();
 		for (int i = 0; i < es.length; i++) {
 			if (es[i].getSortEnum() == Sort.SIZEOF) {
@@ -125,11 +125,11 @@ public class Misra32 implements CheckerClass {
 						CVariableReference varRef = new CVariableReference(
 								ess[j].getElem());
 						CDeclarationElement dec = varRef.getDeclaration();
-						// enum ¤«¤É¤¦¤«¥Á¥§¥Ã¥¯
+						// enum ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 						Element[] kw = dec.getChildrenNode("kw");
 						for (int k = 0; k < kw.length; k++) {
 							if (kw[k].getTextContent().equals("enum")) {
-								// ºÇ¸å¤Î ident ¤¬ÊÑ¿ôÌ¾¤Ë¤Ê¤ë
+								// æœ€å¾Œã® ident ãŒå¤‰æ•°åã«ãªã‚‹
 								Element[] idents = dec.getChildrenNode("ident");
 								if (idents[idents.length - 1].getTextContent()
 										.equals(
@@ -144,7 +144,7 @@ public class Misra32 implements CheckerClass {
 			}
 		}
 
-		/* ¸¡½Ğ·ë²Ì¤òÊÖ¤êÃÍ¤ËÄÉ²Ã */
+		/* æ¤œå‡ºçµæœã‚’è¿”ã‚Šå€¤ã«è¿½åŠ  */
 		for (Iterator<Element> itr = problemNodes.iterator(); itr.hasNext();) {
 			results.add(new Result(null, new NodeOffsetUtil(itr.next())
 					.getRange(), LEVEL, MESSAGE));

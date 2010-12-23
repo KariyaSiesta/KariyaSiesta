@@ -19,23 +19,23 @@ public class CForStatementElement extends CControlStatementElement {
     }
 
     /**
-     * for ¤Î½é´ü²½Ê¸¤ò¼èÆÀ¤¹¤ë<br>
+     * for ã®åˆæœŸåŒ–æ–‡ã‚’å–å¾—ã™ã‚‹<br>
      * for ($i=0,j=0$;i<10;i++){}<br>
-     * Â¸ºß¤·¤Ê¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹
+     * å­˜åœ¨ã—ãªã„å ´åˆã¯ null ã‚’è¿”ã™
      * @return
-     * @deprecated {@link #getInitialExpression()}¤ËÃÖ¤­´¹¤¨
+     * @deprecated {@link #getInitialExpression()}ã«ç½®ãæ›ãˆ
      */
     @Deprecated
     public CStatementElement getInitialStatement() {
-        // ºÇ½é¤Î ( ¤«¤é ; ¤Ş¤Ç¤Ë¤¢¤ë Stmt ¤òÊÖ¤¹
+        // æœ€åˆã® ( ã‹ã‚‰ ; ã¾ã§ã«ã‚ã‚‹ Stmt ã‚’è¿”ã™
         Element paren = getChildNodesByNodeNameAndText("op", "(")[0];
         Element semi = getChildNodesByNodeNameAndText("op", ";")[0];
         return getInnerStatement(paren, semi);
     }
     
     /**
-     * ½é´ü²½¼°¤ò¼èÆÀ¤¹¤ë
-     * @return ½é´ü²½¼° ¤¿¤À¤·¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¤Ïnull
+     * åˆæœŸåŒ–å¼ã‚’å–å¾—ã™ã‚‹
+     * @return åˆæœŸåŒ–å¼ ãŸã ã—è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯null
      */
     public CExpressionElement getInitialExpression() {
     	Element[] childExpressionElements = this.getChildrenNode("Expr");
@@ -48,16 +48,16 @@ public class CForStatementElement extends CControlStatementElement {
     }
 
     /**
-     * for ¤Î¾ò·ïÊ¸¤ò¼èÆÀ¤¹¤ë<br>
+     * for ã®æ¡ä»¶æ–‡ã‚’å–å¾—ã™ã‚‹<br>
      * for (i=0,j=0;$i<10$;i++){}<br>
-     * Â¸ºß¤·¤Ê¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹
+     * å­˜åœ¨ã—ãªã„å ´åˆã¯ null ã‚’è¿”ã™
      * @return
-     * @deprecated {@link #getConditionExpression()}¤ËÃÖ¤­´¹¤¨
+     * @deprecated {@link #getConditionExpression()}ã«ç½®ãæ›ãˆ
      */
     @Override
     @Deprecated
     public CStatementElement getConditionStatement() {
-        // °ì¸ÄÌÜ¤Î; ¤«¤éÆó¸ÄÌÜ¤Î ; ¤Ş¤Ç¤Ë¤¢¤ë Stmt ¤òÊÖ¤¹
+        // ä¸€å€‹ç›®ã®; ã‹ã‚‰äºŒå€‹ç›®ã® ; ã¾ã§ã«ã‚ã‚‹ Stmt ã‚’è¿”ã™
         Element[] semis = getChildNodesByNodeNameAndText("op", ";");
         return getInnerStatement(semis[0], semis[1]);
     }
@@ -74,23 +74,23 @@ public class CForStatementElement extends CControlStatementElement {
     }
 
     /**
-     * for ¤ÎÁı²ÃÊ¸¤ò¼èÆÀ¤¹¤ë<br>
+     * for ã®å¢—åŠ æ–‡ã‚’å–å¾—ã™ã‚‹<br>
      * for (i=0,j=0;i<10;$i++$){}<br>
-     * Â¸ºß¤·¤Ê¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹
+     * å­˜åœ¨ã—ãªã„å ´åˆã¯ null ã‚’è¿”ã™
      * @return
-     * @deprecated {@link #getIncrementalExpression()}¤ËÃÖ¤­´¹¤¨
+     * @deprecated {@link #getIncrementalExpression()}ã«ç½®ãæ›ãˆ
      */
     @Deprecated
     public CStatementElement getIncrementalStatement() {
-        // Æó¸ÄÌÜ¤Î ; ¤«¤é ) ¤Ş¤Ç¤Ë¤¢¤ë Stmt ¤òÊÖ¤¹
+        // äºŒå€‹ç›®ã® ; ã‹ã‚‰ ) ã¾ã§ã«ã‚ã‚‹ Stmt ã‚’è¿”ã™
         Element paren = getChildNodesByNodeNameAndText("op", ";")[1];
         Element semi = getChildNodesByNodeNameAndText("op", ")")[0];
         return getInnerStatement(paren, semi);
     }
 
     /**
-     * Áı²Ã¼°¤ò¼èÆÀ¤¹¤ë
-     * @return Áı²Ã¼° ¤¿¤À¤·¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¤Ïnull
+     * å¢—åŠ å¼ã‚’å–å¾—ã™ã‚‹
+     * @return å¢—åŠ å¼ ãŸã ã—è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯null
      */
     public CExpressionElement getIncrementalExpression() {
     	Element[] childExpressionElements = this.getChildrenNode("Expr");
@@ -103,7 +103,7 @@ public class CForStatementElement extends CControlStatementElement {
     }
 
     /**
-     * For Ê¸¤«¤É¤¦¤«
+     * For æ–‡ã‹ã©ã†ã‹
      * @param node
      * @return
      */
@@ -113,9 +113,9 @@ public class CForStatementElement extends CControlStatementElement {
     }
 
     /**
-     * for ¤Î¥Ö¥í¥Ã¥¯¤ò¼èÆÀ¤¹¤ë<br>
+     * for ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹<br>
      * for (i=0,j=0;i<10;i++)${}$<br>
-     * Â¸ºß¤·¤Ê¤¤¾ì¹ç¤Ï Ä¹¤µ 0 ¤ÎÇÛÎó ¤òÊÖ¤¹
+     * å­˜åœ¨ã—ãªã„å ´åˆã¯ é•·ã• 0 ã®é…åˆ— ã‚’è¿”ã™
      * @return
      */
     @Override

@@ -21,21 +21,21 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 79
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 79
  * 
  * @author Eiji Hirumuta
  */
 public class Misra79 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "MISRA-C Rule 79";
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	public List<Result> check(IFile file, CheckRule rule) {
@@ -46,10 +46,10 @@ public class Misra79 implements CheckerClass {
 			if (!expression.isAssign()) {
 				continue;
 			}
-			// ÂåÆşÊ¸¤Î¤È¤­
+			// ä»£å…¥æ–‡ã®ã¨ã
 			CAssignExpressionElement assign = new CAssignExpressionElement(
 					expression.getElem());
-			// ±¦ÊÕ¤ò²òÀÏ
+			// å³è¾ºã‚’è§£æ
 			CExpressionElement right = assign.getRightHandExpression();
 			if (right == null) {
 				continue;

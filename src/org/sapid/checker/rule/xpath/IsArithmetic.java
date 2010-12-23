@@ -13,7 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * ����Expr���ǡˤ����ѱ黻�����ɤ�����Ĵ�٤�XPath�ؿ�
+ * 式（Expr要素）が算術演算式かどうかを調べるXPath関数
  * @author uehara
  */
 public class IsArithmetic implements XPathFunction {
@@ -83,16 +83,16 @@ public class IsArithmetic implements XPathFunction {
 	}
 	
 	/**
-	 * element�����ѱ黻���Ǥ��뤫�ݤ���Ƚ�ꤹ�롣
-	 * �����Ǥ������ѱ黻���Ȥϡ�Expr���ǤǤ��ꡢ
-	 * �Ҥ�op����1�Ĥ�Expr�ޤ���macroCall����2�Ĥ������
-	 * ����3�Ĥλ����Ǥ�ʸ�������ˤ�����op���Ǥ�����Ǥ��ꡢ
-	 * op���ǤΥƥ����ȥ���ƥ�Ĥ� + - * \/ % += -= *= /= %= �Τ����줫�Ǥ����ΤǤ��롣
+	 * elementが算術演算式であるか否かを判定する。
+	 * ここでいう算術演算式とは、Expr要素であり、
+	 * 子にop要素1つとExprまたはmacroCall要素2つを持ち、
+	 * この3つの子要素の文書内順序においてop要素が中央であり、
+	 * op要素のテキストコンテンツが + - * \/ % += -= *= /= %= のいずれかであるものである。
 	 * 
-	 * TODO ���ε�ǽ��CExpressionElement�ˤ���٤�����
+	 * TODO この機能はCExpressionElementにあるべきか？
 	 * 
-	 * @param element ���ѱ黻���Ǥ��뤫�ݤ���Ƚ�ꤷ��������
-	 * @return element�����ѱ黻���Ǥ��뤫�ݤ�
+	 * @param element 算術演算式であるか否かを判定したい要素
+	 * @return elementが算術演算式であるか否か
 	 */
 	private boolean checkArithmeticExpression(Element element) {
 		if (! element.getTagName().equals("Expr")) {

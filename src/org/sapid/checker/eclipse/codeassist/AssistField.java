@@ -57,11 +57,11 @@ public class AssistField {
 					try {
 						target = IFileFactory .create(fullPath);
 					} catch (ParseException e) {
-						// TODO ¼«Æ°À¸À®¤µ¤ì¤¿ catch ¥Ö¥í¥Ã¥¯
+						// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸ catch ãƒ–ãƒ­ãƒƒã‚¯
 						e.printStackTrace();
 					}
 
-					/*******¹½Ê¸µ¬Â§¤«¤é*******/
+					/*******æ§‹æ–‡è¦å‰‡ã‹ã‚‰*******/
 
 					Concrete ca = new Concrete();
 					DTDControl dc = new DTDControl();
@@ -74,9 +74,9 @@ public class AssistField {
 
 
 
-					/*******node¤¬Íè¤ë¥¿¥¤¥ß¥ó¥°*********/
+					/*******nodeãŒæ¥ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°*********/
 					String targetString = "";
-					boolean tokenflag = false;   // node¤ÎÅÓÃæ¤ÇÊä´°
+					boolean tokenflag = false;   // nodeã®é€”ä¸­ã§è£œå®Œ
 					boolean halftokenflag = false;
 					for(int i = 0; i < tokenlist.size(); i++){
 						if(tokenlist.get(i).getSort().equals("node")){
@@ -91,7 +91,7 @@ public class AssistField {
 						}
 					}
 
-					/**********XPath¤ÎÀÚ¤êÊ¬¤±************/
+					/**********XPathã®åˆ‡ã‚Šåˆ†ã‘************/
 					ArrayList<String> xpathlist = new ArrayList<String>();
 					ArrayList<Integer> sinteger = new ArrayList<Integer>();
 					int predcounter = 0;
@@ -154,7 +154,7 @@ public class AssistField {
 						}
 					}
 
-					// and or¤Î½üµî
+					// and orã®é™¤å»
 					if(xpathlist.get(xpathlist.size()-1).matches(".+(\\s+)(and|or)(\\s+).*") && xpathlist.size() > 0 && predcounter > 0){
 						xpathlist.set(xpathlist.size()-1, xpathlist.get(xpathlist.size()-1).replaceAll(".+(\\s+)(and|or)\\s+", ""));
 					}
@@ -171,13 +171,13 @@ public class AssistField {
 					}
 
 
-					/*******DTD¤«¤é************/
+					/*******DTDã‹ã‚‰************/
 					if(tokenflag == true){
 						tlistfromDTD(targetString, dc);
 					}
 
 
-					/***************¥¤¥ó¥¹¥¿¥ó¥¹¤«¤é**********************/
+					/***************ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‹ã‚‰**********************/
 					if(tokenflag == true){
 						XPathChecker checker = new XPathChecker();
 						if(halftokenflag == false){
@@ -249,17 +249,17 @@ public class AssistField {
 					}
 
 				} catch (IOException e) {
-					// TODO ¼«Æ°À¸À®¤µ¤ì¤¿ catch ¥Ö¥í¥Ã¥¯
+					// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸ catch ãƒ–ãƒ­ãƒƒã‚¯
 					e.printStackTrace();
 				} catch (CloneNotSupportedException e) {
-					// TODO ¼«Æ°À¸À®¤µ¤ì¤¿ catch ¥Ö¥í¥Ã¥¯
+					// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸ catch ãƒ–ãƒ­ãƒƒã‚¯
 					e.printStackTrace();
 				}
 				return contentProposals;
 			}
 
 			private void tlistfromDTD(String targetString, DTDControl dtdcontrol) {
-				// TODO ¼«Æ°À¸À®¤µ¤ì¤¿¥á¥½¥Ã¥É¡¦¥¹¥¿¥Ö
+				// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 				DataSet dataset = new DataSet();
 				String prenode = "";
 				ArrayList<Token> dtdtokenlist = new ArrayList<Token>();

@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Stmt sort="Switch" Í×ÁÇ
+ * Stmt sort="Switch" è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CSwitchStatementElement extends CControlStatementElement {
@@ -22,10 +22,10 @@ public class CSwitchStatementElement extends CControlStatementElement {
     }
 
     /**
-     * ¾ò·ïÊ¸¤ò¼èÆÀ¤¹¤ë switch ($a$) { hoge(); case 1: piyo(); case 2: fuga(); }<br>
-     * Ìµ¤¤¾ì¹ç¤Ï null ¤¬ÊÖ¤ë
+     * æ¡ä»¶æ–‡ã‚’å–å¾—ã™ã‚‹ switch ($a$) { hoge(); case 1: piyo(); case 2: fuga(); }<br>
+     * ç„¡ã„å ´åˆã¯ null ãŒè¿”ã‚‹
      * @return
-     * @deprecated {@link #getConditionExpression()}¤ËÃÖ¤­´¹¤¨
+     * @deprecated {@link #getConditionExpression()}ã«ç½®ãæ›ãˆ
      */
     @Override
     @Deprecated
@@ -45,8 +45,8 @@ public class CSwitchStatementElement extends CControlStatementElement {
     }
     
     /**
-     * Ãæ¿È¤Î¥Ö¥í¥Ã¥¯Ê¸¤òÊÖ¤¹
-     * @return Ãæ¿È¤Î¥Ö¥í¥Ã¥¯Ê¸ ¤¿¤À¤·¸«¤Ä¤«¤é¤Ê¤«¤Ã¤¿¾ì¹ç¤Ïnull
+     * ä¸­èº«ã®ãƒ–ãƒ­ãƒƒã‚¯æ–‡ã‚’è¿”ã™
+     * @return ä¸­èº«ã®ãƒ–ãƒ­ãƒƒã‚¯æ–‡ ãŸã ã—è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯null
      */
     public CStatementElement getContentBlockStatement() {
     	Element[] childElements = this.getChildStatementsAndLocals();
@@ -67,8 +67,8 @@ public class CSwitchStatementElement extends CControlStatementElement {
     }
 
     /*
-     * °ìÈÖ½é¤á¤Î case °Ê¹ß¤¬ÊÖ¤ë<br> switch ($a$) { hoge(); $case 1: piyo(); case 2:
-     * fuga(); $}<br> case ¤¬1¤Ä¤âÌµ¤¤¾ì¹ç¤Ë¤Ï ¶õ¤ÎÇÛÎó¤¬ÊÖ¤ë
+     * ä¸€ç•ªåˆã‚ã® case ä»¥é™ãŒè¿”ã‚‹<br> switch ($a$) { hoge(); $case 1: piyo(); case 2:
+     * fuga(); $}<br> case ãŒ1ã¤ã‚‚ç„¡ã„å ´åˆã«ã¯ ç©ºã®é…åˆ—ãŒè¿”ã‚‹
      */
     // @Override
     // public Element[] getTrueBlock() {
@@ -96,7 +96,7 @@ public class CSwitchStatementElement extends CControlStatementElement {
     // return (Element[]) list.toArray(new Element[list.size()]);
     // }
     /**
-     * Label ¤ÎÄ¾¸å¤Ë¤¢¤ë Stmt ¤Î¥ê¥¹¥È¤òÊÖ¤¹<br>
+     * Label ã®ç›´å¾Œã«ã‚ã‚‹ Stmt ã®ãƒªã‚¹ãƒˆã‚’è¿”ã™<br>
      * @return
      */
     public Element[] getStatementsNextLabel() {
@@ -119,7 +119,7 @@ public class CSwitchStatementElement extends CControlStatementElement {
     }
     
     /**
-     * Case ¤« Default ¤Î¥é¥Ù¥ë¤Î¥ê¥¹¥È¤òÊÖ¤¹
+     * Case ã‹ Default ã®ãƒ©ãƒ™ãƒ«ã®ãƒªã‚¹ãƒˆã‚’è¿”ã™
      * @return
      */
     public CLabelElement[] getCaseOrDefaultLabels() {
@@ -134,7 +134,7 @@ public class CSwitchStatementElement extends CControlStatementElement {
     }
 
     /**
-     * Switch Ê¸¤«¤É¤¦¤«
+     * Switch æ–‡ã‹ã©ã†ã‹
      * @param node
      * @return
      */

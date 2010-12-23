@@ -10,12 +10,12 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 /**
- * Function Í×ÁÇ
+ * Function è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CFunctionElement extends CDeclarationElement {
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CFunctionElement(Element elem) {
@@ -24,7 +24,7 @@ public class CFunctionElement extends CDeclarationElement {
     }
 
     /**
-     * °ú¿ô¤Î¥ê¥¹¥È¤òÊÖ¤¹
+     * å¼•æ•°ã®ãƒªã‚¹ãƒˆã‚’è¿”ã™
      * @return
      */
     public CParameterElement[] getParams() {
@@ -38,8 +38,8 @@ public class CFunctionElement extends CDeclarationElement {
     }
     
     /**
-     * ÄêµÁ¤Î¥Ö¥í¥Ã¥¯Ê¸¤òÊÖ¤¹
-     * @return ÄêµÁ¤Î¥Ö¥í¥Ã¥¯Ê¸ ¤¿¤À¤·¸«¤Ä¤«¤é¤Ê¤«¤Ã¤¿¾ì¹ç¤Ïnull
+     * å®šç¾©ã®ãƒ–ãƒ­ãƒƒã‚¯æ–‡ã‚’è¿”ã™
+     * @return å®šç¾©ã®ãƒ–ãƒ­ãƒƒã‚¯æ–‡ ãŸã ã—è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯null
      */
     public CStatementElement getContentBlockStatement() {
     	Element[] childElements = this.getChildStatementsAndLocals();

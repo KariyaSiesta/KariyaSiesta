@@ -10,7 +10,7 @@ import org.sapid.checker.ai.Value;
 import org.w3c.dom.Element;
 
 /**
- * ¶ñÂÎÃÍ¤Ë¤è¤ë³ä»»¤òÉ½¸½¤¹¤ë¥¯¥é¥¹
+ * å…·ä½“å€¤ã«ã‚ˆã‚‹å‰²ç®—ã‚’è¡¨ç¾ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author hirumuta
  *
  */

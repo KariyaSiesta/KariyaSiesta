@@ -18,17 +18,17 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 47
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 47
  * @author Toshinori OSUKA
  */
 public class Misra47 implements CheckerClass {
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 47";
 
-    /** ¸¡ºº·ë²Ì */
+    /** æ¤œæŸ»çµæœ */
     List<Result> results = new ArrayList<Result>();
 
     public List<Result> check(IFile file, CheckRule rule) {
@@ -41,7 +41,7 @@ public class Misra47 implements CheckerClass {
                 continue;
             }
             boolean isWeak = isWeak(exprs[i]);
-            // Ï¢Â³¤¹¤ë±é»»¤Ï CX-model ¤Ç¤Ï¿Æ»Ò´Ø·¸¤Î Expr ¤Ë¤Ê¤ë
+            // é€£ç¶šã™ã‚‹æ¼”ç®—ã¯ CX-model ã§ã¯è¦ªå­é–¢ä¿‚ã® Expr ã«ãªã‚‹
             Node parent = exprs[i].getElem().getParentNode();
             if (!CExpressionElement.isExpression(parent)) {
                 continue;
@@ -57,7 +57,7 @@ public class Misra47 implements CheckerClass {
     }
 
     /**
-     * ±é»»¤Ç¤Ï¤Ê¤¤¤â¤Î¡¤³ç¸Ì±é»»¤ò½ü¤¯
+     * æ¼”ç®—ã§ã¯ãªã„ã‚‚ã®ï¼Œæ‹¬å¼§æ¼”ç®—ã‚’é™¤ã
      * @param expr
      * @return
      */
@@ -66,7 +66,7 @@ public class Misra47 implements CheckerClass {
     }
 
     /**
-     * Ï¢Â³¤·¤Æ¤âÌäÂê¤Î¤Ê¤¤±é»»»Ò¤«¤É¤¦¤«
+     * é€£ç¶šã—ã¦ã‚‚å•é¡Œã®ãªã„æ¼”ç®—å­ã‹ã©ã†ã‹
      * @param expr
      * @return
      */

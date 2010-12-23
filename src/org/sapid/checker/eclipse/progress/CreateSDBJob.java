@@ -14,7 +14,7 @@ import org.sapid.checker.eclipse.Messages;
 import org.eclipse.core.runtime.Status;
 
 /***
- * SDBÀ¸À®¤ò¥Ğ¥Ã¥¯¥°¥é¥¦¥ó¥É¤Ç¹Ô¤Ê¤¦¤¿¤á¤Î¥¸¥ç¥Ö
+ * SDBç”Ÿæˆã‚’ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã§è¡Œãªã†ãŸã‚ã®ã‚¸ãƒ§ãƒ–
  *
  * @author mzp
  */
@@ -84,7 +84,7 @@ public class CreateSDBJob extends Job {
 	}
 
 	/**
-	 * Windows ¥Ñ¥¹¤Î SAPID_DEST ¤«¤é Unix ¥Ñ¥¹¤ò¼èÆÀ¤¹¤ë¤¿¤á¤Ë CygPath ¤ò kick ¤¹¤ë
+	 * Windows ãƒ‘ã‚¹ã® SAPID_DEST ã‹ã‚‰ Unix ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ãŸã‚ã« CygPath ã‚’ kick ã™ã‚‹
 	 * 
 	 * @param monitor
 	 * @param sapidDest
@@ -101,7 +101,7 @@ public class CreateSDBJob extends Job {
 	}
 
 	/**
-	 * SDB4 ¤ò Kick ¤¹¤ë
+	 * SDB4 ã‚’ Kick ã™ã‚‹
 	 * 
 	 * @param monitor
 	 * @param sapidDestUnix
@@ -126,7 +126,7 @@ public class CreateSDBJob extends Job {
 	}
 
 	/**
-	 * spdMkCXModel ¤ò Kick ¤¹¤ë
+	 * spdMkCXModel ã‚’ Kick ã™ã‚‹
 	 * 
 	 * @param monitor
 	 * @param sapidDestUnix
@@ -152,7 +152,7 @@ public class CreateSDBJob extends Job {
 	}
 
 	/**
-	 * Progress Monitor ¤Ë¾õ¶·¤òÉ½¼¨¤¹¤ë CommandOutput
+	 * Progress Monitor ã«çŠ¶æ³ã‚’è¡¨ç¤ºã™ã‚‹ CommandOutput
 	 * 
 	 * @author Toshinori OSUKA
 	 */

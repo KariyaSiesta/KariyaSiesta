@@ -11,12 +11,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Global Í×ÁÇ
+ * Global è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CGlobalElement extends CVariableDeclarationElement {
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CGlobalElement(Element elem) {
@@ -25,7 +25,7 @@ public class CGlobalElement extends CVariableDeclarationElement {
     }
 
     /**
-     * »²¾È²Õ½ê¤òÊÖ¤¹
+     * å‚ç…§ç®‡æ‰€ã‚’è¿”ã™
      * @return
      */
     public CVariableReference[] getReferences() {
@@ -48,7 +48,7 @@ public class CGlobalElement extends CVariableDeclarationElement {
     }
 
     /**
-     * Global Í×ÁÇ¤«
+     * Global è¦ç´ ã‹
      * @param node
      * @return
      */

@@ -24,25 +24,25 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * MISRA-C ¥ë¡¼¥ë 18 Å¬ÀÚ¤ÊÀÜÈø¸ì¤¬ÍøÍÑ¤Ç¤­¤ë¤Ê¤é¡¤Äê¿ô¤Ï·¿¤ò¼¨¤¹ÀÜÈø¸ì¤ò¤Ä¤±¤Ê¤ì¤«¤Ğ¤Ê¤é¤Ê¤¤
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 18 é©åˆ‡ãªæ¥å°¾èªãŒåˆ©ç”¨ã§ãã‚‹ãªã‚‰ï¼Œå®šæ•°ã¯å‹ã‚’ç¤ºã™æ¥å°¾èªã‚’ã¤ã‘ãªã‚Œã‹ã°ãªã‚‰ãªã„
  * 
  * @author Eiji Hirumuta
  */
 public class Misra18 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "MISRA-C Rule 18";
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	/*
-	 * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+	 * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
 	 * 
 	 * @return results
 	 */
@@ -55,13 +55,13 @@ public class Misra18 implements CheckerClass {
 			if (expressions[i].isAssign()) {
 				CAssignExpressionElement ae = new CAssignExpressionElement(
 						expressions[i].getElem());
-				// ±¦ÊÕ¤Î¥Á¥§¥Ã¥¯
+				// å³è¾ºã®ãƒã‚§ãƒƒã‚¯
 				CExpressionElement rightElem = ae.getRightHandExpression();
-				// »»½Ñ±é»»¤Ê¤Î¤Ç¿ô»ú¤Î¤ß
+				// ç®—è¡“æ¼”ç®—ãªã®ã§æ•°å­—ã®ã¿
 				if (rightElem.isArith()) {
 					Set<String> sign = new HashSet<String>();
 					Set<String> byteType = new HashSet<String>();
-					// ¥ê¥Æ¥é¥ë¤òÃµ¤·½Ğ¤¹
+					// ãƒªãƒ†ãƒ©ãƒ«ã‚’æ¢ã—å‡ºã™
 					CLiteralElement[] ls = rightElem.getLiterals();
 					for (int j = 0; j < ls.length; j++) {
 						// System.out.println(ls[j].getElem().getTextContent());
@@ -82,7 +82,7 @@ public class Misra18 implements CheckerClass {
 						}
 					}
 
-					// ÊÑ¿ô»²¾È¤òÃµ¤¹
+					// å¤‰æ•°å‚ç…§ã‚’æ¢ã™
 					CExpressionElement[] es = rightElem.getExpressions();
 					for (int j = 0; j < es.length; j++) {
 						if (es[j].isVarRef()) {
@@ -103,11 +103,11 @@ public class Misra18 implements CheckerClass {
 						}
 					}
 					
-					// ±¦ÊÕ¤Î±é»»¤Ç signed ¤È unsigned ¤¬ÉÔ°ìÃ×¤Î¾ì¹ç
+					// å³è¾ºã®æ¼”ç®—ã§ signed ã¨ unsigned ãŒä¸ä¸€è‡´ã®å ´åˆ
 					if (sign.size() != 1) {
 						problemNodes.add(rightElem.getElem());
 					} else {
-						// º¸ÊÕ¤Î¥Á¥§¥Ã¥¯
+						// å·¦è¾ºã®ãƒã‚§ãƒƒã‚¯
 						CExpressionElement leftElem = ae
 								.getLeftHandExpression();
 						CVariableReference leftVarRef = new CVariableReference(
@@ -124,11 +124,11 @@ public class Misra18 implements CheckerClass {
 								long_f = 1;
 							}
 						}
-						// ±¦ÊÕ¤Èº¸ÊÕ¤Î signed ¤È unsigned ¤¬ÉÔ°ìÃ×¤Î¾ì¹ç
+						// å³è¾ºã¨å·¦è¾ºã® signed ã¨ unsigned ãŒä¸ä¸€è‡´ã®å ´åˆ
 						if (sign.size() != 1) {
 							problemNodes.add(leftElem.getElem());
 						}
-						// º¸ÊÕ¤¬ long ¤Ç¤Ï¤Ê¤¯¡¤¤«¤Ä¡¤±¦ÊÕ¤¬ long¤Ç¤¢¤ë¤È¤­
+						// å·¦è¾ºãŒ long ã§ã¯ãªãï¼Œã‹ã¤ï¼Œå³è¾ºãŒ longã§ã‚ã‚‹ã¨ã
 						if (long_f == 0 && byteType.contains("long")) {
 							problemNodes.add(leftElem.getElem());
 						}
@@ -137,7 +137,7 @@ public class Misra18 implements CheckerClass {
 			}
 		}
 
-		/* ¸¡½Ğ·ë²Ì¤òÊÖ¤êÃÍ¤ËÄÉ²Ã */
+		/* æ¤œå‡ºçµæœã‚’è¿”ã‚Šå€¤ã«è¿½åŠ  */
 		for (Iterator<Element> itr = problemNodes.iterator(); itr.hasNext();) {
 			results.add(new Result(null, new NodeOffsetUtil(itr.next())
 					.getRange(), LEVEL, MESSAGE));

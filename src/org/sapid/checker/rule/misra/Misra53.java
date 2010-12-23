@@ -23,13 +23,13 @@ import org.w3c.dom.Element;
  */
 public class Misra53 implements CheckerClass {
 
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 53";
 
-    /** ¸¡ºº·ë²Ì */
+    /** æ¤œæŸ»çµæœ */
     List<Result> results = new ArrayList<Result>();
 
     public List<Result> check(IFile file, CheckRule rule) {
@@ -38,11 +38,11 @@ public class Misra53 implements CheckerClass {
 
         CStatementElement[] stmts = cfile.getStatments();
         for (int i = 0; i < stmts.length; i++) {
-            // ÉûºîÍÑ¤ò»ı¤Ä¤â¤Î¤ÏÌµ»ë
+            // å‰¯ä½œç”¨ã‚’æŒã¤ã‚‚ã®ã¯ç„¡è¦–
             if (stmts[i].hasSideEffect()) {
                 continue;
             }
-            // À©¸æÊ¸¤âÌµ»ë
+            // åˆ¶å¾¡æ–‡ã‚‚ç„¡è¦–
             Element parent = (Element) stmts[i].getElem().getParentNode();
             if (CControlStatementElement.isControlStatement(parent)) {
                 if (CControlStatementElement.getInstance(parent)

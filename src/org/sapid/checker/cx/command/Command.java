@@ -13,17 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * "java -version" ¤Ê¤É¤Î¥³¥Ş¥ó¥É¤ò¼Â¹Ô¤¹¤ë¥¯¥é¥¹
+ * "java -version" ãªã©ã®ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author Toshinori OSUKA
  */
 public class Command {
-    /** ¼Â¹Ô¤¹¤ë¥³¥Ş¥ó¥É */
+    /** å®Ÿè¡Œã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ */
     protected String command;
-    /** ¥«¥ì¥ó¥È¥Ç¥£¥ì¥¯¥È¥ê */
+    /** ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª */
     protected String curDir;
 
     /**
-     * ¼Â¹Ô¥³¥Ş¥ó¥É¤òÀßÄê
+     * å®Ÿè¡Œã‚³ãƒãƒ³ãƒ‰ã‚’è¨­å®š
      * @param command
      */
     public Command(String command, String curDir) {
@@ -33,9 +33,9 @@ public class Command {
     }
 
     /**
-     * ¼Â¹Ô¤¹¤ë
-     * @param output ¼Â¹Ô·ë²Ì¤òÅÏ¤¹ Output (null ¤â²Ä)
-     * @return ¼Â¹Ô¤·¤¿¥×¥í¥°¥é¥à¤Î exitValue
+     * å®Ÿè¡Œã™ã‚‹
+     * @param output å®Ÿè¡Œçµæœã‚’æ¸¡ã™ Output (null ã‚‚å¯)
+     * @return å®Ÿè¡Œã—ãŸãƒ—ãƒ­ã‚°ãƒ©ãƒ ã® exitValue
      * @throws IOException
      */
     public int run(CommandOutput output) throws IOException {
@@ -51,8 +51,8 @@ public class Command {
         String line;
         while (true) {
             try {
-                // sleep ¤ò¤·¤Ê¤¤¤È¥³¥Ş¥ó¥É¤Îµ¯Æ°Á°¤Ë¥ë¡¼¥×¤òÈ´¤±¤Æ¤·¤Ş¤¦¤³¤È¤¬¤¢¤ë
-                // »ş´Ö¤Ï¤¢¤Ş¤ê½ÅÍ×¤Ç¤Ï¤Ê¤¤
+                // sleep ã‚’ã—ãªã„ã¨ã‚³ãƒãƒ³ãƒ‰ã®èµ·å‹•å‰ã«ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã¦ã—ã¾ã†ã“ã¨ãŒã‚ã‚‹
+                // æ™‚é–“ã¯ã‚ã¾ã‚Šé‡è¦ã§ã¯ãªã„
                 Thread.sleep(100);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
@@ -75,7 +75,7 @@ public class Command {
     }
 
     /**
-     * ¥¹¥Ú¡¼¥¹¤È¥¯¥©¡¼¥È¤Ç¥Ñ¥¹¤ò¥¹¥×¥ê¥Ã¥È¤¹¤ë
+     * ã‚¹ãƒšãƒ¼ã‚¹ã¨ã‚¯ã‚©ãƒ¼ãƒˆã§ãƒ‘ã‚¹ã‚’ã‚¹ãƒ—ãƒªãƒƒãƒˆã™ã‚‹
      * @param command
      * @return
      */

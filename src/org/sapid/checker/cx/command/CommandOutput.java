@@ -5,14 +5,14 @@
 package org.sapid.checker.cx.command;
 
 /**
- * Command ╔╞╔И╔╧╓╛фи╓ъ╧Ч╓С╓ю╪б╧т╥К╡л╓Р╪У╓╠╪Х╓К
+ * Command Ц┌╞Ц┐╘Ц┌╧Ц│▄Х╙╜Ц│©Х╬╪Ц┌⌠Ц│═Е╝÷Х║▄Г╣░Ф·°Ц┌▓Е▐≈Ц│▒Е▐√Ц┌▀
  * @author Toshinori OSUKA
  */
 public interface CommandOutput {
     /**
-     * ╟Л╧т╓╨╓д╪б╧т╥К╡л╓╛ео╓╣╓Л╓К
+     * Д╦─Х║▄Ц│ Ц│╓Е╝÷Х║▄Г╣░Ф·°Ц│▄Ф╦║Ц│∙Ц┌▄Ц┌▀
      * @param buffer
-     * @return ╪б╧т╥К╡л║й╟Л╧т║к
+     * @return Е╝÷Х║▄Г╣░Ф·°О╪┬Д╦─Х║▄О╪┴
      */
     String hook(String buffer);
 }

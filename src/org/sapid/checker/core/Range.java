@@ -16,7 +16,7 @@
 package org.sapid.checker.core;
 
 /**
- * hit¤·¤¿XPath¤ÎÈÏ°Ï¤ò³ÊÇ¼¤¹¤ë¥¯¥é¥¹
+ * hitã—ãŸXPathã®ç¯„å›²ã‚’æ ¼ç´ã™ã‚‹ã‚¯ãƒ©ã‚¹
  */
 public class Range {
     private int startLine;

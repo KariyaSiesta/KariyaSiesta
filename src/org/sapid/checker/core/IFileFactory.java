@@ -11,8 +11,8 @@ import org.sapid.checker.jspfile.JSPFile;
 import org.sapid.parser.common.ParseException;
 
 /**
- * IFile д╬е╒ебепе╚еъепеще╣<br />
- * │╚─е╗╥дм .jsp д╩дщ JSPFile дЄ╩╓д╖бд д╜дь░╩│░д╩дщ CFile е╒ебедеыдЄ╩╓д╣
+ * IFile уБоуГХуВбуВпуГИуГкуВпуГйуВ╣<br />
+ * цЛбх╝╡хнРуБМ .jsp уБкуВЙ JSPFile уВТш┐ФуБЧя╝М уБЭуВМф╗ехдЦуБкуВЙ CFile уГХуВбуВдуГлуВТш┐ФуБЩ
  * @author Toshinori OSUKA
  */
 public class IFileFactory {

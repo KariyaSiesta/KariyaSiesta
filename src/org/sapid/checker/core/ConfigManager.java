@@ -15,39 +15,39 @@ import org.sapid.checker.cx.command.Command;
 import org.sapid.checker.cx.command.SimpleCommandOutput;
 
 /**
- * CXC.conf¤ÎÆÉ¤ß½ñ¤­¤ò¹Ô¤¦¥Ş¥Í¡¼¥¸¥ã¡¼
+ * CXC.confã®èª­ã¿æ›¸ãã‚’è¡Œã†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
  * @author takai
  *
  */
 public class ConfigManager {
 	/**
-	 * <SAPID_DEST> ¥Ç¥£¥ì¥¯¥È¥ê¤Ø¤Î¥Ñ¥¹¡¥
-	 * ´Ä¶­ÊÑ¿ô SAPID_DEST ¤¬ÀßÄê¤µ¤ì¤Æ¤¤¤Ê¤¤¾ì¹ç¡¤ÃÍ¤Ï null¡¥
+	 * <SAPID_DEST> ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¸ã®ãƒ‘ã‚¹ï¼
+	 * ç’°å¢ƒå¤‰æ•° SAPID_DEST ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆï¼Œå€¤ã¯ nullï¼
 	 */
 	public static final String SAPID_DEST = System.getenv("SAPID_DEST");
 	/**
-	 * CX-Checker¤ÎÀßÄê¥Õ¥¡¥¤¥ë¤Ø¤Î¥Ñ¥¹¡¥(SAPID_DEST¤«¤é¤ÎÁêÂĞ¥Ñ¥¹)¡¥
+	 * CX-Checkerã®è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹ï¼(SAPID_DESTã‹ã‚‰ã®ç›¸å¯¾ãƒ‘ã‚¹)ï¼
 	 */
 	private static final String CXC_PROPERTIES_FILE_PATH = "lib/CXC.conf";
 
 	/**
-	 * ÀßÄê¥Õ¥¡¥¤¥ëÆÉ¤ß¹ş¤ß¤¬Í­¸ú¤«¤É¤¦¤«¤òÊÖ¤¹¡£
+	 * è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’è¿”ã™ã€‚
 	 */
 	public static boolean isEnableConfig() {
 		return getPropertiesFilePath()!=null;
 	}
 	
 	/**
-	 * ÀßÄê¥Õ¥¡¥¤¥ë (CXC.conf) ¤Ø¤Î¥Ñ¥¹¤òÊÖ¤¹¡¥¥Ñ¥¹¤¬µá¤á¤é¤ì¤Ê¤¤¾ì¹ç null ¤òÊÖ¤¹¡¥
+	 * è¨­å®šãƒ•ã‚¡ã‚¤ãƒ« (CXC.conf) ã¸ã®ãƒ‘ã‚¹ã‚’è¿”ã™ï¼ãƒ‘ã‚¹ãŒæ±‚ã‚ã‚‰ã‚Œãªã„å ´åˆ null ã‚’è¿”ã™ï¼
 	 */
 	private static String getPropertiesFilePath() {
 		String propertiesFilePath = null;
 		
-		if (SAPID_DEST != null) { // ´Ä¶­ÊÑ¿ô SAPID_DEST ¤¬ÀßÄê¤µ¤ì¤Æ¤¤¤ë¾ì¹ç
+		if (SAPID_DEST != null) { // ç’°å¢ƒå¤‰æ•° SAPID_DEST ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹å ´åˆ
 			SimpleCommandOutput simpleCommandOutput = new SimpleCommandOutput();
 			try {
 				String sapidDestValidPath = SAPID_DEST;
-				if (System.getProperty("os.name").contains("Windows")) { // Windows ¤Î¾ì¹ç¡¤Cygwin ·Á¼°¤Î¥Ñ¥¹¤Ï Java ¤«¤é°·¤¨¤Ê¤¤¤¿¤á¡¤Windows·Á¼°¤Î¥Ñ¥¹¤ËÊÑ´¹¤¹¤ëÉ¬Í×¤¬¤¢¤ë¡¥
+				if (System.getProperty("os.name").contains("Windows")) { // Windows ã®å ´åˆï¼ŒCygwin å½¢å¼ã®ãƒ‘ã‚¹ã¯ Java ã‹ã‚‰æ‰±ãˆãªã„ãŸã‚ï¼ŒWindowså½¢å¼ã®ãƒ‘ã‚¹ã«å¤‰æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ï¼
 					new Command("cygpath -w \"" + SAPID_DEST + "\"",  System.getProperty("user.dir")).run(simpleCommandOutput);
 					sapidDestValidPath =  simpleCommandOutput.getOutput();
 				}
@@ -66,8 +66,8 @@ public class ConfigManager {
 	}
 	
 	/**
-	 * ¥×¥í¥Ñ¥Æ¥£¤Î¼èÆÀ
-	 * @param properties ¼èÆÀ¤¹¤ë¥×¥í¥Ñ¥Æ¥£Ì¾¤ò¥­¡¼¤Ë»ı¤Ä¥Ş¥Ã¥×
+	 * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
+	 * @param properties å–å¾—ã™ã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åã‚’ã‚­ãƒ¼ã«æŒã¤ãƒãƒƒãƒ—
 	 */
 	public static void getProperty(HashMap<String, String> properties) {
 		if (properties!=null) {
@@ -76,9 +76,9 @@ public class ConfigManager {
 	}
 	
 	/**
-	 * ¥×¥í¥Ñ¥Æ¥£¤Î¼èÆÀ
-	 * @param key ¥×¥í¥Ñ¥Æ¥£Ì¾
-	 * @return ÃÍ
+	 * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
+	 * @param key ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å
+	 * @return å€¤
 	 */
 	public static String getProperty(String key) {
 		String result = null;
@@ -92,8 +92,8 @@ public class ConfigManager {
 	}
 	
 	/**
-	 * ¥×¥í¥Ñ¥Æ¥£¤ÎÀßÄê
-	 * @param properties ÀßÄê¤¹¤ë¥×¥í¥Ñ¥Æ¥£Ì¾¤ò¥­¡¼¤Ë»ı¤Ä¥Ş¥Ã¥×
+	 * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®è¨­å®š
+	 * @param properties è¨­å®šã™ã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åã‚’ã‚­ãƒ¼ã«æŒã¤ãƒãƒƒãƒ—
 	 */
 	public static void setProperty(HashMap<String, String> properties) {
 		if (properties!=null) {
@@ -102,9 +102,9 @@ public class ConfigManager {
 	}
 	
 	/**
-	 * ¥×¥í¥Ñ¥Æ¥£¤ÎÀßÄê
-	 * @param key ¥×¥í¥Ñ¥Æ¥£Ì¾
-	 * @param value ÃÍ
+	 * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®è¨­å®š
+	 * @param key ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å
+	 * @param value å€¤
 	 */
 	public static void setProperty(String key, String value) {
 		if (value!=null) {
@@ -115,9 +115,9 @@ public class ConfigManager {
 	}
 	
 	/**
-	 * Property¥ª¥Ö¥¸¥§¥¯¥È¤Î¼èÆÀ¡£<br>
-	 * Íß¤·¤¤ÃÍ¤ò¥­¡¼¤Ë»ı¤Ä¥¨¥ó¥È¥ê¡¼¤ò»ı¤Ã¤¿¥Ï¥Ã¥·¥å¤ò¤â¤é¤Ã¤Æ¡¢ÃÍ¤ËÆÉ¤ß¹ş¤ó¤ÀÃÍ¤òÂåÆş¤¹¤ë
-	 * @param datas ¼èÆÀ¥Ç¡¼¥¿ÍÑ¥Ï¥Ã¥·¥å
+	 * Propertyã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—ã€‚<br>
+	 * æ¬²ã—ã„å€¤ã‚’ã‚­ãƒ¼ã«æŒã¤ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã‚’æŒã£ãŸãƒãƒƒã‚·ãƒ¥ã‚’ã‚‚ã‚‰ã£ã¦ã€å€¤ã«èª­ã¿è¾¼ã‚“ã å€¤ã‚’ä»£å…¥ã™ã‚‹
+	 * @param datas å–å¾—ãƒ‡ãƒ¼ã‚¿ç”¨ãƒãƒƒã‚·ãƒ¥
 	 */
 	private static void getConfigData(HashMap<String, String> datas) {
 		String Path = getPropertiesFilePath();
@@ -145,9 +145,9 @@ public class ConfigManager {
 	}
 	
 	/**
-	 * Property¤ÎÀßÄê¡£<br>
-	 * ¸µ¡¹Æş¤Ã¤Æ¤¤¤¿¥Ç¡¼¥¿¤Ï¾Ã¤¨¤Ê¤¤¤è¤¦¤Ë¤·¤Æ¤¢¤ë¡£
-	 * @param datas ÀßÄê¥Ç¡¼¥¿ÍÑ¥Ï¥Ã¥·¥å
+	 * Propertyã®è¨­å®šã€‚<br>
+	 * å…ƒã€…å…¥ã£ã¦ã„ãŸãƒ‡ãƒ¼ã‚¿ã¯æ¶ˆãˆãªã„ã‚ˆã†ã«ã—ã¦ã‚ã‚‹ã€‚
+	 * @param datas è¨­å®šãƒ‡ãƒ¼ã‚¿ç”¨ãƒãƒƒã‚·ãƒ¥
 	 */
 	@SuppressWarnings("rawtypes")
 	private static void setConfigData(HashMap<String, String> datas) {

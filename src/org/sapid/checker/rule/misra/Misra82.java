@@ -21,22 +21,22 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * TODO - µ­½Ò¤¬ÉÔ½½Ê¬¡¥
- * MISRA-C ¥ë¡¼¥ë 82
+ * TODO - è¨˜è¿°ãŒä¸ååˆ†ï¼
+ * MISRA-C ãƒ«ãƒ¼ãƒ« 82
  * 
  * @author Eiji Hirumuta
  */
 public class Misra82 implements CheckerClass {
-	/** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
 	private final static int LEVEL = 1;
 
-	/** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+	/** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
 	private final static String MESSAGE = "MISRA-C Rule 82";
 
-	/** ¸¡ºº·ë²Ì */
+	/** æ¤œæŸ»çµæœ */
 	List<Result> results = new ArrayList<Result>();
 
-	/** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+	/** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
 	Set<Element> problemNodes = new HashSet<Element>();
 
 	public List<Result> check(IFile file, CheckRule rule) {
@@ -57,7 +57,7 @@ public class Misra82 implements CheckerClass {
 			case 1:
 				/*
 				// TODO
-				// returnÊ¸¤¬°ì¤Ä¤Îvoid´Ø¿ô¤¬¡¢´Ø¿ô¤ÎºÇ¸å¤ËÅşÃ£¤¹¤ë¤«È½ÃÇÉÔ²ÄÇ½
+				// returnæ–‡ãŒä¸€ã¤ã®voidé–¢æ•°ãŒã€é–¢æ•°ã®æœ€å¾Œã«åˆ°é”ã™ã‚‹ã‹åˆ¤æ–­ä¸å¯èƒ½
 				if (functions[i].getType().equals("void")) {
 					PathGraph graph = new PathGraph(functions[i]);
 					List<List<GraphNode<Element>>> paths = graph.toPathList();
@@ -84,7 +84,7 @@ public class Misra82 implements CheckerClass {
 	}
 
 	/*
-	 * ¥Ñ¥¹¥Á¥§¥Ã¥¯
+	 * ãƒ‘ã‚¹ãƒã‚§ãƒƒã‚¯
 	 * 
 	 * @param path
 	private void checkPath(List<GraphNode<Element>> path) {

@@ -5,7 +5,7 @@
 package org.sapid.checker.cx.graph;
 
 /**
- * ¥°¥é¥Õ¤Î¥Î¡¼¥É
+ * ã‚°ãƒ©ãƒ•ã®ãƒãƒ¼ãƒ‰
  * @author Toshinori OSUKA
  */
 public class GraphNode<T> {
@@ -14,7 +14,7 @@ public class GraphNode<T> {
     private int number;
 
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param content
      */
     public GraphNode(T content) {
@@ -31,7 +31,7 @@ public class GraphNode<T> {
     }
 
     /**
-     * ¥Î¡¼¥É¤ÎÄÌ¤·ÈÖ¹æ¤ò¼èÆÀ
+     * ãƒãƒ¼ãƒ‰ã®é€šã—ç•ªå·ã‚’å–å¾—
      * @return
      */
     public int getNumber() {

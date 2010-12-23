@@ -22,24 +22,24 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- * MISRA-C ¥ë¡¼¥ë ¥Æ¥ó¥×¥ì¡¼¥È
+ * MISRA-C ãƒ«ãƒ¼ãƒ« ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
  * @author Eiji Hirumuta
  */
 public class Misra72 implements CheckerClass {
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 72";
 
-    /** ¸¡ºº·ë²Ì */
+    /** æ¤œæŸ»çµæœ */
     List<Result> results = new ArrayList<Result>();
 
-    /** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+    /** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
     Set<Element> problemNodes = new HashSet<Element>();
 
     /*
-     * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+     * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
      * @return results
      */
     public List<Result> check(IFile file, CheckRule rule) {
@@ -50,7 +50,7 @@ public class Misra72 implements CheckerClass {
         }
 
         for (Element element : prototypeList) {
-        	// prototypeÀë¸À¤«¤é°ú¿ô¤Î·¿¤ò¼èÆÀ
+        	// prototypeå®£è¨€ã‹ã‚‰å¼•æ•°ã®å‹ã‚’å–å¾—
         	String protoType = "";
         	List<String> protoparamsType = new ArrayList<String>();
         	CPrototypeElement prototype = new CPrototypeElement(element);
@@ -61,7 +61,7 @@ public class Misra72 implements CheckerClass {
 				protoparamsType.add(parameter.getType());
 			}
 
-        	// prototype¤ÎÄêµÁ
+        	// prototypeã®å®šç¾©
         	String defType = ((CFunctionElement)prototype.getDefinition()).getType();
         	List<String> defparamsType = new ArrayList<String>();
         	CParameterElement[] paramsdef = ((CFunctionElement)prototype.getDefinition()).getParams();
@@ -69,7 +69,7 @@ public class Misra72 implements CheckerClass {
         		defparamsType.add(paramsdef[j].getType());
 			}
         	
-        	// ·¿¤¬´Ö°ã¤Ã¤Æ¤¤¤Ê¤¤¤«Ä´¤Ù¤ë
+        	// å‹ãŒé–“é•ã£ã¦ã„ãªã„ã‹èª¿ã¹ã‚‹
         	if (!(protoType.equals(defType))) {
         		problemNodes.add(prototype.getElem());
         	}

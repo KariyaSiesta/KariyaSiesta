@@ -10,9 +10,9 @@ import org.sapid.checker.cx.wrapper.type.TypeInfosConstant;
 import org.w3c.dom.Element;
 
 /**
- * ¼°¡ÊExprÍ×ÁÇ¡Ë¤ò°ú¿ô¤Ë¼è¤ê¡¢
- * ¤½¤Î¼°¤Î·¿¤Î¼ïÎà¤ò"standard"¡¢"pointer"¤Ê¤É¤ÎÊ¸»úÎó¤ÇÊÖ¤¹¡£
- * ¼°¤ò¼èÆÀ¤Ç¤­¤Ê¤«¤Ã¤¿¾ì¹ç¤Ï¶õÊ¸»úÎó¤òÊÖ¤¹¡£
+ * å¼ï¼ˆExprè¦ç´ ï¼‰ã‚’å¼•æ•°ã«å–ã‚Šã€
+ * ãã®å¼ã®å‹ã®ç¨®é¡ã‚’"standard"ã€"pointer"ãªã©ã®æ–‡å­—åˆ—ã§è¿”ã™ã€‚
+ * å¼ã‚’å–å¾—ã§ããªã‹ã£ãŸå ´åˆã¯ç©ºæ–‡å­—åˆ—ã‚’è¿”ã™ã€‚
  * @author uehara
  */
 public class TypeSortGetter implements XPathFunction {
@@ -46,7 +46,7 @@ public class TypeSortGetter implements XPathFunction {
 		if (typeSort != null) {
 			return typeSort.toString();
 		} else {
-			// TODO ¤³¤Î¾ì¹ç²¿¤òÊÖ¤¹¤Ù¤­¤«¡©
+			// TODO ã“ã®å ´åˆä½•ã‚’è¿”ã™ã¹ãã‹ï¼Ÿ
 			return "";
 		}
 	}

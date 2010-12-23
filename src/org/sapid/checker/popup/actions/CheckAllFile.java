@@ -50,7 +50,7 @@ public class CheckAllFile implements IObjectActionDelegate {
             searchThread.setFile(targetFiles);
             searchThread.setProjectName(project.getName());
 
-            // ¥×¥í¥¸¥§¥¯¥È¤ÎÀßÄê¤ò¼èÆÀ
+            // ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®è¨­å®šã‚’å–å¾—
             IProject prj;
             if (project instanceof IProject) {
                 prj = (IProject) project;

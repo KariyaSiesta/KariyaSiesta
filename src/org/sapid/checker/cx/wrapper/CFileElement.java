@@ -8,12 +8,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * File Õ◊¡«
+ * File Ë¶ÅÁ¥†
  * @author Toshinori OSUKA
  */
 public class CFileElement extends CElement {
     /**
-     * •≥•Û•π•»•È•Ø•ø
+     * „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
      * @param elem
      */
     public CFileElement(Element elem) {
@@ -21,7 +21,7 @@ public class CFileElement extends CElement {
     }
 
     /**
-     * •≥•Û•π•»•È•Ø•ø
+     * „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
      * @param elem
      */
     public CFileElement(Document doc) {

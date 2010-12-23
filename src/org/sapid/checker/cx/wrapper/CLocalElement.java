@@ -8,12 +8,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Local Õ◊¡«
+ * Local Ë¶ÅÁ¥†
  * @author Toshinori OSUKA
  */
 public class CLocalElement extends CVariableDeclarationElement {
     /**
-     * •≥•Û•π•»•È•Ø•ø
+     * „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
      * @param elem
      */
     public CLocalElement(Element elem) {
@@ -22,7 +22,7 @@ public class CLocalElement extends CVariableDeclarationElement {
     }
     
     /**
-     * Local Õ◊¡«§´
+     * Local Ë¶ÅÁ¥†„Åã
      * @param node
      * @return
      */

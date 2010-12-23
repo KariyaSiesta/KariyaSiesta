@@ -12,15 +12,15 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * CX-model ¤Î¥é¥Ã¥Ñ¡¼¥¯¥é¥¹ ¤¹¤Ù¤Æ¤Î¥é¥Ã¥Ñ¡¼Í×ÁÇ¤Ï¤³¤Î¥¯¥é¥¹¤ò·Ñ¾µ¤¹¤ë
+ * CX-model ã®ãƒ©ãƒƒãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ ã™ã¹ã¦ã®ãƒ©ãƒƒãƒ‘ãƒ¼è¦ç´ ã¯ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ç¶™æ‰¿ã™ã‚‹
  * @author Toshinori OSUKA
  */
 public class CElement {
-    /** DOM ¤Î¥Î¡¼¥É */
+    /** DOM ã®ãƒãƒ¼ãƒ‰ */
     protected Element elem;
 
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CElement(Element elem) {
@@ -29,7 +29,7 @@ public class CElement {
     }
 
     /**
-     * DOM ¥Î¡¼¥É¤ò¼èÆÀ¤¹¤ë
+     * DOM ãƒãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
      * @return
      */
     public Element getElem() {
@@ -37,15 +37,15 @@ public class CElement {
     }
 
     /**
-     * Id ¤ò¼èÆÀ¤¹¤ë
-     * @return Ìµ¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹
+     * Id ã‚’å–å¾—ã™ã‚‹
+     * @return ç„¡ã„å ´åˆã¯ null ã‚’è¿”ã™
      */
     public String getId() {
         return elem.getAttribute("id");
     }
 
     /**
-     * »ÒÍ×ÁÇ¤Î¤¦¤Á°ìÈÖºÇ½é¤Ë¸½¤ì¤ë»ØÄê¤µ¤ì¤¿Ì¾Á°¤ÎÍ×ÁÇ¤òÊÖ¤¹
+     * å­è¦ç´ ã®ã†ã¡ä¸€ç•ªæœ€åˆã«ç¾ã‚Œã‚‹æŒ‡å®šã•ã‚ŒãŸåå‰ã®è¦ç´ ã‚’è¿”ã™
      * @param nodeName
      * @return
      */
@@ -60,7 +60,7 @@ public class CElement {
     }
     
     /**
-     * »ÒÍ×ÁÇ¤Î¤¦¤Á°ìÈÖºÇ¸å¤Ë¸½¤ì¤ë»ØÄê¤µ¤ì¤¿Ì¾Á°¤ÎÍ×ÁÇ¤òÊÖ¤¹
+     * å­è¦ç´ ã®ã†ã¡ä¸€ç•ªæœ€å¾Œã«ç¾ã‚Œã‚‹æŒ‡å®šã•ã‚ŒãŸåå‰ã®è¦ç´ ã‚’è¿”ã™
      * @param nodeName
      * @return
      */
@@ -80,7 +80,7 @@ public class CElement {
     }
 
     /**
-     * »ÒÍ×ÁÇ¤Î¤¦¤Á°ìÈÖºÇ½é¤Ë¸½¤ì¤ë»ØÄê¤µ¤ì¤¿Ì¾Á°¤È sort ¤ò»ı¤ÄÍ×ÁÇ¤òÊÖ¤¹
+     * å­è¦ç´ ã®ã†ã¡ä¸€ç•ªæœ€åˆã«ç¾ã‚Œã‚‹æŒ‡å®šã•ã‚ŒãŸåå‰ã¨ sort ã‚’æŒã¤è¦ç´ ã‚’è¿”ã™
      * @param nodeName
      * @return
      */
@@ -100,7 +100,7 @@ public class CElement {
     }
 
     /**
-     * »ØÄê¤µ¤ì¤¿Ì¾Á°¤ò»ı¤Ä»ÒÍ×ÁÇ¤ò¤¹¤Ù¤ÆÊÖ¤¹
+     * æŒ‡å®šã•ã‚ŒãŸåå‰ã‚’æŒã¤å­è¦ç´ ã‚’ã™ã¹ã¦è¿”ã™
      * @param nodeName
      * @return
      */
@@ -116,7 +116,7 @@ public class CElement {
     }
 
     /**
-     * »ØÄê¤µ¤ì¤¿ id ¤ò»ı¤ÄÍ×ÁÇ¤Î¤¦¤ÁºÇ½é¤Ë¸«¤Ä¤«¤Ã¤¿¤â¤Î¤òÊÖ¤¹ ¸«¤Ä¤«¤é¤Ê¤±¤ì¤Ğ null ¤òÊÖ¤¹
+     * æŒ‡å®šã•ã‚ŒãŸ id ã‚’æŒã¤è¦ç´ ã®ã†ã¡æœ€åˆã«è¦‹ã¤ã‹ã£ãŸã‚‚ã®ã‚’è¿”ã™ è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° null ã‚’è¿”ã™
      * @param id
      * @return
      */
@@ -135,7 +135,7 @@ public class CElement {
     }
 
     /**
-     * DOM ¥Î¡¼¥É¤ÎÍ×ÁÇÌ¾¤òÊÖ¤¹
+     * DOM ãƒãƒ¼ãƒ‰ã®è¦ç´ åã‚’è¿”ã™
      * @return
      */
     public String getNodeName() {
@@ -143,7 +143,7 @@ public class CElement {
     }
 
     /**
-     * ¤¹¤Ù¤Æ¤Î Function Í×ÁÇ¤òÊÖ¤¹ 1¤Ä¤âÌµ¤¤¾ì¹ç¤Ë¤ÏÄ¹¤µ0¤ÎÇÛÎó¤òÊÖ¤¹
+     * ã™ã¹ã¦ã® Function è¦ç´ ã‚’è¿”ã™ 1ã¤ã‚‚ç„¡ã„å ´åˆã«ã¯é•·ã•0ã®é…åˆ—ã‚’è¿”ã™
      * @return
      */
     public CFunctionElement[] getFunctions() {
@@ -157,7 +157,7 @@ public class CElement {
     }
 
     /**
-     * ¤¹¤Ù¤Æ¤Î Stmt Í×ÁÇ¤òÊÖ¤¹ 1¤Ä¤âÌµ¤¤¾ì¹ç¤Ë¤ÏÄ¹¤µ0¤ÎÇÛÎó¤òÊÖ¤¹
+     * ã™ã¹ã¦ã® Stmt è¦ç´ ã‚’è¿”ã™ 1ã¤ã‚‚ç„¡ã„å ´åˆã«ã¯é•·ã•0ã®é…åˆ—ã‚’è¿”ã™
      * @return
      */
     public CStatementElement[] getStatments() {
@@ -171,7 +171,7 @@ public class CElement {
     }
 
     /**
-     * ¤¹¤Ù¤Æ¤Î Expr Í×ÁÇ¤òÊ¸½ñ½ç¤ËÊÖ¤¹ 1¤Ä¤âÌµ¤¤¾ì¹ç¤Ë¤ÏÄ¹¤µ0¤ÎÇÛÎó¤òÊÖ¤¹
+     * ã™ã¹ã¦ã® Expr è¦ç´ ã‚’æ–‡æ›¸é †ã«è¿”ã™ 1ã¤ã‚‚ç„¡ã„å ´åˆã«ã¯é•·ã•0ã®é…åˆ—ã‚’è¿”ã™
      * @return
      */
     public CExpressionElement[] getExpressions() {
@@ -185,7 +185,7 @@ public class CElement {
     }
 
     /**
-     * ¤¹¤Ù¤Æ¤ÎÀë¸À¤òÊÖ¤¹
+     * ã™ã¹ã¦ã®å®£è¨€ã‚’è¿”ã™
      * @return
      */
     public CDeclarationElement[] getDeclarations() {
@@ -201,7 +201,7 @@ public class CElement {
     }
 
     /**
-     * ¤¹¤Ù¤Æ¤Î typedef ¤òÊÖ¤¹
+     * ã™ã¹ã¦ã® typedef ã‚’è¿”ã™
      * @return
      */
     public CTypedeclElement[] getTypeDeclarations() {
@@ -215,7 +215,7 @@ public class CElement {
     }
 
     /**
-     * ¤¹¤Ù¤Æ¤Î ÊÑ¿ôÀë¸À (Local ¤È Global) ¤òÊÖ¤¹
+     * ã™ã¹ã¦ã® å¤‰æ•°å®£è¨€ (Local ã¨ Global) ã‚’è¿”ã™
      * @return
      */
     public CDeclarationElement[] getVarialbeDeclarations() {
@@ -233,8 +233,8 @@ public class CElement {
     }
 
     /**
-     * ¤¹¤Ù¤Æ¤Î Global ¤òÊÖ¤¹<br>
-     * int i,j,k; ¤Ï¤Ş¤È¤á¤Æ¤Ò¤È¤Ä¤Î Global ¤¬ÊÖ¤ë¤Î¤ÇÃí°Õ
+     * ã™ã¹ã¦ã® Global ã‚’è¿”ã™<br>
+     * int i,j,k; ã¯ã¾ã¨ã‚ã¦ã²ã¨ã¤ã® Global ãŒè¿”ã‚‹ã®ã§æ³¨æ„
      * @return
      */
     public CGlobalElement[] getGlobalDeclarations() {
@@ -247,7 +247,7 @@ public class CElement {
     }
 
     /**
-     * ¤¹¤Ù¤Æ¤Î Label Í×ÁÇ¤òÊÖ¤¹
+     * ã™ã¹ã¦ã® Label è¦ç´ ã‚’è¿”ã™
      * @return
      */
     public CLabelElement[] getLabels() {
@@ -260,7 +260,7 @@ public class CElement {
     }
     
     /**
-     * ¤¹¤Ù¤Æ¤Î litera Í×ÁÇ¤òÊÖ¤¹
+     * ã™ã¹ã¦ã® litera è¦ç´ ã‚’è¿”ã™
      * @return
      */
     public CLiteralElement[] getLiterals() {
@@ -273,7 +273,7 @@ public class CElement {
     }
 
     /**
-     * Statement ¤Î¼ïÎà¤òÊÖ¤¹ sort ¤¬¤Ê¤±¤ì¤Ğ null ¤òÊÖ¤¹
+     * Statement ã®ç¨®é¡ã‚’è¿”ã™ sort ãŒãªã‘ã‚Œã° null ã‚’è¿”ã™
      * @return
      */
     public String getSort() {
@@ -281,10 +281,10 @@ public class CElement {
     }
 
     /**
-     * ¥¹¥³¡¼¥×¤ò¼èÆÀ¤¹¤ë<br>
-     * Í×ÁÇ¤¬Â°¤¹¤ë´Ø¿ô¤«¥Õ¥¡¥¤¥ë<br>
-     * ¸½ºß¤Î»ÅÍÍ¤Ç¤Ï¥Õ¥¡¥¤¥ë¤ò¤Ş¤¿¤°²òÀÏ¤Ï¤·¤Ê¤¤¤Î¤Ç¥°¥í¡¼¥Ğ¥ë¥¹¥³¡¼¥×¤ÏÂ¸ºß¤·¤Ê¤¤<br>
-     * C90 ¤òÂĞ¾İ¤È¤¹¤ë¤Î¤Ç¥Ö¥í¥Ã¥¯¥¹¥³¡¼¥×¤âÂĞ±ş¤È¤·¤Ê¤¤
+     * ã‚¹ã‚³ãƒ¼ãƒ—ã‚’å–å¾—ã™ã‚‹<br>
+     * è¦ç´ ãŒå±ã™ã‚‹é–¢æ•°ã‹ãƒ•ã‚¡ã‚¤ãƒ«<br>
+     * ç¾åœ¨ã®ä»•æ§˜ã§ã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã¾ãŸãè§£æã¯ã—ãªã„ã®ã§ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ã‚³ãƒ¼ãƒ—ã¯å­˜åœ¨ã—ãªã„<br>
+     * C90 ã‚’å¯¾è±¡ã¨ã™ã‚‹ã®ã§ãƒ–ãƒ­ãƒƒã‚¯ã‚¹ã‚³ãƒ¼ãƒ—ã‚‚å¯¾å¿œã¨ã—ãªã„
      * @return
      */
     public CElement getScope() {
@@ -300,8 +300,8 @@ public class CElement {
     }
 
     /**
-     * »ÒÍ×ÁÇ¤Î Statement ¤È Local ¤ò¼èÆÀ¤¹¤ë<br>
-     * ½Ğ¸½½ç½ø¤òÊİ»ı¤¹¤ë
+     * å­è¦ç´ ã® Statement ã¨ Local ã‚’å–å¾—ã™ã‚‹<br>
+     * å‡ºç¾é †åºã‚’ä¿æŒã™ã‚‹
      * @return
      */
     public Element[] getChildStatementsAndLocals() {
@@ -330,8 +330,8 @@ public class CElement {
     }
 
     /**
-     * ¥Î¡¼¥ÉÌ¾¤ÈtextContent ¤¬°ìÃ×¤¹¤ë¥Î¡¼¥É¤ò¥ê¥¹¥È¤Ç¼èÆÀ¤¹¤ë<br>
-     * Ìµ¤±¤ì¤ĞÄ¹¤µ0¤ÎÇÛÎó¤¬ÊÖ¤ë
+     * ãƒãƒ¼ãƒ‰åã¨textContent ãŒä¸€è‡´ã™ã‚‹ãƒãƒ¼ãƒ‰ã‚’ãƒªã‚¹ãƒˆã§å–å¾—ã™ã‚‹<br>
+     * ç„¡ã‘ã‚Œã°é•·ã•0ã®é…åˆ—ãŒè¿”ã‚‹
      * @param nodeName
      * @param text
      * @return

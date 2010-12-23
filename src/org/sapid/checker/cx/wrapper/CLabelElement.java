@@ -7,7 +7,7 @@ package org.sapid.checker.cx.wrapper;
 import org.w3c.dom.Element;
 
 /**
- * Label Í×ÁÇ
+ * Label è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CLabelElement extends CElement {
@@ -16,7 +16,7 @@ public class CLabelElement extends CElement {
     protected final String SORT_DEFAULT = "Default";
 
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CLabelElement(Element elem) {
@@ -25,7 +25,7 @@ public class CLabelElement extends CElement {
     }
 
     /**
-     * ¥é¥Ù¥ë¤Î¥Æ¥­¥¹¥È¤òÊÖ¤¹
+     * ãƒ©ãƒ™ãƒ«ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è¿”ã™
      * @return
      */
     public String getLabelText() {
@@ -33,8 +33,8 @@ public class CLabelElement extends CElement {
     }
 
     /**
-     * ident Í×ÁÇ¤òÊÖ¤¹<br>
-     * Ì¾Á°ÉÕ¤±¤µ¤ì¤¿¥é¥Ù¥ëÍÑ
+     * ident è¦ç´ ã‚’è¿”ã™<br>
+     * åå‰ä»˜ã‘ã•ã‚ŒãŸãƒ©ãƒ™ãƒ«ç”¨
      * @return
      */
     public Element getIdent() {
@@ -42,7 +42,7 @@ public class CLabelElement extends CElement {
     }
 
     /**
-     * ¥é¥Ù¥ë¤Î¼ïÎà¤òÊÖ¤¹ Ì¾Á°ÉÕ¤±¤µ¤ì¤¿¥é¥Ù¥ë or case ¥é¥Ù¥ë or default ¥é¥Ù¥ë
+     * ãƒ©ãƒ™ãƒ«ã®ç¨®é¡ã‚’è¿”ã™ åå‰ä»˜ã‘ã•ã‚ŒãŸãƒ©ãƒ™ãƒ« or case ãƒ©ãƒ™ãƒ« or default ãƒ©ãƒ™ãƒ«
      * @return
      */
     public String getSort() {
@@ -59,7 +59,7 @@ public class CLabelElement extends CElement {
     }
 
     /**
-     * Ì¾Á°¤Ä¤­¥é¥Ù¥ë¤«¤É¤¦¤«
+     * åå‰ã¤ããƒ©ãƒ™ãƒ«ã‹ã©ã†ã‹
      * @return
      */
     public boolean isNamedLabel() {
@@ -67,7 +67,7 @@ public class CLabelElement extends CElement {
     }
 
     /**
-     * Case ¥é¥Ù¥ë¤«¤É¤¦¤«
+     * Case ãƒ©ãƒ™ãƒ«ã‹ã©ã†ã‹
      * @return
      */
     public boolean isCaseLabel() {
@@ -75,7 +75,7 @@ public class CLabelElement extends CElement {
     }
 
     /**
-     * Case ¥é¥Ù¥ë¤«¤É¤¦¤«
+     * Case ãƒ©ãƒ™ãƒ«ã‹ã©ã†ã‹
      * @return
      */
     public boolean isDefaultLabel() {

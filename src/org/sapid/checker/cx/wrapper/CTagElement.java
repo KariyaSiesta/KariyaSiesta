@@ -10,12 +10,12 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 /**
- * Tag Í×ÁÇ
+ * Tag è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CTagElement extends CElement {
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CTagElement(Element elem) {
@@ -24,7 +24,7 @@ public class CTagElement extends CElement {
     }
     
     /**
-     * ¤¹¤Ù¤Æ¤Î Member ¤òÊÖ¤¹
+     * ã™ã¹ã¦ã® Member ã‚’è¿”ã™
      * @return
      */
     public CMemberElement[] getMembers() {

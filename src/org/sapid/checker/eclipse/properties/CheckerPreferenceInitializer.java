@@ -9,11 +9,11 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.sapid.checker.eclipse.CheckerActivator;
 
 /**
- * ÀßÄê¤Î½é´ü¤È¤òÀßÄê¤¹¤ë
+ * è¨­å®šã®åˆæœŸã¨ã‚’è¨­å®šã™ã‚‹
  * @author Toshinori OSUKA
  */
 public class CheckerPreferenceInitializer extends AbstractPreferenceInitializer {
-    /** ¥Ç¥Õ¥©¥ë¥È¤Î Sapid ¥¤¥ó¥¹¥È¡¼¥ë¥Ç¥£¥ì¥¯¥È¥ê */
+    /** ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã® Sapid ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª */
     private final static String DEFAULT_SAPID_DEST = "C:\\cygwin\\usr\\local\\Sapid-GCC";
 
     @Override

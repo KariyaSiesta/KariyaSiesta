@@ -7,12 +7,12 @@ package org.sapid.checker.cx.wrapper;
 import org.w3c.dom.Element;
 
 /**
- * Prototype Í×ÁÇ
+ * Prototype è¦ç´ 
  * @author Toshinori OSUKA
  */
 public class CPrototypeElement extends CDeclarationElement {
     /**
-     * ¥³¥ó¥¹¥È¥é¥¯¥¿
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * @param elem
      */
     public CPrototypeElement(Element elem) {
@@ -21,8 +21,8 @@ public class CPrototypeElement extends CDeclarationElement {
     }
 
     /**
-     * ´Ø¿ô¤ÎÄêµÁ¤ò¼èÆÀ¤¹¤ë<br>
-     * ¥Õ¥¡¥¤¥ëÆâ¤ËÂ¸ºß¤·¤Ê¤±¤ì¤Ğ null
+     * é–¢æ•°ã®å®šç¾©ã‚’å–å¾—ã™ã‚‹<br>
+     * ãƒ•ã‚¡ã‚¤ãƒ«å†…ã«å­˜åœ¨ã—ãªã‘ã‚Œã° null
      * @return
      */
     public CElement getDefinition() {

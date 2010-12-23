@@ -20,7 +20,7 @@ public class LineWidthChecker implements CheckerClass {
 
   final int                   DEFAULT_LEVEL   = 3;
 
-  final String                DEFAULT_MESSAGE = "»ØÄê¤·¤¿ºÇÂç¹Ô¿ô¤òÄ¶¤¨¤Æ¤¤¤ë (LineWidthChecker)";
+  final String                DEFAULT_MESSAGE = "æŒ‡å®šã—ãŸæœ€å¤§è¡Œæ•°ã‚’è¶…ãˆã¦ã„ã‚‹ (LineWidthChecker)";
 
   private static final String XML_ID          = "id";
 

@@ -13,13 +13,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * ¥Õ¥í¡¼¾ğÊó¤ò°·¤¦ Stmt Í×ÁÇ¤òÉ½¤¹¥¯¥é¥¹
+ * ãƒ•ãƒ­ãƒ¼æƒ…å ±ã‚’æ‰±ã† Stmt è¦ç´ ã‚’è¡¨ã™ã‚¯ãƒ©ã‚¹
  * 
  * @author Eiji Hirumuta
  */
 public class FlowStatementElement extends CStatementElement {
 	/**
-	 * ¥³¥ó¥¹¥È¥é¥¯¥¿
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 * 
 	 * @param elem
 	 */
@@ -29,7 +29,7 @@ public class FlowStatementElement extends CStatementElement {
 	}
 
 	/**
-	 * ¥¹¥Æ¡¼¥È¥á¥ó¥È¤Î id ¤òÊÖ¤¹¡¥¤Ê¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹¡¥
+	 * ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã® id ã‚’è¿”ã™ï¼ãªã„å ´åˆã¯ null ã‚’è¿”ã™ï¼
 	 */
 	public String getStmtId() {
 		Node sort = elem.getAttributes().getNamedItem("id");
@@ -40,7 +40,7 @@ public class FlowStatementElement extends CStatementElement {
 	}
 
 	/**
-	 * is ·Ï¤Ï¼«Ê¬¤¬ if/switch/for/while/do ¤Ç¤¢¤ë¤«¤É¤¦¤«È½ÃÇ¤¹¤ë
+	 * is ç³»ã¯è‡ªåˆ†ãŒ if/switch/for/while/do ã§ã‚ã‚‹ã‹ã©ã†ã‹åˆ¤æ–­ã™ã‚‹
 	 */
 	public boolean isIf() {
 		Node sort = elem.getAttributes().getNamedItem("sort");
@@ -88,7 +88,7 @@ public class FlowStatementElement extends CStatementElement {
 	}
 
 	/**
-	 * loopback ¤Î¥Õ¥í¡¼¤ò»ı¤Ä¥¹¥Æ¡¼¥È¥á¥ó¥È¤«¥Á¥§¥Ã¥¯¤¹¤ë
+	 * loopback ã®ãƒ•ãƒ­ãƒ¼ã‚’æŒã¤ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	 */
 	public boolean isLoopback() {
 		CFlowElement[] flows = getFlows();
@@ -103,7 +103,7 @@ public class FlowStatementElement extends CStatementElement {
 	}
 
 	/**
-	 * loopback ¤ò»ı¤Ä¤È¤­¡¤¤½¤Î¼¡¤òº¹¤¹¥¹¥Æ¡¼¥È¥á¥ó¥È¤Î id ¤ò¼èÆÀ¤¹¤ë¡¥¤Ê¤¤¾ì¹ç¤Ï null ¤òÊÖ¤¹
+	 * loopback ã‚’æŒã¤ã¨ãï¼Œãã®æ¬¡ã‚’å·®ã™ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã® id ã‚’å–å¾—ã™ã‚‹ï¼ãªã„å ´åˆã¯ null ã‚’è¿”ã™
 	 * @return
 	 */
 	public String getLoopbackId() {
@@ -126,7 +126,7 @@ public class FlowStatementElement extends CStatementElement {
 	}
 
 	/**
-	 * flow Í×ÁÇ¤ò¼èÆÀ¤·ÇÛÎó¤ÇÊÖ¤¹¡¥Â¸ºß¤·¤Ê¤¤¾ì¹ç¤ÏÄ¹¤µ 0 ¤ÎÇÛÎó¤òÊÖ¤¹
+	 * flow è¦ç´ ã‚’å–å¾—ã—é…åˆ—ã§è¿”ã™ï¼å­˜åœ¨ã—ãªã„å ´åˆã¯é•·ã• 0 ã®é…åˆ—ã‚’è¿”ã™
 	 * 
 	 * @author Eiji Hirumuta
 	 * 

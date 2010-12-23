@@ -24,31 +24,31 @@ import org.sapid.checker.rule.NodeOffsetUtil;
 import org.w3c.dom.Element;
 
 /**
- * MISRA-C ¥ë¡¼¥ë ¥Æ¥ó¥×¥ì¡¼¥È
+ * MISRA-C ãƒ«ãƒ¼ãƒ« ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
  * @author Eiji Hirumuta
  */
 public class Misra67 implements CheckerClass {
-    /** ¥ë¡¼¥ë¤Î¥ì¥Ù¥ë */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¬ãƒ™ãƒ« */
     private final static int LEVEL = 1;
 
-    /** ¥ë¡¼¥ë¤Î¥á¥Ã¥»¡¼¥¸ */
+    /** ãƒ«ãƒ¼ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
     private final static String MESSAGE = "MISRA-C Rule 67";
 
-    /** ¸¡ºº·ë²Ì */
+    /** æ¤œæŸ»çµæœ */
     List<Result> results = new ArrayList<Result>();
 
-    /** °ãÈ¿¤È¤·¤Æ¸¡½Ğ¤¹¤ë¥Î¡¼¥É¤Î½¸¹ç */
+    /** é•åã¨ã—ã¦æ¤œå‡ºã™ã‚‹ãƒãƒ¼ãƒ‰ã®é›†åˆ */
     Set<Element> problemNodes = new HashSet<Element>();
 
     /*
-     * ¥Õ¥¡¥¤¥ë¤Î¥ë¡¼¥ë¥Á¥§¥Ã¥¯»ş¤Ë¸Æ¤Ğ¤ì¤ë
+     * ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ«ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯æ™‚ã«å‘¼ã°ã‚Œã‚‹
      * @return results
      */
     public List<Result> check(IFile file, CheckRule rule) {
         CFileElement cfile = new CFileElement(file.getDOM());
         CStatementElement[] statements = cfile.getStatments();
         
-        // forÊ¸¤Î¥¹¥Æ¡¼¥È¥á¥ó¥È¤òÃµ¤¹
+        // foræ–‡ã®ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’æ¢ã™
         for (int i = 0; i < statements.length; i++) {
         	/*
         	if (statements[i].getSort() == null) {
@@ -56,7 +56,7 @@ public class Misra67 implements CheckerClass {
         	}
         	*/
         	if (statements[i].getSort().equals("For")) {
-            	// ¥ë¡¼¥×¤Î¾ò·ï¼°¤Ç»²¾È¤µ¤ì¤Æ¤¤¤ëÊÑ¿ô¤ÎÊÑ¹¹¤ò¸«¤Ä¤±¤ë
+            	// ãƒ«ãƒ¼ãƒ—ã®æ¡ä»¶å¼ã§å‚ç…§ã•ã‚Œã¦ã„ã‚‹å¤‰æ•°ã®å¤‰æ›´ã‚’è¦‹ã¤ã‘ã‚‹
             	CForStatementElement forstatement = new CForStatementElement(statements[i].getElem());
             	CExpressionElement conditionexps = forstatement.getConditionExpression();
             	Set<String> countVars = new HashSet<String>();
@@ -85,7 +85,7 @@ public class Misra67 implements CheckerClass {
     }
 
     /*
-     * forÊ¸¤ÎÃæ(getTrueBlock¥á¥½¥Ã¥É¤ÎÊÖ¤êÃÍ)¤«¤é¡¢¥«¥¦¥ó¥ÈÊÑ¿ô¤¬ÊÑ¹¹¤µ¤ì¤ë²Õ½ê¤òÃµ¤¹
+     * foræ–‡ã®ä¸­(getTrueBlockãƒ¡ã‚½ãƒƒãƒ‰ã®è¿”ã‚Šå€¤)ã‹ã‚‰ã€ã‚«ã‚¦ãƒ³ãƒˆå¤‰æ•°ãŒå¤‰æ›´ã•ã‚Œã‚‹ç®‡æ‰€ã‚’æ¢ã™
      */
 	private void lookforChangepoint(Set<String> countVars, Element[] blocksforelements) {
 		for (int k = 0; k < blocksforelements.length; k++) {
