@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.sapid.checker.cx.command.Makefile;
+import org.sapid.checker.eclipse.Messages;
 import org.sapid.checker.eclipse.progress.CreateSDBJob;
 
 /**
@@ -36,8 +37,8 @@ public class CreateSDB implements IObjectActionDelegate {
 	}
 
 	public void run(IAction action) {
-		String projectRealPath = "";
-		String makefile = "Makefile";
+		String projectRealPath = ""; //$NON-NLS-1$
+		String makefile = "Makefile"; //$NON-NLS-1$
 		if (selectedItem instanceof IFile) {
 			projectRealPath = selectedItem.getProject().getLocation().toFile()
 					.getAbsolutePath();
@@ -50,14 +51,14 @@ public class CreateSDB implements IObjectActionDelegate {
 		try {
 			if (!new Makefile(projectRealPath + File.separator + makefile)
 					.isContainedCCMacro()) {
-				MessageDialog.openError(new Shell(), "Error in Sapid",
-						"Makefile にマクロ CC が定義されていません。\n\n" + projectRealPath
+				MessageDialog.openError(new Shell(), "Error in Sapid", //$NON-NLS-1$
+						Messages.getString("CreateSDB.MacroNotFound") + projectRealPath //$NON-NLS-1$
 								+ File.separator + makefile);
 				return;
 			}
 		} catch (FileNotFoundException e1) {
-			MessageDialog.openError(new Shell(), "Error in Sapid",
-					"Makefile が見つかりません。\n\n" + projectRealPath + File.separator
+			MessageDialog.openError(new Shell(), "Error in Sapid", //$NON-NLS-1$
+					Messages.getString("CreateSDB.MakefileNotFound") + projectRealPath + File.separator //$NON-NLS-1$
 							+ makefile);
 			return;
 		}

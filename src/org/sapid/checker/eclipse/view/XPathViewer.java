@@ -53,7 +53,7 @@ import org.sapid.parser.common.ParseException;
 public class XPathViewer extends ViewPart {
 	private Text xpathEditor = null;
 	private Text xpathDisplay = null;
-	public static final String ASSIST_ACTION_ID = "XPath.Assist";
+	public static final String ASSIST_ACTION_ID = "XPath.Assist"; //$NON-NLS-1$
 	private Button getButton = null;
 	private Button copyButton = null;
 	private Button clearXPathButton = null;
@@ -67,7 +67,7 @@ public class XPathViewer extends ViewPart {
 	private Label outputLabel = null;
 
 	private static final String NEW_LINE_CODE = System
-			.getProperty("line.separator");
+			.getProperty("line.separator"); //$NON-NLS-1$
 
 	public static ITextEditor getActiveEditor() {
 		IWorkbench workbench = PlatformUI.getWorkbench();
@@ -111,8 +111,8 @@ public class XPathViewer extends ViewPart {
 	}
 
 	public static XPathRule getTempRule(String xpath) {
-		String message = "xpath  (XPathViewer)";
-		String id = "1";
+		String message = "xpath  (XPathViewer)"; //$NON-NLS-1$
+		String id = "1"; //$NON-NLS-1$
 		return new XPathRule(id, 3, message, xpath, Condition.PROHIBIT);
 	}
 
@@ -164,16 +164,16 @@ public class XPathViewer extends ViewPart {
 				if (result.size() == 0) {
 					xpathEditor
 							.setBackground(new Color(display, 255, 255, 180));
-					outputLabel.setText("検出箇所がありません");
+					outputLabel.setText(Messages.getString("XPathViewer.XPathNoResults")); //$NON-NLS-1$
 				} else {
 					outputLabel.setText(Integer.valueOf(result.size())
-							.toString() + "個のノードが検出されました");
+							.toString() + Messages.getString("XPathViewer.XPathResultsFound")); //$NON-NLS-1$
 					xpathEditor
 							.setBackground(new Color(display, 255, 255, 255));
 				}
 			} catch (XPathExpressionException e) {
 				xpathEditor.setBackground(new Color(display, 255, 180, 180));
-				outputLabel.setText("構文エラーです");
+				outputLabel.setText(Messages.getString("XPathViewer.XPathSyntaxError")); //$NON-NLS-1$
 			}
 		} catch (ParseException ex) {
 			CheckerActivator.log(ex);
@@ -196,7 +196,7 @@ public class XPathViewer extends ViewPart {
 
 			if (pushedButton == clearXPathButton) {
 				xpathEditor.setBackground(new Color(display, 255, 255, 255));
-				xpathEditor.setText("");
+				xpathEditor.setText(""); //$NON-NLS-1$
 			}
 		}
 	}
@@ -220,7 +220,7 @@ public class XPathViewer extends ViewPart {
 					copyButton.setEnabled(false);
 					xpathEditor
 							.setBackground(new Color(display, 255, 255, 255));
-					outputLabel.setText("");
+					outputLabel.setText(""); //$NON-NLS-1$
 				}
 			}
 		}
@@ -279,7 +279,7 @@ public class XPathViewer extends ViewPart {
 		}
 
 		public void widgetSelected(SelectionEvent e) {
-			String data = format("", xpathEditor.getText());
+			String data = format("", xpathEditor.getText()); //$NON-NLS-1$
 			clipboard.setContents(new Object[] { data },
 					new Transfer[] { TextTransfer.getInstance() });
 		}
@@ -288,11 +288,11 @@ public class XPathViewer extends ViewPart {
 			String res = null;
 
 			if (con.length() > 0) {
-				res = "<oneRule>" + NEW_LINE_CODE + "\t<level></level>"
-						+ NEW_LINE_CODE + "\t" + "<content></content>"
-						+ NEW_LINE_CODE + "\t<xpath>" + con + "</xpath>"
-						+ NEW_LINE_CODE + "\t<condition></condition>"
-						+ NEW_LINE_CODE + "</oneRule>" + NEW_LINE_CODE;
+				res = "<oneRule>" + NEW_LINE_CODE + "\t<level></level>" //$NON-NLS-1$ //$NON-NLS-2$
+						+ NEW_LINE_CODE + "\t" + "<content></content>" //$NON-NLS-1$ //$NON-NLS-2$
+						+ NEW_LINE_CODE + "\t<xpath>" + con + "</xpath>" //$NON-NLS-1$ //$NON-NLS-2$
+						+ NEW_LINE_CODE + "\t<condition></condition>" //$NON-NLS-1$
+						+ NEW_LINE_CODE + "</oneRule>" + NEW_LINE_CODE; //$NON-NLS-1$
 			}
 
 			return res;
@@ -327,12 +327,12 @@ public class XPathViewer extends ViewPart {
 		xpathEditor.setLayoutData(griddata);
 				
 		clearXPathButton = new Button(parent, SWT.NONE);
-		clearXPathButton.setText(Messages.getString("XPathViewer.CLEAR"));
+		clearXPathButton.setText(Messages.getString("XPathViewer.CLEAR")); //$NON-NLS-1$
 		clearXPathButton.addSelectionListener(clearButtonListener);
 		clearXPathButton.setLayoutData(new GridData());
 
 		copyButton = new Button(parent, SWT.NONE);
-		copyButton.setText(Messages.getString("XPathViewer.6"));
+		copyButton.setText(Messages.getString("XPathViewer.6")); //$NON-NLS-1$
 		copyButton.addSelectionListener(copyButtonListener);
 		copyButton.setLayoutData(new GridData());
 		
@@ -346,7 +346,7 @@ public class XPathViewer extends ViewPart {
 		xpathDisplay.setLayoutData(griddata);
 		
 		getButton = new Button(parent, SWT.NONE);
-		getButton.setText(Messages.getString("XPathViewer.5"));
+		getButton.setText(Messages.getString("XPathViewer.5")); //$NON-NLS-1$
 		getButton.addSelectionListener(getButtonListener);
 		getButton.setLayoutData(new GridData());
 	}
