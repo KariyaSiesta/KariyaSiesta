@@ -3,7 +3,7 @@
 	<property name="javancss.path" value="/var/lib/javancss/lib/javancss.jar" />
 	<property name="javancss.outputdir" value="javancss" />
 	<property name="javancss.srcdir" value="src" />
-	
+
 	<taskdef name="javancss"
 			classname="javancss.JavancssAntTask"
 			classpath="${javancss.path}" />
@@ -14,7 +14,7 @@
 		<javancss srcdir="${javancss.srcdir}"
 			generateReport="true"
 			outputfile="${javancss.outputdir}/javancss_metrics.xml"
-			includes="src/**/*.java"
+			includes="**/*.java"
 			format="xml" />
 	</target>
 </project>
