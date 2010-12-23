@@ -13,7 +13,7 @@
 		<javancss srcdir="${build.src}"
 			generateReport="true"
 			outputfile="${javancss.outputdir}/javancss_metrics.xml"
-			include="src/**/*.java"
+			includes="src/**/*.java"
 			format="xml" />
 	</target>
 </project>
