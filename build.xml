@@ -546,6 +546,7 @@
 				<include name="plugin_ja.properties"/>
 				<include name="icons/"/>
 				<include name="std.js"/>
+				<include name="about.ini"/>
 			</fileset>
 		</copy>
 		<antcall target="apitools.generation">
