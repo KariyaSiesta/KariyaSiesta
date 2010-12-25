@@ -147,6 +147,7 @@ public class CreateSDBJob extends Job {
 		monitor.setTaskName("sdb4");
 		String cmd = "bash -c \"source " + sapidDestUnix
 				+ "/lib/SetUp.sh;make -B ";
+		// cmd += "-o " + new File(curDir).getName() + " ";
 		cmd = cmd.replaceAll("//", "/");
 		if ("Makefile".equalsIgnoreCase(makefile)) {
 			cmd += "-f " + makefile;

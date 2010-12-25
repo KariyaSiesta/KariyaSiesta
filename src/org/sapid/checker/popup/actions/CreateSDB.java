@@ -23,6 +23,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.sapid.checker.cx.command.Makefile;
 import org.sapid.checker.eclipse.Messages;
+import org.sapid.checker.eclipse.cdt.CProjectConfigUtil;
 import org.sapid.checker.eclipse.progress.CreateFileSDBJob;
 import org.sapid.checker.eclipse.progress.CreateSDBJob;
 
@@ -48,7 +49,9 @@ public class CreateSDB implements IObjectActionDelegate {
 			String ext = selectedItem.getFileExtension();
 			if (ext != null && (ext.equalsIgnoreCase("c") || ext.equalsIgnoreCase("h"))) {
 				makefile = selectedItem.getLocation().toOSString();
-				Job job = new CreateFileSDBJob(projectRealPath, makefile);
+				String[] includePaths = CProjectConfigUtil.getIncludePaths(selectedItem.getProject());
+				String[] symbols = CProjectConfigUtil.getSymbols(selectedItem.getProject());
+				Job job = new CreateFileSDBJob(projectRealPath, makefile, includePaths, symbols);
 				job.schedule();
 				return;
 			}
