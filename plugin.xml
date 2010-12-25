@@ -7,7 +7,7 @@
       <objectContribution
             id="CheckerPlugin.C"
             nameFilter="*.c"
-            objectClass="org.eclipse.core.resources.IFile">
+            objectClass="org.eclipse.cdt.core.model.ITranslationUnit">
          <menu
                label="&amp;KariyaSiesta"
                path="additions"
@@ -28,11 +28,18 @@
                id="CheckerPlugin.C.deletemarker"
                label="%PopupMenus.RemoveAllMarkers"
                menubarPath="CheckerPlugin.CMenu/group1"/>
+         <action
+               class="org.sapid.checker.popup.actions.CreateSDB"
+               enablesFor="1"
+               id="CheckerPlugin.C.SDB"
+               label="%PopupMenus.CreateSDB"
+               menubarPath="CheckerPlugin.CMenu/group1">
+         </action>
       </objectContribution>
      <objectContribution
             id="CheckerPlugin.H"
             nameFilter="*.h"
-            objectClass="org.eclipse.core.resources.IFile">
+            objectClass="org.eclipse.cdt.core.model.ITranslationUnit">
          <menu
                id="CheckerPlugin.HMenu"
                label="&amp;KariyaSiesta"
@@ -52,6 +59,13 @@
                class="org.sapid.checker.popup.actions.RemoveAllMarkers"
                id="CheckerPlugin.H.deletemarker"
                label="%PopupMenus.RemoveAllMarkers"
+               menubarPath="CheckerPlugin.HMenu/group1">
+         </action>
+         <action
+               class="org.sapid.checker.popup.actions.CreateSDB"
+               enablesFor="1"
+               id="CheckerPlugin.H.SDB"
+               label="%PopupMenus.CreateSDB"
                menubarPath="CheckerPlugin.HMenu/group1">
          </action>
       </objectContribution>

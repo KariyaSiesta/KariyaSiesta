@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.cdt.core.model.ITranslationUnit;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -22,6 +23,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.sapid.checker.cx.command.Makefile;
 import org.sapid.checker.eclipse.Messages;
+import org.sapid.checker.eclipse.progress.CreateFileSDBJob;
 import org.sapid.checker.eclipse.progress.CreateSDBJob;
 
 /**
@@ -41,8 +43,15 @@ public class CreateSDB implements IObjectActionDelegate {
 		String makefile = "Makefile"; //$NON-NLS-1$
 		if (selectedItem instanceof IFile) {
 			projectRealPath = selectedItem.getProject().getLocation().toFile()
-					.getAbsolutePath();
+			.getAbsolutePath();
 			makefile = selectedItem.getName().toString();
+			String ext = selectedItem.getFileExtension();
+			if (ext != null && (ext.equalsIgnoreCase("c") || ext.equalsIgnoreCase("h"))) {
+				makefile = selectedItem.getLocation().toOSString();
+				Job job = new CreateFileSDBJob(projectRealPath, makefile);
+				job.schedule();
+				return;
+			}
 		} else if (selectedItem instanceof IProject) {
 			projectRealPath = selectedItem.getLocation().toFile()
 					.getAbsolutePath();
@@ -51,15 +60,19 @@ public class CreateSDB implements IObjectActionDelegate {
 		try {
 			if (!new Makefile(projectRealPath + File.separator + makefile)
 					.isContainedCCMacro()) {
-				MessageDialog.openError(new Shell(), "Error in Sapid", //$NON-NLS-1$
-						Messages.getString("CreateSDB.MacroNotFound") + projectRealPath //$NON-NLS-1$
-								+ File.separator + makefile);
+				MessageDialog
+						.openError(new Shell(),
+								"Error in Sapid", //$NON-NLS-1$
+								Messages.getString("CreateSDB.MacroNotFound") + projectRealPath //$NON-NLS-1$
+										+ File.separator + makefile);
 				return;
 			}
 		} catch (FileNotFoundException e1) {
-			MessageDialog.openError(new Shell(), "Error in Sapid", //$NON-NLS-1$
-					Messages.getString("CreateSDB.MakefileNotFound") + projectRealPath + File.separator //$NON-NLS-1$
-							+ makefile);
+			MessageDialog
+					.openError(new Shell(),
+							"Error in Sapid", //$NON-NLS-1$
+							Messages.getString("CreateSDB.MakefileNotFound") + projectRealPath + File.separator //$NON-NLS-1$
+									+ makefile);
 			return;
 		}
 
@@ -92,6 +105,8 @@ public class CreateSDB implements IObjectActionDelegate {
 				selectedItem = (IFile) obj;
 			} else if (obj instanceof IProject) {
 				selectedItem = (IProject) obj;
+			} else if (obj instanceof ITranslationUnit) {
+				selectedItem = ((ITranslationUnit) obj).getResource();
 			}
 		}
 	}

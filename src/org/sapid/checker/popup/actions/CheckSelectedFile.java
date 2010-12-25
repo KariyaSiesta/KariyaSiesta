@@ -3,7 +3,9 @@ package org.sapid.checker.popup.actions;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.cdt.core.model.ITranslationUnit;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -85,12 +87,9 @@ public class CheckSelectedFile implements IObjectActionDelegate {
 
             if (obj instanceof IFile) {
                 file = (IFile) obj;
-                // } else if (obj instanceof ITranslationUnit) {
-                // // CDT の Package Explorer は C/H が
-                // // ITranslationUnit でくるためそれに対する処理
-                //                 
-                // file = ResourcesPlugin.getWorkspace().getRoot().getFile(
-                // ((ITranslationUnit) obj).getPath());
+			} else if (obj instanceof ITranslationUnit) {
+				file = ResourcesPlugin.getWorkspace().getRoot()
+						.getFile(((ITranslationUnit) obj).getPath());
             }
         }
     }

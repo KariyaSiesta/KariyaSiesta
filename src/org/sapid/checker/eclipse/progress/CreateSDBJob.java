@@ -19,10 +19,15 @@ import org.eclipse.core.runtime.Status;
  * @author mzp
  */
 public class CreateSDBJob extends Job {
-
 	private String curDir;
+
 	private String makefile = "Makefile";
 
+	/**
+	 * constructor
+	 * @param curDir
+	 * @param makefile
+	 */
 	public CreateSDBJob(String curDir, String makefile) {
 		super("Create SDB");
 		this.curDir = curDir;
@@ -31,7 +36,35 @@ public class CreateSDBJob extends Job {
 		}
 	}
 
-	private IStatus report(int status,String message){
+	/**
+	 * @return the curDir
+	 */
+	public String getCurDir() {
+		return curDir;
+	}
+
+	/**
+	 * @param curDir the curDir to set
+	 */
+	public void setCurDir(String curDir) {
+		this.curDir = curDir;
+	}
+
+	/**
+	 * @return the makefile
+	 */
+	public String getMakefile() {
+		return makefile;
+	}
+
+	/**
+	 * @param makefile the makefile to set
+	 */
+	public void setMakefile(String makefile) {
+		this.makefile = makefile;
+	}
+
+	protected IStatus report(int status,String message){
 		return new Status(status, CheckerActivator.PLUGIN_ID, message);
 	}
 	
@@ -91,7 +124,7 @@ public class CreateSDBJob extends Job {
 	 * @return
 	 * @throws IOException
 	 */
-	private String kickCygPath(IProgressMonitor monitor, String sapidDest)
+	protected String kickCygPath(IProgressMonitor monitor, String sapidDest)
 			throws IOException {
 		ProgressDialogOutput output = new ProgressDialogOutput(monitor);
 		String cmd = "cygpath -u \"" + sapidDest + "\"";
@@ -109,7 +142,7 @@ public class CreateSDBJob extends Job {
 	 * @return
 	 * @throws IOException
 	 */
-	private int kickSDB4(IProgressMonitor monitor, String sapidDestUnix,
+	protected int kickSDB4(IProgressMonitor monitor, String sapidDestUnix,
 			ProgressDialogOutput output) throws IOException {
 		monitor.setTaskName("sdb4");
 		String cmd = "bash -c \"source " + sapidDestUnix
@@ -134,7 +167,7 @@ public class CreateSDBJob extends Job {
 	 * @return
 	 * @throws IOException
 	 */
-	private int kickSpdMkCXModel(IProgressMonitor monitor,
+	protected int kickSpdMkCXModel(IProgressMonitor monitor,
 			String sapidDestUnix, ProgressDialogOutput output)
 			throws IOException {
 		int exitValue;
