@@ -20,3 +20,4 @@ Bundle-ClassPath: .,
  lib/java-getopt-1.0.9.jar
 Main-Class: org.sapid.checker.main.Main
 Bundle-Vendor: RAISIN
+Export-Package: org.sapid
