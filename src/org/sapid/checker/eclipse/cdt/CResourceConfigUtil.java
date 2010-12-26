@@ -1,19 +1,21 @@
 package org.sapid.checker.eclipse.cdt;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import org.eclipse.cdt.managedbuilder.core.BuildException;
 import org.eclipse.cdt.managedbuilder.core.IConfiguration;
+import org.eclipse.cdt.managedbuilder.core.IFileInfo;
 import org.eclipse.cdt.managedbuilder.core.IManagedBuildInfo;
 import org.eclipse.cdt.managedbuilder.core.IOption;
+import org.eclipse.cdt.managedbuilder.core.IResourceInfo;
 import org.eclipse.cdt.managedbuilder.core.ITool;
-import org.eclipse.cdt.managedbuilder.core.IToolChain;
 import org.eclipse.cdt.managedbuilder.core.ManagedBuildManager;
-import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IPath;
 
 /**
- * Utility class to get CDT project configuration.
+ * Utility class to get CDT resource configuration.
  * @author mallowlabs
  * @since v1.1
  */
@@ -24,86 +26,109 @@ public class CResourceConfigUtil {
 	}
 
 	/**
-	 * get include paths of project.
-	 * @param prj a C project (has .cproject file)
+	 * get include paths of resource.
+	 * @param resource a C resource (project has .cproject file)
 	 * @return path list has absolute paths or project relative paths
 	 */
-	public static String[] getIncludePaths(IProject prj) {
-		List<String> list = new ArrayList<String>();
-		ITool[] tools = getToolsFromDefaultToolChain(prj);
-		for (ITool tool : tools) {
-			IOption[] options = tool.getOptions();
-			for (IOption option : options) {
-				try {
-					if (option.getValueType() != IOption.INCLUDE_PATH) {
-						continue;
-					}
-					String[] paths = option.getIncludePaths();
-					if (option.isExtensionElement()) {
-						continue;
-					}
-					for (String path : paths) {
-						if (path.startsWith("\"${workspace_loc:")) {
-							// workspace path
-							String prjPrefix = prj.getFullPath().toString()
-									+ "/";
-							path = path.replace("\"${workspace_loc:", "")
-									.replace("}\"", "").replace(prjPrefix, "");
-							list.add(path);
-						} else if (path.startsWith("\"${")) {
-							// variable
-							// do nothing
-						} else {
-							// absolute path
-							list.add(path);
+	public static String[] getIncludePaths(IResource resource) {
+		Set<String> list = new LinkedHashSet<String>();
+		IResource tmp = resource;
+		while (tmp.getType() != IResource.ROOT) {
+			ITool[] tools = getToolsFromDefaultToolChain(tmp);
+			for (ITool tool : tools) {
+				if (!(tool.getId().contains("c.compiler"))) {
+					continue;
+				}
+				IOption[] options = tool.getOptions();
+				for (IOption option : options) {
+					try {
+						if (option.getValueType() != IOption.INCLUDE_PATH) {
+							continue;
 						}
+						String[] paths = option.getIncludePaths();
+						for (String path : paths) {
+							if (path.startsWith("\"${workspace_loc:")) {
+								// workspace path
+								String prjPrefix = resource.getProject()
+										.getFullPath().toString()
+										+ "/";
+								path = path.replace("\"${workspace_loc:", "")
+										.replace("}\"", "")
+										.replace(prjPrefix, "");
+								list.add(path);
+							} else if (path.startsWith("\"${")) {
+								// skip variable
+							} else {
+								// absolute path
+								list.add(path);
+							}
+						}
+					} catch (BuildException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				} catch (BuildException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
+			tmp = tmp.getParent();
 		}
 		return (String[]) list.toArray(new String[list.size()]);
-	}
-
-	private static ITool[] getToolsFromDefaultToolChain(IProject prj) {
-		IManagedBuildInfo info = ManagedBuildManager.getBuildInfo(prj);
-		IConfiguration config = info.getDefaultConfiguration();
-		IToolChain chain = config.getToolChain();
-		ITool[] tools = chain.getTools();
-		return tools;
 	}
 
 	/**
-	 * get macro definitions of project.
-	 * @param prj a C project (has .cproject file)
+	 * get macro definitions of the resource.
+	 * @param resource a C resource (has .cproject file)
 	 * @return macro list (format: MACRO=VALUE or MACRO)
 	 */
-	public static String[] getSymbols(IProject prj) {
-		List<String> list = new ArrayList<String>();
-		ITool[] tools = getToolsFromDefaultToolChain(prj);
-		for (ITool tool : tools) {
-			IOption[] options = tool.getOptions();
-			for (IOption option : options) {
-				try {
-					if (option.getValueType() != IOption.PREPROCESSOR_SYMBOLS) {
-						continue;
-					}
-					String[] symbols = option.getDefinedSymbols();
-					for (String symbol : symbols) {
-						if (symbol.startsWith("\"") && symbol.contains("${")) {
-							continue; // skip variable
+	public static String[] getSymbols(IResource resource) {
+		Set<String> list = new LinkedHashSet<String>();
+		IResource tmp = resource;
+		while (tmp.getType() != IResource.ROOT) {
+			ITool[] tools = getToolsFromDefaultToolChain(tmp);
+			for (ITool tool : tools) {
+				if (!(tool.getId().contains("c.compiler"))) {
+					continue;
+				}
+				IOption[] options = tool.getOptions();
+				for (IOption option : options) {
+					try {
+						if (option.getValueType() != IOption.PREPROCESSOR_SYMBOLS) {
+							continue;
 						}
-						list.add(symbol);
+						String[] symbols = option.getDefinedSymbols();
+						for (String symbol : symbols) {
+							if (symbol.startsWith("\"")
+									&& symbol.contains("${")) {
+								continue; // skip variable
+							}
+							list.add(symbol);
+						}
+					} catch (BuildException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				} catch (BuildException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
+			tmp = tmp.getParent();
 		}
 		return (String[]) list.toArray(new String[list.size()]);
+	}
+
+	private static ITool[] getToolsFromDefaultToolChain(IResource resource) {
+		IManagedBuildInfo info = ManagedBuildManager.getBuildInfo(resource
+				.getProject());
+		IConfiguration config = info.getDefaultConfiguration();
+		// project
+		if (resource.getType() == IResource.PROJECT) {
+			return config.getToolChain().getTools();
+		}
+		IPath prjRelativePath = resource.getProjectRelativePath();
+		IResourceInfo ri = config.getResourceInfo(prjRelativePath, false);
+		// file
+		if (ri instanceof IFileInfo) {
+			return ((IFileInfo) ri).getToolsToInvoke();
+		}
+		// others
+		return ri.getTools();
 	}
 
 }

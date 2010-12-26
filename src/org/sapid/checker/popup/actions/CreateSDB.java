@@ -49,8 +49,8 @@ public class CreateSDB implements IObjectActionDelegate {
 			String ext = selectedItem.getFileExtension();
 			if (ext != null && (ext.equalsIgnoreCase("c") || ext.equalsIgnoreCase("h"))) {
 				makefile = selectedItem.getLocation().toOSString();
-				String[] includePaths = CResourceConfigUtil.getIncludePaths(selectedItem.getProject());
-				String[] symbols = CResourceConfigUtil.getSymbols(selectedItem.getProject());
+				String[] includePaths = CResourceConfigUtil.getIncludePaths(selectedItem);
+				String[] symbols = CResourceConfigUtil.getSymbols(selectedItem);
 				Job job = new CreateFileSDBJob(projectRealPath, makefile, includePaths, symbols);
 				job.schedule();
 				return;
