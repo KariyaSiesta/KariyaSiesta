@@ -20,7 +20,7 @@ public class LineWidthChecker implements CheckerClass {
 
   final int                   DEFAULT_LEVEL   = 3;
 
-  final String                DEFAULT_MESSAGE = "指定した最大行数を超えている (LineWidthChecker)";
+  final String                DEFAULT_MESSAGE = "Line width is over the threathold (LineWidthChecker)";
 
   private static final String XML_ID          = "id";
 
