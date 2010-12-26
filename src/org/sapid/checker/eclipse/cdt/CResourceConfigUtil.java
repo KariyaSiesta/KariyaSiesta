@@ -17,10 +17,10 @@ import org.eclipse.core.resources.IProject;
  * @author mallowlabs
  * @since v1.1
  */
-public class CProjectConfigUtil {
+public class CResourceConfigUtil {
 
 	/** This is utility class. */
-	private CProjectConfigUtil() {
+	private CResourceConfigUtil() {
 	}
 
 	/**
