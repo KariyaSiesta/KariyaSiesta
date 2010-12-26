@@ -7,7 +7,7 @@
 	<property name="basearch" value="${arch}"/>
 	<property name="basenl" value="${nl}"/>
 	<property name="bundleId" value="CheckerPlugin"/>
-	<property name="bundleVersion" value="1.0.0"/>
+	<property name="bundleVersion" value="1.0.5"/>
 	<property name="p2.publishonerror" value="false"/>
 	<property name="eclipse.root" value="/var/lib/eclipse"/>
 

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: CheckerPlugin Plug-in
 Bundle-SymbolicName: CheckerPlugin;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.5
 Bundle-Activator: org.sapid.checker.eclipse.CheckerActivator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
