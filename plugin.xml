@@ -70,25 +70,6 @@
          </action>
       </objectContribution>
       <objectContribution
-            id="CheckerPlugin.Makefile"
-            nameFilter="Makefile"
-            objectClass="org.eclipse.core.resources.IFile">
-         <menu
-               id="CheckerPlugin.MakefileMenu"
-               label="&amp;KariyaSiesta"
-               path="additions">
-            <separator
-                  name="group1">
-            </separator>
-         </menu>
-         <action
-               class="org.sapid.checker.popup.actions.CreateSDB"
-               id="CheckerPlugin.Makefile.SDB"
-               label="%PopupMenus.CreateSDB"
-               menubarPath="CheckerPlugin.MakefileMenu/group1">
-         </action>
-      </objectContribution>
-      <objectContribution
             adaptable="true"
             id="CheckerPlugin.Project"
             nameFilter="*"

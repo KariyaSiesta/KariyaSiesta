@@ -4,33 +4,28 @@
  */
 package org.sapid.checker.popup.actions;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.cdt.core.model.ITranslationUnit;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-import org.sapid.checker.cx.command.Makefile;
-import org.sapid.checker.eclipse.Messages;
 import org.sapid.checker.eclipse.cdt.CResourceConfigUtil;
-import org.sapid.checker.eclipse.progress.CreateFileSDBJob;
 import org.sapid.checker.eclipse.progress.CreateSDBJob;
 
 /**
  * 「SDB を作成」のアクションデリゲータ<br>
  * Makefile の右クリックメニューと紐付けされる
- * 
  * @author Toshinori OUSKA
  */
 public class CreateSDB implements IObjectActionDelegate {
@@ -40,52 +35,27 @@ public class CreateSDB implements IObjectActionDelegate {
 	}
 
 	public void run(IAction action) {
-		String projectRealPath = ""; //$NON-NLS-1$
-		String makefile = "Makefile"; //$NON-NLS-1$
+		List<IFile> files = new ArrayList<IFile>();
+		String projectRealPath = selectedItem.getProject().getLocation()
+				.toFile().getAbsolutePath();
 		if (selectedItem instanceof IFile) {
-			projectRealPath = selectedItem.getProject().getLocation().toFile()
-			.getAbsolutePath();
-			makefile = selectedItem.getName().toString();
-			String ext = selectedItem.getFileExtension();
-			if (ext != null && (ext.equalsIgnoreCase("c") || ext.equalsIgnoreCase("h"))) {
-				makefile = selectedItem.getLocation().toOSString();
-				String[] includePaths = CResourceConfigUtil.getIncludePaths(selectedItem);
-				String[] symbols = CResourceConfigUtil.getSymbols(selectedItem);
-				Job job = new CreateFileSDBJob(projectRealPath, makefile, includePaths, symbols);
-				job.schedule();
-				return;
+			files.add((IFile) selectedItem);
+		} else if (selectedItem instanceof IContainer) { // folder or project
+			IContainer container = (IContainer) selectedItem;
+			try {
+				files.addAll(findCandHFilesRecursive(container));
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} else if (selectedItem instanceof IProject) {
-			projectRealPath = selectedItem.getLocation().toFile()
-					.getAbsolutePath();
 		}
-
-		try {
-			if (!new Makefile(projectRealPath + File.separator + makefile)
-					.isContainedCCMacro()) {
-				MessageDialog
-						.openError(new Shell(),
-								"Error in Sapid", //$NON-NLS-1$
-								Messages.getString("CreateSDB.MacroNotFound") + projectRealPath //$NON-NLS-1$
-										+ File.separator + makefile);
-				return;
-			}
-		} catch (FileNotFoundException e1) {
-			MessageDialog
-					.openError(new Shell(),
-							"Error in Sapid", //$NON-NLS-1$
-							Messages.getString("CreateSDB.MakefileNotFound") + projectRealPath + File.separator //$NON-NLS-1$
-									+ makefile);
-			return;
-		}
-
-		Job job = new CreateSDBJob(projectRealPath, makefile);
+		Job job = new CreateSDBJob(projectRealPath,
+				(IFile[]) files.toArray(new IFile[files.size()]));
 		job.schedule();
 	}
 
 	/**
 	 * ruby の Array#join 風
-	 * 
 	 * @param list
 	 * @param sp
 	 * @return
@@ -112,6 +82,34 @@ public class CreateSDB implements IObjectActionDelegate {
 				selectedItem = ((ITranslationUnit) obj).getResource();
 			}
 		}
+	}
+
+	/**
+	 * gather all *.c and *.h files.
+	 * @param container project or folder
+	 * @return all *.c and *.h files (excludes: not build target)
+	 * @throws CoreException
+	 */
+	private List<IFile> findCandHFilesRecursive(IContainer container)
+			throws CoreException {
+		List<IFile> files = new ArrayList<IFile>();
+		IResource[] resources = container.members();
+		for (IResource resource : resources) {
+			if (resource instanceof IFile) {
+				String ext = resource.getFileExtension();
+				if (!("c".equalsIgnoreCase(ext))
+						&& !("h".equalsIgnoreCase(ext))) {
+					continue;
+				}
+				if (CResourceConfigUtil.isExcludeResource((IFile)resource)) {
+					continue;
+				}
+				files.add((IFile) resource);
+			} else if (resource instanceof IContainer) {
+				files.addAll(findCandHFilesRecursive((IContainer) resource));
+			}
+		}
+		return files;
 	}
 
 }

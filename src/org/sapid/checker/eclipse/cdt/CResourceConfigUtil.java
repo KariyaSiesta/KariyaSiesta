@@ -11,6 +11,7 @@ import org.eclipse.cdt.managedbuilder.core.IOption;
 import org.eclipse.cdt.managedbuilder.core.IResourceInfo;
 import org.eclipse.cdt.managedbuilder.core.ITool;
 import org.eclipse.cdt.managedbuilder.core.ManagedBuildManager;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 
@@ -129,6 +130,20 @@ public class CResourceConfigUtil {
 		}
 		// others
 		return ri.getTools();
+	}
+
+	/**
+	 * if "Tool Chain Editor" -&gt; "Exclude resource from build" is checked return true.
+	 * @param file *.c or *.h file
+	 * @return if the file is an excluded file return true, else false;
+	 */
+	public static boolean isExcludeResource(IFile file) {
+		IManagedBuildInfo info = ManagedBuildManager.getBuildInfo(file
+				.getProject());
+		IConfiguration config = info.getDefaultConfiguration();
+		IResourceInfo ri = config.getResourceInfo(
+				file.getProjectRelativePath(), false);
+		return ri.isExcluded();
 	}
 
 }

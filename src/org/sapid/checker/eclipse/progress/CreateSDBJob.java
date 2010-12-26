@@ -4,36 +4,36 @@ import java.io.File;
 import java.io.IOException;
 import java.util.regex.Matcher;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.sapid.checker.cx.command.Command;
 import org.sapid.checker.cx.command.CommandOutput;
 import org.sapid.checker.eclipse.CheckerActivator;
 import org.sapid.checker.eclipse.Messages;
-import org.eclipse.core.runtime.Status;
+import org.sapid.checker.eclipse.cdt.CResourceConfigUtil;
 
 /***
  * SDB生成をバックグラウンドで行なうためのジョブ
- *
- * @author mzp
+ * @author mzp, mallowlabs
  */
 public class CreateSDBJob extends Job {
+	/** working directory. */
 	private String curDir;
-
-	private String makefile = "Makefile";
+	/** target resource. */
+	private IFile[] files;
 
 	/**
-	 * constructor
-	 * @param curDir
-	 * @param makefile
+	 * constructor.
+	 * @param curDir working directory
+	 * @param files target files (*.c or *.h)
 	 */
-	public CreateSDBJob(String curDir, String makefile) {
+	public CreateSDBJob(String curDir, IFile[] files) {
 		super("Create SDB");
 		this.curDir = curDir;
-		if (makefile != null) {
-			this.makefile = makefile;
-		}
+		this.files = files;
 	}
 
 	/**
@@ -50,33 +50,20 @@ public class CreateSDBJob extends Job {
 		this.curDir = curDir;
 	}
 
-	/**
-	 * @return the makefile
-	 */
-	public String getMakefile() {
-		return makefile;
-	}
-
-	/**
-	 * @param makefile the makefile to set
-	 */
-	public void setMakefile(String makefile) {
-		this.makefile = makefile;
-	}
-
-	protected IStatus report(int status,String message){
+	protected IStatus report(int status, String message) {
 		return new Status(status, CheckerActivator.PLUGIN_ID, message);
 	}
-	
+
 	@Override
 	protected IStatus run(IProgressMonitor monitor) {
-		final int TASK_AMOUNT = 3;
-		monitor.beginTask("Chcker", TASK_AMOUNT);
+		final int TASK_AMOUNT = 2;
+		monitor.beginTask("Chcker", TASK_AMOUNT + files.length);
 
 		String sapidDest = CheckerActivator.getDefault().getPreferenceStore()
 				.getString("SAPID_DEST");
 		if (!new File(sapidDest).exists()) {
-			return this.report(IStatus.ERROR,Messages.getString("CreateSDBProgress.0"));
+			return this.report(IStatus.ERROR,
+					Messages.getString("CreateSDBProgress.0"));
 		}
 		try {
 			String sapidDestUnix = sapidDest;
@@ -88,21 +75,26 @@ public class CreateSDBJob extends Job {
 				monitor.setTaskName("path");
 			}
 			monitor.worked(1);
-
 			if (monitor.isCanceled()) {
-				return this.report(IStatus.CANCEL, Messages.getString("CheckWithProgress.CANCELD"));
+				return this.report(IStatus.CANCEL,
+						Messages.getString("CheckWithProgress.CANCELD"));
 			}
 
-			// sdb4
+			int exitValue = 0;
 			ProgressDialogOutput output = new ProgressDialogOutput(monitor);
-			int exitValue = kickSDB4(monitor, sapidDestUnix, output);
-			if (exitValue != 0) {
-				return this.report(IStatus.ERROR, output.getStored());
+			for (IFile file : files) {
+				// sdb4
+				exitValue = kickSDB4(monitor, sapidDestUnix, file, output);
+				if (exitValue != 0) {
+					return this.report(IStatus.ERROR, output.getStored());
+				}
+				output.setStored("");
+				if (monitor.isCanceled()) {
+					return this.report(IStatus.CANCEL,
+							Messages.getString("CheckWithProgress.CANCELD"));
+				}
 			}
-			output.setStored("");
-			if (monitor.isCanceled()) {
-				return this.report(IStatus.CANCEL, Messages.getString("CheckWithProgress.CANCELD"));
-			}
+
 			// spdMkCXModel
 			exitValue = kickSpdMkCXModel(monitor, sapidDestUnix, output);
 			if (exitValue != 0) {
@@ -118,7 +110,6 @@ public class CreateSDBJob extends Job {
 
 	/**
 	 * Windows パスの SAPID_DEST から Unix パスを取得するために CygPath を kick する
-	 * 
 	 * @param monitor
 	 * @param sapidDest
 	 * @return
@@ -135,7 +126,6 @@ public class CreateSDBJob extends Job {
 
 	/**
 	 * SDB4 を Kick する
-	 * 
 	 * @param monitor
 	 * @param sapidDestUnix
 	 * @param output
@@ -143,16 +133,28 @@ public class CreateSDBJob extends Job {
 	 * @throws IOException
 	 */
 	protected int kickSDB4(IProgressMonitor monitor, String sapidDestUnix,
-			ProgressDialogOutput output) throws IOException {
+			IFile file, ProgressDialogOutput output) throws IOException {
 		monitor.setTaskName("sdb4");
-		String cmd = "bash -c \"source " + sapidDestUnix
-				+ "/lib/SetUp.sh;make -B ";
-		// cmd += "-o " + new File(curDir).getName() + " ";
-		cmd = cmd.replaceAll("//", "/");
-		if ("Makefile".equalsIgnoreCase(makefile)) {
-			cmd += "-f " + makefile;
+
+		String[] includePaths = CResourceConfigUtil.getIncludePaths(file);
+		String[] symbols = CResourceConfigUtil.getSymbols(file);
+
+		// bash -c "source /usr/local/Sapid/lib/SetUp.sh;
+		// sdb4 -o cxc-test test2.c -Iinclude -I/file/local/include -DMAMACRO"
+		StringBuffer buff = new StringBuffer();
+		buff.append("bash -c \"source ").append(sapidDestUnix)
+				.append("/lib/SetUp.sh;");
+		buff.append("sdb4 -o ").append(new File(curDir).getName()).append(" ");
+		buff.append(file.getProjectRelativePath().toString());
+
+		for (String path : includePaths) {
+			buff.append(" -I").append(path);
 		}
-		cmd += " CC=sdb4\"";
+		for (String symbol : symbols) {
+			buff.append(" -D").append(symbol);
+		}
+		buff.append("\"");
+		String cmd = buff.toString().replaceAll("//", "/");
 		int exitValue = new Command(cmd, curDir).run(output);
 		CheckerActivator.log(output.getStored());
 		monitor.worked(1);
@@ -161,7 +163,6 @@ public class CreateSDBJob extends Job {
 
 	/**
 	 * spdMkCXModel を Kick する
-	 * 
 	 * @param monitor
 	 * @param sapidDestUnix
 	 * @param output
@@ -187,7 +188,6 @@ public class CreateSDBJob extends Job {
 
 	/**
 	 * Progress Monitor に状況を表示する CommandOutput
-	 * 
 	 * @author Toshinori OSUKA
 	 */
 	public class ProgressDialogOutput implements CommandOutput {
