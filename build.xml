@@ -12,7 +12,7 @@
 	<property name="eclipse.root" value="/var/lib/eclipse"/>
 
 	<!-- Compiler settings. -->
-	<property name="javacFailOnError" value="false"/>
+	<property name="javacFailOnError" value="true"/>
 	<property name="javacDebugInfo" value="on"/>
 	<property name="javacVerbose" value="false"/>
 	<property name="logExtension" value=".log"/>
